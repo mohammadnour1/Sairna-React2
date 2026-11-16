@@ -1,0 +1,13 @@
+{
+  "request": "POST /website/auth/register",
+  "status": 400,
+  "body": {
+    "message": [
+      "name must be longer than or equal to 2 characters",
+      "email must be an email",
+      "password must be longer than or equal to 8 characters"
+    ],
+    "error": "Bad Request",
+    "statusCode": 400
+  }
+}

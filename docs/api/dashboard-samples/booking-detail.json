@@ -1,0 +1,59 @@
+{
+  "request": "GET /dashboard/bookings/16",
+  "status": 200,
+  "body": {
+    "id": 16,
+    "code": "SR-5A736601",
+    "userId": 42,
+    "tripId": 73,
+    "status": "CONFIRMED",
+    "totalPrice": 145000,
+    "createdAt": "2026-11-12T20:04:39.493Z",
+    "cancelledAt": null,
+    "trip": {
+      "id": 73,
+      "code": "DEMO-2026-11-13-1",
+      "companyId": 1,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-13T07:00:00.000Z",
+      "arrivalAt": "2026-11-13T13:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null,
+        "isActive": true
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      }
+    },
+    "seats": [
+      {
+        "id": 21,
+        "bookingId": 16,
+        "tripId": 73,
+        "seatNumber": 33,
+        "passengerName": "مسافر",
+        "passengerPhone": "09XXXXXXXX"
+      }
+    ],
+    "user": {
+      "id": 42,
+      "name": "مستخدم 42",
+      "email": "user42@example.com"
+    }
+  }
+}

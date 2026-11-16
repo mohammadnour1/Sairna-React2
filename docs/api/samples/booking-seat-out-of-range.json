@@ -1,0 +1,11 @@
+{
+  "request": "POST /website/bookings",
+  "status": 400,
+  "body": {
+    "message": [
+      "seats.0.seatNumber must not be greater than 60"
+    ],
+    "error": "Bad Request",
+    "statusCode": 400
+  }
+}

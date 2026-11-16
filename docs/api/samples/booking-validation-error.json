@@ -1,0 +1,13 @@
+{
+  "request": "POST /website/bookings",
+  "status": 400,
+  "body": {
+    "message": [
+      "seats.0.seatNumber must not be less than 1",
+      "seats.0.passengerName must be longer than or equal to 2 characters",
+      "seats.0.passengerPhone must match /^[+0-9\\s-]{9,18}$/ regular expression"
+    ],
+    "error": "Bad Request",
+    "statusCode": 400
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "request": "GET /dashboard/cities",
+  "status": 200,
+  "body": {
+    "_note": "array of 14 items; first 3 kept",
+    "items": [
+      {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      }
+    ]
+  }
+}

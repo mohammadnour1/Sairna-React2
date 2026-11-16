@@ -1,0 +1,9 @@
+{
+  "request": "POST /dashboard/bookings/999999/cancel",
+  "status": 404,
+  "body": {
+    "message": "BOOKING_NOT_FOUND",
+    "error": "Not Found",
+    "statusCode": 404
+  }
+}

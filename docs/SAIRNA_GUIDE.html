@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>دليل سيرنا React</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f8fafb; --surface: #fff; --surface-alt: #f2f7f8; --text: #112f41; --muted: #5f7482;
+    --border: #e4ecef; --primary: #0aa99b; --primary-deep: #078e87; --dark: #103a4e; --soft: #e6f8f3;
+    --warn-bg: #fff6e5; --warn: #9a6514; --danger-bg: #fdeceb; --danger: #a64645;
+    --code-bg: #0f2533; --code-text: #d9eef2; --shadow: 0 15px 55px rgba(19,54,72,.07);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1c29; --surface: #112b3b; --surface-alt: #173748; --text: #eef8fa; --muted: #a3b8c3;
+      --border: #254252; --soft: #174b49; --warn-bg: #3a2e16; --warn: #f2c77a; --danger-bg: #3f2224; --danger: #f4b6b2;
+      --code-bg: #071621; --shadow: 0 15px 55px rgba(0,0,0,.2); color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1c29; --surface: #112b3b; --surface-alt: #173748; --text: #eef8fa; --muted: #a3b8c3;
+    --border: #254252; --soft: #174b49; --warn-bg: #3a2e16; --warn: #f2c77a; --danger-bg: #3f2224; --danger: #f4b6b2;
+    --code-bg: #071621; --shadow: 0 15px 55px rgba(0,0,0,.2); color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: Cairo, "Segoe UI", Tahoma, sans-serif; font-size: 15px; line-height: 1.9; }
+  a { color: var(--primary-deep); }
+  code, pre, kbd { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; }
+  :not(pre) > code { direction: ltr; unicode-bidi: isolate; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; font-size: .86em; }
+  pre { direction: ltr; text-align: left; background: var(--code-bg); color: var(--code-text); border-radius: 14px; padding: 16px 18px; overflow-x: auto; font-size: 13px; line-height: 1.65; margin: 14px 0; }
+  pre .c { color: #7fa3b3; } pre .k { color: #6fe0cf; } pre .s { color: #ffd38a; }
+  h1, h2, h3, h4 { line-height: 1.45; margin: 0; }
+  h2 { font-size: 26px; font-weight: 900; margin-bottom: 6px; }
+  h3 { font-size: 19px; font-weight: 800; margin: 28px 0 8px; }
+  h4 { font-size: 16px; font-weight: 800; margin: 20px 0 6px; }
+  p { margin: 0 0 12px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 18px; font-size: 14px; }
+  th, td { border-bottom: 1px solid var(--border); padding: 9px 10px; text-align: start; vertical-align: top; }
+  th { background: var(--surface-alt); font-weight: 800; position: sticky; top: 0; }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+  .table-wrap table { margin: 0; }
+
+  /* Layout */
+  .topbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 14px; padding: 12px 22px; background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 20px; }
+  .brand-mark { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; color: #fff; background: linear-gradient(140deg, #20c4ae, #008a98); }
+  .topbar .spacer { flex: 1; }
+  .search { width: min(320px, 46vw); border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 12px; padding: 9px 14px; font: inherit; font-size: 14px; }
+  .icon-btn { border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 12px; width: 40px; height: 40px; display: grid; place-items: center; cursor: pointer; font-size: 18px; }
+  .menu-btn { display: none; }
+  .shell { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 34px; width: min(1320px, calc(100% - 40px)); margin: 0 auto; }
+  nav.toc { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow-y: auto; padding: 22px 0; }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; }
+  nav.toc li a { display: block; padding: 6px 12px; border-radius: 10px; color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 700; border-inline-start: 3px solid transparent; }
+  nav.toc li a:hover { background: var(--surface-alt); color: var(--text); }
+  nav.toc li a.active { color: var(--primary-deep); background: var(--soft); border-inline-start-color: var(--primary); }
+  nav.toc .num { display: inline-block; min-width: 26px; color: var(--primary); }
+  main { padding: 22px 0 80px; min-width: 0; }
+  section.chapter { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 30px 34px; margin-bottom: 22px; box-shadow: var(--shadow); scroll-margin-top: 80px; }
+  section.chapter.hidden { display: none; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 7px; background: var(--soft); color: var(--primary-deep); border-radius: 99px; padding: 3px 13px; font-size: 12px; font-weight: 900; margin-bottom: 10px; }
+  .lead { color: var(--muted); font-size: 16px; }
+
+  /* Hero */
+  .hero { background: linear-gradient(140deg, #0e4653, #0b756e); color: #fff; border-radius: 26px; padding: 40px 38px; margin: 22px 0; position: relative; overflow: hidden; }
+  .hero h1 { font-size: clamp(30px, 4vw, 46px); font-weight: 900; letter-spacing: -1px; }
+  .hero p { color: #d4edeb; max-width: 760px; font-size: 16px; }
+  .hero .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+  .hero .stat { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.16); border-radius: 16px; padding: 14px; }
+  .hero .stat b { display: block; font-size: 26px; font-weight: 900; }
+  .hero .stat span { font-size: 13px; color: #c7f6e8; }
+
+  /* Callouts & cards */
+  .note, .tip, .warn { border-radius: 14px; padding: 13px 16px; margin: 14px 0; font-size: 14px; border: 1px solid transparent; }
+  .note { background: var(--soft); color: var(--text); border-color: color-mix(in srgb, var(--primary) 30%, transparent); }
+  .tip { background: var(--surface-alt); border-color: var(--border); }
+  .warn { background: var(--warn-bg); color: var(--warn); }
+  .note b:first-child, .tip b:first-child, .warn b:first-child { margin-inline-end: 4px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .card { border: 1px solid var(--border); background: var(--surface-alt); border-radius: 16px; padding: 16px 18px; }
+  .card h4 { margin-top: 0; }
+  .card p:last-child { margin-bottom: 0; }
+  .pill { display: inline-block; font-size: 12px; font-weight: 800; border-radius: 99px; padding: 1px 10px; background: var(--soft); color: var(--primary-deep); margin-inline-end: 4px; }
+  .pill.get { background: #e3f2ff; color: #1b5fa6; } .pill.post { background: #fff0dc; color: #9a5b0b; }
+  .pill.auth { background: var(--danger-bg); color: var(--danger); }
+  details.code { border: 1px solid var(--border); border-radius: 14px; margin: 12px 0; background: var(--surface-alt); }
+  details.code summary { cursor: pointer; padding: 10px 14px; font-weight: 800; font-size: 14px; }
+  details.code pre { margin: 0 10px 10px; }
+  .tree { white-space: pre; }
+  figure { margin: 18px 0; }
+  figure svg { width: 100%; height: auto; display: block; }
+  figcaption { color: var(--muted); font-size: 13px; text-align: center; margin-top: 6px; }
+  .svg-box { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 16px; padding: 14px; }
+  .checklist { list-style: none; padding: 0; margin: 10px 0; }
+  .checklist li { padding: 6px 0 6px; border-bottom: 1px dashed var(--border); }
+  .checklist li::before { content: "◻"; color: var(--primary); margin-inline-end: 8px; }
+  ol.steps { padding-inline-start: 22px; }
+  ol.steps li { margin-bottom: 6px; }
+  .back-top { position: fixed; bottom: 20px; inset-inline-start: 20px; z-index: 30; }
+  .ltr { direction: ltr; unicode-bidi: isolate; }
+
+  @media (max-width: 980px) {
+    .shell { grid-template-columns: minmax(0, 1fr); }
+    nav.toc { display: none; position: fixed; inset-block: 64px 0; inset-inline-start: 0; width: min(320px, 86vw); max-height: none; background: var(--surface); border-inline-end: 1px solid var(--border); padding: 18px; z-index: 25; box-shadow: var(--shadow); }
+    nav.toc.open { display: block; }
+    .menu-btn { display: grid; }
+    .hero .stats, .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .shell { width: calc(100% - 32px); }
+    section.chapter { padding: 22px 18px; }
+    .hero { padding: 28px 20px; }
+    .grid-2, .grid-3 { grid-template-columns: minmax(0, 1fr); }
+    .topbar { padding: 10px 16px; gap: 8px; }
+    .search { width: auto; flex: 1; min-width: 0; }
+    .topbar .spacer { display: none; }
+    .brand { font-size: 17px; }
+    .brand span.sub { display: none; }
+    h2 { font-size: 22px; }
+  }
+  @media print {
+    .topbar, nav.toc, .back-top { display: none; }
+    .shell { display: block; width: auto; }
+    section.chapter { box-shadow: none; break-inside: avoid-page; }
+    details.code { display: block; } details.code > * { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menuBtn" aria-label="فتح الفهرس" aria-expanded="false" aria-controls="toc">☰</button>
+  <div class="brand"><span class="brand-mark">س</span> سيرنا <span class="sub" style="color:var(--muted);font-size:14px;font-weight:700">· دليل دراسة المشروع</span></div>
+  <div class="spacer"></div>
+  <input class="search" id="search" type="search" placeholder="ابحث بالدليل… (مثال: hook، 401، seats)" aria-label="بحث بالدليل" />
+  <button class="icon-btn" id="themeBtn" aria-label="تبديل المظهر" title="تبديل المظهر">◐</button>
+</header>
+
+<div class="shell">
+  <nav class="toc" id="toc" aria-label="فهرس الدليل">
+    <ol id="tocList"></ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <span class="eyebrow" style="background:rgba(255,255,255,.12);color:#c7f6e8">دليل تعليمي شامل</span>
+      <h1>سيرنا — من HTML عادي لتطبيق React مربوط بـ API حقيقي</h1>
+      <p>هالدليل بيشرح المشروع من أوله لآخره: ليش انبنى هيك، كيف بتمشي البيانات، شو بيعمل كل ملف ومكوّن وhook، وكيف انحلّت أخطاء النسخة القديمة. اقراه بالترتيب أول مرة، وبعدين استعمله كمرجع.</p>
+      <div class="stats">
+        <div class="stat"><b>13</b><span>مرحلة (Phase 0 → 12)</span></div>
+        <div class="stat"><b>~176</b><span>ملف كود بـ <code style="background:none;border:0;color:#fff">src/</code></span></div>
+        <div class="stat"><b>13</b><span>endpoint من الـ Website API</span></div>
+        <div class="stat"><b>27</b><span>bug من المرجع انحلّوا</span></div>
+      </div>
+    </div>
+
+    <!-- 1 -->
+    <section class="chapter" id="overview" data-title="نظرة عامة">
+      <span class="eyebrow">01</span>
+      <h2>نظرة عامة</h2>
+      <p class="lead">سيرنا موقع عربي (RTL) لحجز مقاعد بالباصات بين المحافظات السورية. النسخة الأصلية بمجلد <code>reference/</code> كانت صفحة وحدة HTML/CSS/JavaScript ببيانات وهمية. هالنسخة إعادة بناء بـ React، مربوطة بالـ backend الحقيقي.</p>
+      <div class="grid-3">
+        <div class="card"><h4>🎯 الهدف 1: نفس الشكل</h4><p>هي <b>migration</b> مش redesign. كل قياس ولون وظل وانتقال منقول من <code>SAIRNA_UI.html</code>.</p></div>
+        <div class="card"><h4>🔌 الهدف 2: بيانات حقيقية</h4><p>المدن والشركات والرحلات والمقاعد والحجوزات كلها من الـ API. ما في ولا بيانات وهمية بالكود.</p></div>
+        <div class="card"><h4>🐞 الهدف 3: حل الأخطاء</h4><p>27 خطأ موثّقين بالمرجع (B1–B27) انحلّوا خلال النقل. شوف <a href="#bugs">فصل الأخطاء</a>.</p></div>
+      </div>
+      <h3>التقنيات المستعملة</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>المكتبة</th><th>النسخة</th><th>شو دورها</th></tr></thead>
+        <tbody>
+          <tr><td><b>React</b></td><td class="ltr">19.3</td><td>بناء الواجهة من components</td></tr>
+          <tr><td><b>Vite</b></td><td class="ltr">8.3</td><td>dev server سريع + build + proxy للـ API</td></tr>
+          <tr><td><b>React Router</b></td><td class="ltr">7.18</td><td>التنقل بين الصفحات (data router: <code>createBrowserRouter</code>)</td></tr>
+          <tr><td><b>TanStack Query</b></td><td class="ltr">5.107</td><td>جلب بيانات السيرفر، الـ cache، إعادة المحاولة، الـ mutations</td></tr>
+          <tr><td><b>axios</b></td><td class="ltr">1.21</td><td>طلبات HTTP + interceptors للـ token والـ 401</td></tr>
+          <tr><td><b>Tailwind CSS</b></td><td class="ltr">4.3</td><td>التنسيق بـ utility classes، الإعدادات بالـ CSS نفسه (بدون config file)</td></tr>
+          <tr><td><b>lucide-react</b></td><td class="ltr">1.70</td><td>الأيقونات</td></tr>
+          <tr><td><b>MapLibre GL</b></td><td class="ltr">6.17</td><td>الخريطة التفاعلية (OpenFreeMap) — بتنحمّل بس لما تلزم</td></tr>
+          <tr><td><b>oxlint</b></td><td class="ltr">1.93</td><td>فحص جودة الكود (الـ linter اللي بيجي مع قالب Vite الجديد)</td></tr>
+        </tbody>
+      </table></div>
+      <h3>التشغيل</h3>
+<pre><span class="c"># مرة وحدة</span>
+npm install
+
+<span class="c"># تطوير — http://localhost:5173</span>
+npm run dev
+
+<span class="c"># فحص الجودة + بناء نسخة الإنتاج</span>
+npm run lint
+npm run build
+npm run preview   <span class="c"># يعرض dist/ على http://localhost:4173</span></pre>
+      <div class="note"><b>ملاحظة:</b> المشروع JavaScript + JSX بس، بدون TypeScript. التوثيق بالـ props عن طريق JSDoc فوق كل component.</div>
+    </section>
+
+    <!-- 2 -->
+    <section class="chapter" id="structure" data-title="هيكل المجلدات">
+      <span class="eyebrow">02</span>
+      <h2>هيكل المجلدات</h2>
+      <p class="lead">كل مجلد إلو مسؤولية وحدة. إذا عرفت وين بيعيش الشي، بتعرف وين تدوّر عليه.</p>
+<pre class="tree">sairna-react/
+├── CLAUDE.md              <span class="c">← التعليمات الكاملة للمشروع (المرجع الأساسي للقرارات)</span>
+├── reference/             <span class="c">← النسخة الأصلية — للقراءة فقط، ما بتنعدّل</span>
+├── docs/
+│   ├── api/API_NOTES.md   <span class="c">← كل شي اكتشفناه عن الـ API</span>
+│   ├── api/samples/*.json <span class="c">← ردود حقيقية من السيرفر (الـ token مخفي)</span>
+│   └── SAIRNA_GUIDE.html  <span class="c">← هالدليل</span>
+├── public/favicon.svg
+├── index.html             <span class="c">← lang="ar" dir="rtl" + خط Cairo + script الثيم قبل React</span>
+├── vite.config.js         <span class="c">← alias @ + proxy /api</span>
+├── .env.development / .env.production / .env.example
+└── src/
+    ├── main.jsx           <span class="c">← نقطة البداية: createRoot + CSS</span>
+    ├── App.jsx            <span class="c">← الـ Providers العامة</span>
+    ├── router/            <span class="c">← تعريف الصفحات + الحماية</span>
+    ├── api/               <span class="c">← client, endpoints, errors, queryKeys, mappers/</span>
+    ├── services/          <span class="c">← دوال async بسيطة: تطلب وترجّع بيانات mapped</span>
+    ├── hooks/             <span class="c">← queries/ + mutations/ + منطق الواجهة</span>
+    ├── context/           <span class="c">← Auth, Theme, Toast</span>
+    ├── components/
+    │   ├── ui/            <span class="c">← مكوّنات عامة ما بتعرف شي عن سيرنا (Button, Modal…)</span>
+    │   ├── layout/        <span class="c">← Header, Footer, MobileMenu…</span>
+    │   ├── common/        <span class="c">← مكوّنات خاصة بسيرنا ومشتركة (SearchForm, RouteMap…)</span>
+    │   └── home/ results/ booking/ success/ trips/ tracking/ auth/ account/ companies/ about/ support/
+    ├── pages/             <span class="c">← ملف رفيع لكل route</span>
+    ├── data/              <span class="c">← محتوى ثابت للواجهة بس (مش رحلات ولا حجوزات)</span>
+    ├── utils/             <span class="c">← دوال صافية: تنسيق، تواريخ، جغرافيا، تحقق، تخزين</span>
+    ├── assets/            <span class="c">← logo + صور SVG احتياطية للمدن</span>
+    └── styles/index.css   <span class="c">← tokens + dark mode + breakpoints + طبقة components صغيرة</span></pre>
+      <h3>قواعد التسمية</h3>
+      <ul>
+        <li>Component واحد بكل ملف، اسمه <code>PascalCase.jsx</code>، و<code>export default</code>.</li>
+        <li>الـ hooks: <code>useSomething.js</code>. الـ services: <code>name.service.js</code>. الـ mappers: <code>name.mapper.js</code>.</li>
+        <li>الـ alias <code>@</code> بيعني <code>src</code>: <code>import Button from '@/components/ui/Button'</code>.</li>
+        <li>امتداد <code>.jsx</code> بس للملفات اللي فيها JSX.</li>
+      </ul>
+    </section>
+
+    <!-- 3 -->
+    <section class="chapter" id="dataflow" data-title="كيف بتمشي البيانات">
+      <span class="eyebrow">03</span>
+      <h2>كيف بتمشي البيانات (Architecture)</h2>
+      <p class="lead">أهم فكرة بالمشروع: كل طبقة إلها شغلة وحدة، وما في طبقة بتنط فوق التانية.</p>
+      <figure class="svg-box">
+        <svg viewBox="0 0 920 300" role="img" aria-label="مخطط تدفق البيانات من الصفحة للـ API">
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#0aa99b"/></marker>
+          </defs>
+          <g font-family="Cairo, sans-serif" text-anchor="middle">
+            <g>
+              <rect x="760" y="40" width="140" height="70" rx="16" fill="#0e4653"/><text x="830" y="72" fill="#fff" font-size="17" font-weight="800">Page</text><text x="830" y="94" fill="#c7f6e8" font-size="12">ResultsPage.jsx</text>
+              <rect x="580" y="40" width="150" height="70" rx="16" fill="#0b756e"/><text x="655" y="72" fill="#fff" font-size="17" font-weight="800">Components</text><text x="655" y="94" fill="#c7f6e8" font-size="12">TripList, TripCard</text>
+              <rect x="400" y="40" width="150" height="70" rx="16" fill="#0aa99b"/><text x="475" y="72" fill="#fff" font-size="17" font-weight="800">Hooks</text><text x="475" y="94" fill="#eafffb" font-size="12">useTrips (React Query)</text>
+              <rect x="220" y="40" width="150" height="70" rx="16" fill="#e69a46"/><text x="295" y="72" fill="#fff" font-size="17" font-weight="800">Services</text><text x="295" y="94" fill="#fff3df" font-size="12">trips.service.js</text>
+              <rect x="40" y="40" width="150" height="70" rx="16" fill="#5085e6"/><text x="115" y="72" fill="#fff" font-size="17" font-weight="800">axios client</text><text x="115" y="94" fill="#e9efff" font-size="12">api/client.js</text>
+            </g>
+            <g stroke="#0aa99b" stroke-width="2.5" fill="none" marker-end="url(#ar)">
+              <path d="M758 75H734"/><path d="M578 75H554"/><path d="M398 75H374"/><path d="M218 75H194"/>
+              <path d="M115 112V170"/>
+            </g>
+            <rect x="20" y="172" width="190" height="62" rx="16" fill="none" stroke="#5085e6" stroke-width="2" stroke-dasharray="6 5"/>
+            <text x="115" y="200" fill="#5085e6" font-size="16" font-weight="800">Website API</text>
+            <text x="115" y="222" fill="#7d8f9a" font-size="12">GET /trips?originId…</text>
+            <rect x="220" y="172" width="150" height="62" rx="16" fill="#9969ce"/>
+            <text x="295" y="200" fill="#fff" font-size="16" font-weight="800">Mapper</text>
+            <text x="295" y="222" fill="#f1eafe" font-size="12">raw → Trip model</text>
+            <g stroke="#9969ce" stroke-width="2.5" fill="none" marker-end="url(#ar)"><path d="M212 203H224"/><path d="M295 170V116"/></g>
+            <text x="460" y="275" fill="#7d8f9a" font-size="13">السهم الأخضر = مين بيستدعي مين · البنفسجي = الرد بيرجع "مترجم" لنموذج داخلي</text>
+          </g>
+        </svg>
+        <figcaption>الصفحة ما بتعرف شي عن axios. الـ component ما بيعرف شي عن أسماء حقول الـ API.</figcaption>
+      </figure>
+      <h3>القواعد الذهبية</h3>
+      <div class="grid-2">
+        <div class="card"><h4>1. الـ Components ما بتستدعي axios</h4><p>بتستعمل hooks بس. هيك بتقدر تغيّر طريقة الجلب بدون ما تلمس الواجهة.</p></div>
+        <div class="card"><h4>2. الـ Services دوال async عادية</h4><p>بدون React. بتطلب من الـ client وبترجّع بيانات mapped.</p></div>
+        <div class="card"><h4>3. الـ Mappers هني الوحيدين اللي بيعرفوا أسماء الحقول الخام</h4><p>إذا تغيّر الـ backend (مثلاً <code>departureAt</code> صار <code>departure_time</code>)، بيتغيّر ملف واحد.</p></div>
+        <div class="card"><h4>4. الـ Pages رفيعة</h4><p>بتقرا الـ route params وبتركّب الأقسام. تقريباً بدون منطق.</p></div>
+      </div>
+      <h3>مثال كامل: من الضغطة للشاشة</h3>
+      <ol class="steps">
+        <li>المستخدم بيكبس «ابحث عن رحلات» بـ <code>SearchForm</code> ← بتستدعي <code>search(values)</code> من <code>useTripSearch</code>.</li>
+        <li><code>search</code> بتتحقق بـ <code>validateSearch</code> وبتنقل لـ <code>/results?originId=2&amp;destinationId=1&amp;date=…&amp;people=1</code>.</li>
+        <li><code>ResultsPage</code> بتقرا الـ URL عن طريق <code>useResultsParams</code> (وبتصلّح أي قيمة غلط).</li>
+        <li><code>useTrips(criteria)</code> ← <code>getTrips()</code> بـ <code>trips.service.js</code> ← <code>client.get('/trips', { params })</code>.</li>
+        <li>الرد الخام بيمرّ على <code>mapTrips</code>: التوقيت بيتحوّل لتوقيت دمشق، المدة بتنحسب، المسافة التقريبية بتنحسب.</li>
+        <li><code>useTripFilters</code> بيفلتر ويرتّب على الجهاز (client-side) وبيحسب عدد الرحلات لكل شركة.</li>
+        <li><code>TripList</code> بيعرض <code>TripCard</code> لكل رحلة، أو skeleton وقت التحميل، أو empty state.</li>
+      </ol>
+      <details class="code"><summary>الكود: service + mapper للرحلات</summary>
+<pre><span class="c">// src/services/trips.service.js</span>
+<span class="k">export async function</span> getTrips({ originId, destinationId, date }) {
+  <span class="k">const</span> { data } = <span class="k">await</span> client.get(endpoints.trips(), { params: { originId, destinationId, date } })
+  <span class="k">return</span> mapTrips(data)
+}
+
+<span class="c">// src/api/mappers/trip.mapper.js (مختصر)</span>
+<span class="k">export function</span> mapTrip(raw) {
+  <span class="k">const</span> departure = toDamascusDateTime(raw.departureAt)   <span class="c">// '07:00Z' → '10:00'</span>
+  <span class="k">const</span> durationMinutes = minutesBetween(raw.departureAt, raw.arrivalAt)
+  <span class="k">return</span> {
+    id: Number(raw.id), origin: mapCity(raw.origin), company: mapCompany(raw.company),
+    date: departure.date, departureTime: departure.time, durationMinutes,
+    price: Number(raw.price), availableSeats: raw.availableSeats,
+    estimatedKm: estimateRoadKm(origin, destination),   <span class="c">// الـ API ما فيه مسافة</span>
+  }
+}</pre></details>
+    </section>
+
+    <!-- 4 -->
+    <section class="chapter" id="api" data-title="الـ API">
+      <span class="eyebrow">04</span>
+      <h2>الـ Website API</h2>
+      <p class="lead">العنوان: <code>https://sairna.abdulrahman-hares.com/api/v1/website</code>. الـ backend مكتوب بـ NestJS. الـ Dashboard API موجود بس خارج نطاق المشروع.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>#</th><th>Method / Path</th><th>بيحتاج تسجيل؟</th><th>مين بيستعمله</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><span class="pill post">POST</span><code>/auth/register</code></td><td>—</td><td><code>useRegister</code> ← RegisterForm</td></tr>
+          <tr><td>2</td><td><span class="pill post">POST</span><code>/auth/login</code></td><td>—</td><td><code>useLogin</code> ← LoginForm</td></tr>
+          <tr><td>3</td><td><span class="pill get">GET</span><code>/auth/me</code></td><td><span class="pill auth">JWT</span></td><td><code>useMe</code> ← AuthContext</td></tr>
+          <tr><td>4</td><td><span class="pill get">GET</span><code>/cities</code></td><td>—</td><td><code>useCities</code> ← SearchForm, Home, Results</td></tr>
+          <tr><td>5</td><td><span class="pill get">GET</span><code>/companies</code></td><td>—</td><td><code>useCompanies</code> ← Results, Companies, Metrics</td></tr>
+          <tr><td>6</td><td><span class="pill get">GET</span><code>/companies/{id}</code></td><td>—</td><td><code>useCompany</code> (جاهز، مش مستعمل حالياً)</td></tr>
+          <tr><td>7</td><td><span class="pill get">GET</span><code>/trips?originId&amp;destinationId&amp;date</code></td><td>—</td><td><code>useTrips</code>, <code>useAllTrips</code></td></tr>
+          <tr><td>8</td><td><span class="pill get">GET</span><code>/trips/{id}</code></td><td>—</td><td><code>useTrip</code> ← BookingPage</td></tr>
+          <tr><td>9</td><td><span class="pill get">GET</span><code>/trips/{id}/seats</code></td><td>—</td><td><code>useTripSeats</code> ← SeatStage</td></tr>
+          <tr><td>10</td><td><span class="pill post">POST</span><code>/bookings</code></td><td><span class="pill auth">JWT</span></td><td><code>useCreateBooking</code> ← BookingFlow</td></tr>
+          <tr><td>11</td><td><span class="pill get">GET</span><code>/bookings/me</code></td><td><span class="pill auth">JWT</span></td><td><code>useMyBookings</code> ← Trips, Account, Tracking</td></tr>
+          <tr><td>12</td><td><span class="pill get">GET</span><code>/bookings/{id}</code></td><td><span class="pill auth">JWT</span></td><td><code>useBooking</code> ← Success, Tracking</td></tr>
+          <tr><td>13</td><td><span class="pill post">POST</span><code>/bookings/{id}/cancel</code></td><td><span class="pill auth">JWT</span></td><td><code>useCancelBooking</code> ← MyTrips, TicketModal</td></tr>
+        </tbody>
+      </table></div>
+      <h3>شكل الردود الحقيقية (من مرحلة الاكتشاف)</h3>
+      <div class="grid-2">
+        <details class="code" open><summary>رحلة <code>GET /trips/1</code></summary>
+<pre>{
+  "id": 1, "code": "DEMO-2026-11-05-1",
+  "departureAt": "2026-11-05T07:00:00.000Z",
+  "arrivalAt":   "2026-11-05T13:00:00.000Z",
+  "price": 145000, "totalSeats": 40,
+  "status": "AVAILABLE", "availableSeats": 40,
+  "company": { "id": 1, "name": "الشام للنقل (تجريبي)" },
+  "origin":  { "id": 2, "name": "حلب", "latitude": 36.2, "longitude": 37.1 },
+  "destination": { "id": 1, "name": "دمشق", … }
+}</pre></details>
+        <details class="code" open><summary>المقاعد <code>GET /trips/117/seats</code></summary>
+<pre>{
+  "tripId": 117,
+  "totalSeats": 40,
+  "status": "AVAILABLE",
+  "occupiedSeats": [7, 8],
+  "availableSeats": 38
+}</pre></details>
+      </div>
+      <h3>شكل الأخطاء</h3>
+<pre>{ "message": "SEAT_ALREADY_RESERVED", "error": "Conflict", "statusCode": 409 }      <span class="c">← كود نصي</span>
+{ "message": ["email must be an email"], "error": "Bad Request", "statusCode": 400 } <span class="c">← مصفوفة رسائل validation</span></pre>
+      <p>الملف <code>src/api/errors.js</code> بيترجم الحالتين للعربي:</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>الكود</th><th>Status</th><th>الرسالة للمستخدم</th></tr></thead>
+        <tbody>
+          <tr><td><code>INVALID_CREDENTIALS</code></td><td>401</td><td>الإيميل أو كلمة المرور غلط.</td></tr>
+          <tr><td><code>EMAIL_TAKEN</code></td><td>409</td><td>هالإيميل مسجّل من قبل. جرّب تسجّل دخول.</td></tr>
+          <tr><td><code>SEAT_ALREADY_RESERVED</code></td><td>409</td><td>في مقعد انحجز قبل شوي، اختار مقعد بديل.</td></tr>
+          <tr><td><code>TRIP_NOT_FOUND</code></td><td>404</td><td>الرحلة غير موجودة أو ما عادت متاحة.</td></tr>
+          <tr><td>رسائل validation</td><td>400</td><td>بتتحوّل لأخطاء تحت الحقول: <code>seats.0.passengerPhone</code> ← <code>seats[0].passengerPhone</code></td></tr>
+          <tr><td>ما في رد (انقطاع)</td><td>—</td><td>تعذّر الاتصال بالخادم. تأكد من الإنترنت وحاول مرة ثانية.</td></tr>
+        </tbody>
+      </table></div>
+      <h3>نواقص الـ API وكيف تعاملنا معها</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>الناقص</th><th>القرار</th></tr></thead>
+        <tbody>
+          <tr><td>الشركات بدون تقييم ووصف وخدمات</td><td>ما اخترعنا شي. خبّينا هالأجزاء، وحوّلنا لاحقة «(تجريبي)» لـ tag «شركة تجريبية».</td></tr>
+          <tr><td>الرحلات بدون مسافة</td><td>مسافة تقريبية من إحداثيات المدن (معادلة المرجع) مع علامة <code>~</code>.</td></tr>
+          <tr><td>المقاعد بدون ترتيب (layout)</td><td>الترتيب الافتراضي من المرجع: 2 + ممر + 2.</td></tr>
+          <tr><td>الحجز الملغى بيرجع <code>seats: []</code></td><td>منعرض «—» مكان أرقام المقاعد.</td></tr>
+          <tr><td>الأوقات بتوقيت UTC</td><td>منعرضها بتوقيت <code>Asia/Damascus</code>: <code>07:00Z</code> ← <code>10:00</code>.</td></tr>
+          <tr><td>ما في logout / refresh / دفع / GPS</td><td>الـ logout محلي (منمسح الـ token). الدفع: بطاقة «الدفع في مكتب الشركة». التتبّع: محاكاة.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tip"><b>💡 درس:</b> قبل ما تكتب أي mapper، اطلب الـ endpoint فعلياً واحفظ الرد. بالمشروع، كل الردود محفوظة بـ <code>docs/api/samples/</code> وموثّقة بـ <code>API_NOTES.md</code>.</div>
+    </section>
+
+    <!-- 5 -->
+    <section class="chapter" id="http" data-title="طبقة HTTP و React Query">
+      <span class="eyebrow">05</span>
+      <h2>طبقة HTTP و React Query</h2>
+      <h3>الـ axios client</h3>
+      <p>ملف <code>src/api/client.js</code> بيعمل instance واحد إلو interceptor-ين:</p>
+<pre><span class="k">export const</span> client = axios.create({ baseURL: <span class="k">import</span>.meta.env.VITE_API_BASE_URL, timeout: 15000 })
+
+<span class="c">// 1) قبل كل طلب: حط الـ token إذا موجود</span>
+client.interceptors.request.use((config) => {
+  <span class="k">const</span> token = getToken()
+  <span class="k">if</span> (token) config.headers.Authorization = <span class="s">`Bearer ${token}`</span>
+  <span class="k">return</span> config
+})
+
+<span class="c">// 2) بعد كل رد: 401 برّا صفحات الدخول = الجلسة انتهت</span>
+client.interceptors.response.use((r) => r, (error) => {
+  <span class="k">if</span> (error.response?.status === 401 &amp;&amp; hadToken &amp;&amp; !AUTH_FORM_PATHS.includes(url)) {
+    clearToken()
+    authEvents.emit(<span class="s">'unauthorized'</span>)   <span class="c">// AuthContext بيسمع وبينهي الجلسة، والصفحات المحمية بتحوّل لـ /login</span>
+  }
+  <span class="k">return</span> Promise.reject(error)
+})</pre>
+      <div class="note"><b>ليش event emitter؟</b> الـ client ملف JavaScript عادي، ما فيه React، فما فيه يستعمل <code>useNavigate</code>. فبيبعت «إشارة» (<code>authEvents</code>)، والـ <code>AuthProvider</code> (اللي جوّا React) بيسمعها وبيتصرّف.</div>
+      <h3>الـ proxy وقت التطوير</h3>
+      <p>بالتطوير، <code>VITE_API_BASE_URL=/api/v1/website</code>، و Vite بيحوّل أي طلب لـ <code>/api</code> للسيرفر الحقيقي. هيك المتصفح بيشوف كل شي من نفس الـ origin وما في مشاكل CORS. بالإنتاج منستعمل العنوان الكامل (السيرفر بيبعت <code>Access-Control-Allow-Origin: *</code>).</p>
+      <h3>React Query: الإعدادات العامة</h3>
+<pre>staleTime: 60_000            <span class="c">// البيانات بتعتبر "طازة" لدقيقة</span>
+refetchOnWindowFocus: false  <span class="c">// ما في إعادة جلب كل ما ترجع عالتاب</span>
+retry: ما في إعادة لأخطاء 4xx، ومحاولة وحدة إضافية لأخطاء الشبكة</pre>
+      <h3>الـ Query keys</h3>
+      <p>كل بيانات بالـ cache إلها مفتاح. المفاتيح كلها بـ <code>src/api/queryKeys.js</code>:</p>
+<pre>cities:     ['cities']
+trips:      ['trips', { originId, destinationId, date }]
+trip:       ['trips', 'detail', id]
+tripSeats:  ['trips', 'detail', id, 'seats']   <span class="c">← بيبلّش بـ trip(id)، فإبطال trip بيبطل المقاعد كمان</span>
+me:         ['auth', 'me']
+myBookings: ['bookings', 'me']
+booking:    ['bookings', 'detail', id]</pre>
+      <div class="tip"><b>💡 ليش هالترتيب مهم؟</b> <code>invalidateQueries({ queryKey: ['trips'] })</code> بيبطل كل شي بيبلّش بـ <code>'trips'</code>: القوائم، تفاصيل الرحلة، والمقاعد. هيك بعد الحجز بيتحدّث كل شي بسطر واحد.</div>
+      <h3>جدول الـ hooks للبيانات</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Hook</th><th>ملاحظات</th></tr></thead>
+        <tbody>
+          <tr><td><code>useCities()</code> / <code>useCompanies()</code></td><td><code>staleTime</code> ساعة — نادراً بيتغيّروا</td></tr>
+          <tr><td><code>useTrips(criteria, { enabled })</code></td><td>بيشتغل بس لما المعايير صالحة. <code>keepPreviousData</code> كي ما تختفي النتائج وقت التبديل</td></tr>
+          <tr><td><code>useTripSeats(id, { live })</code></td><td><code>staleTime: 0</code>، وكل 30 ثانية بخطوة اختيار المقاعد</td></tr>
+          <tr><td><code>useMe(hasToken)</code></td><td>بدون retry — إذا الـ token غلط منعرف فوراً</td></tr>
+          <tr><td><code>useBooking(id)</code></td><td>بيستعمل <code>initialData</code> من قائمة «حجوزاتي» إذا موجودة → عرض فوري</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 6 -->
+    <section class="chapter" id="state" data-title="وين بتعيش الحالة (State)">
+      <span class="eyebrow">06</span>
+      <h2>وين بتعيش الحالة (State)؟</h2>
+      <p class="lead">سؤال أساسي بأي تطبيق React. القاعدة: حط كل معلومة بالمكان اللي بيناسب «عمرها» ومين بيحتاجها.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>المعلومة</th><th>المكان</th><th>ليش</th></tr></thead>
+        <tbody>
+          <tr><td>بيانات السيرفر (رحلات، حجوزات…)</td><td>React Query cache</td><td>cache، تحميل، أخطاء، إعادة جلب — كله جاهز</td></tr>
+          <tr><td>معايير البحث + الفلاتر</td><td><b>الـ URL</b> (search params)</td><td>الرابط بينشارك، الـ refresh ما بيضيّع شي، زر الرجوع بيشتغل</td></tr>
+          <tr><td>مدخلات الفورم قبل الإرسال</td><td><code>useState</code> بـ SearchForm</td><td>محلية ومؤقتة</td></tr>
+          <tr><td>آخر بحث</td><td><code>sessionStorage</code> (<code>sairna-last-search</code>)</td><td>لتعبئة فورم الرئيسية وزر «الرحلات»</td></tr>
+          <tr><td>خطوات الحجز (المقاعد + المسافرين)</td><td><code>useReducer</code> + مسودة بـ <code>sessionStorage</code></td><td>ما بتضيع إذا رجعت خطوة، أو عملت refresh، أو رحت تسجّل دخول</td></tr>
+          <tr><td>الثيم</td><td>ThemeContext + <code>localStorage</code></td><td>بيلزم بكل الصفحات وبيبقى بعد الإغلاق</td></tr>
+          <tr><td>الجلسة</td><td>AuthContext (token + <code>useMe</code>)</td><td>المستخدم دايماً من السيرفر، مش من التخزين</td></tr>
+          <tr><td>الرسائل (toasts)</td><td>ToastContext</td><td>أي مكان بيقدر يبعت رسالة</td></tr>
+          <tr><td>القائمة، النوافذ، إظهار كلمة السر</td><td><code>useState</code> محلي</td><td>ما حدا تاني بيحتاجها</td></tr>
+          <tr><td>تقدّم المحاكاة</td><td><code>useTrackingSimulation</code></td><td>منطق خاص بصفحة وحدة</td></tr>
+        </tbody>
+      </table></div>
+      <h3>مثال: <code>useSearchParamsState</code></h3>
+      <p>hook صغير بيخلّي قراءة وكتابة الـ URL params متل <code>useState</code>، مع parsers لكل مفتاح:</p>
+<pre><span class="k">const</span> [params, setParams] = useSearchParamsState({
+  people: (v) => Number(v) || 1,
+  sort:   (v) => [<span class="s">'earliest'</span>, <span class="s">'cheap'</span>, <span class="s">'quick'</span>].includes(v) ? v : <span class="s">'earliest'</span>,
+})
+setParams({ sort: <span class="s">'cheap'</span> }, { replace: <span class="k">true</span> })   <span class="c">// بيدمج مع باقي الـ params وما بيرجع لفوق الصفحة</span></pre>
+    </section>
+
+    <!-- 7 -->
+    <section class="chapter" id="routing" data-title="الـ Routing والحماية">
+      <span class="eyebrow">07</span>
+      <h2>الـ Routing والحماية</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>المسار</th><th>الصفحة</th><th>مين بيدخل</th></tr></thead>
+        <tbody>
+          <tr><td><code>/</code></td><td>HomePage</td><td>الكل</td></tr>
+          <tr><td><code>/results?…</code></td><td>ResultsPage</td><td>الكل</td></tr>
+          <tr><td><code>/booking/:tripId?people=N</code></td><td>BookingPage</td><td>الكل — التأكيد بيطلب تسجيل</td></tr>
+          <tr><td><code>/booking/success/:bookingId</code></td><td>BookingSuccessPage</td><td>مسجّل</td></tr>
+          <tr><td><code>/trips</code></td><td>MyTripsPage</td><td>مسجّل</td></tr>
+          <tr><td><code>/tracking</code> و <code>/tracking/:bookingId</code></td><td>TrackingPage</td><td>مسجّل (بدون footer)</td></tr>
+          <tr><td><code>/account</code></td><td>AccountPage</td><td>مسجّل</td></tr>
+          <tr><td><code>/login</code>, <code>/register</code></td><td>Login / Register</td><td>ضيوف بس</td></tr>
+          <tr><td><code>/companies</code>, <code>/about</code>, <code>/support</code></td><td>…</td><td>الكل</td></tr>
+          <tr><td><code>*</code></td><td>NotFoundPage</td><td>الكل</td></tr>
+          <tr><td><code>/__ui</code></td><td>UiShowcasePage</td><td>وقت التطوير بس (<code>import.meta.env.DEV</code>)</td></tr>
+        </tbody>
+      </table></div>
+      <h3>شجرة الـ routes</h3>
+<pre>RootLayout          <span class="c">← فيه AuthProvider (جوّا الـ router كي يقدر يعمل navigate)</span>
+└── MainLayout      <span class="c">← Announcement + Header + &lt;Outlet/&gt; + Footer + ScrollManager</span>
+    ├── صفحات عامة
+    ├── ProtectedRoute  <span class="c">← loading؟ spinner · ضيف؟ ← /login مع state.from</span>
+    │   └── trips, tracking, account, booking/success
+    └── GuestOnlyRoute  <span class="c">← مسجّل؟ ← state.from أو /account</span>
+        └── login, register</pre>
+      <h3>Lazy loading</h3>
+      <p>كل صفحة بـ <code>React.lazy(() =&gt; import('@/pages/X'))</code>، فبتصير chunk لحالها وبتنحمّل أول ما تزورها. الـ <code>Suspense</code> بـ MainLayout بيعرض spinner بالانتظار. MapLibre (1 ميغا) كمان بـ chunk لحالها وبتنحمّل بـ <code>import()</code> بس لما يظهر map.</p>
+      <h3>الـ Scroll</h3>
+      <p><code>ScrollManager</code> بيرجع لفوق بس لما يتغيّر الـ <b>path</b>. تغيير الفلاتر (الـ search params) ما بيحرّك الصفحة — متل <code>render(true)</code> بالمرجع.</p>
+    </section>
+
+    <!-- 8 -->
+    <section class="chapter" id="auth" data-title="تسجيل الدخول والجلسة">
+      <span class="eyebrow">08</span>
+      <h2>تسجيل الدخول والجلسة</h2>
+      <figure class="svg-box">
+        <svg viewBox="0 0 900 330" role="img" aria-label="تسلسل تسجيل الدخول">
+          <g font-family="Cairo, sans-serif" font-size="13" text-anchor="middle">
+            <g font-weight="800" font-size="15">
+              <rect x="720" y="10" width="150" height="40" rx="12" fill="#0e4653"/><text x="795" y="36" fill="#fff">LoginForm</text>
+              <rect x="520" y="10" width="150" height="40" rx="12" fill="#0aa99b"/><text x="595" y="36" fill="#fff">useLogin</text>
+              <rect x="320" y="10" width="150" height="40" rx="12" fill="#e69a46"/><text x="395" y="36" fill="#fff">API</text>
+              <rect x="120" y="10" width="150" height="40" rx="12" fill="#9969ce"/><text x="195" y="36" fill="#fff">AuthContext</text>
+            </g>
+            <g stroke="#9aaeb8" stroke-dasharray="4 5"><path d="M795 50V320"/><path d="M595 50V320"/><path d="M395 50V320"/><path d="M195 50V320"/></g>
+            <g stroke="#0aa99b" stroke-width="2.2" fill="none" marker-end="url(#ar)">
+              <path d="M790 80H601"/><path d="M590 115H401"/><path d="M401 150H590"/><path d="M590 190H201"/><path d="M201 230H590"/><path d="M601 270H790"/>
+            </g>
+            <text x="695" y="72" fill="currentColor">validateAuth ✓ ← mutate(values)</text>
+            <text x="495" y="107" fill="currentColor">POST /auth/login</text>
+            <text x="495" y="142" fill="currentColor">201 { accessToken, user }</text>
+            <text x="395" y="182" fill="currentColor">signIn(session, { remember })</text>
+            <text x="395" y="222" fill="currentColor">token → local/session · user → cache['auth','me']</text>
+            <text x="695" y="262" fill="currentColor">toast + navigate(from ?? '/account')</text>
+          </g>
+        </svg>
+        <figcaption>الـ token بيتخزّن، والمستخدم بيتحط مباشرة بالـ cache، فما في طلب <code>/auth/me</code> إضافي بعد الدخول.</figcaption>
+      </figure>
+      <h3>«تذكرني» (B14)</h3>
+      <ul>
+        <li>مأشّر عليها ← الـ token بـ <code>localStorage</code> (بيبقى بعد إغلاق المتصفح).</li>
+        <li>مش مأشّر ← بـ <code>sessionStorage</code> (بيروح مع إغلاق التاب).</li>
+        <li>القراءة: <code>sessionStorage</code> أول، بعدين <code>localStorage</code>. والخروج بيمسح الاتنين.</li>
+        <li>التسجيل الجديد دايماً «متذكّر».</li>
+      </ul>
+      <h3>حالات الجلسة (<code>status</code>)</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>status</th><th>متى</th><th>ProtectedRoute بيعرض</th></tr></thead>
+        <tbody>
+          <tr><td><code>guest</code></td><td>ما في token</td><td>تحويل لـ <code>/login</code> مع <code>state.from</code></td></tr>
+          <tr><td><code>loading</code></td><td>في token و <code>/auth/me</code> لسا عم ينطلب</td><td>Spinner «عم نتحقق من حسابك...»</td></tr>
+          <tr><td><code>authenticated</code></td><td><code>/auth/me</code> رجّع مستخدم</td><td>الصفحة</td></tr>
+          <tr><td><code>error</code></td><td><code>/auth/me</code> فشل لسبب غير 401 (شبكة)</td><td>رسالة + «حاول مرة ثانية»</td></tr>
+        </tbody>
+      </table></div>
+      <h3>فورم الدخول والتسجيل: <code>useAuthForm</code></h3>
+      <p>hook مشترك بين الفورمين: بيحفظ القيم، بيتحقق محلياً (<code>validateAuth</code>)، بيحوّل أخطاء السيرفر لأخطاء تحت الحقول، وبيعمل focus لأول حقل غلط. الحقول مربوطة بـ <code>aria-invalid</code> و <code>aria-describedby</code>.</p>
+      <div class="warn"><b>⚠ مهم:</b> كلمة السر ما بتنحفظ بأي مكان، والمستخدم ما بيتخزّن كمصدر حقيقة. بس الـ token.</div>
+    </section>
+
+    <!-- 9 -->
+    <section class="chapter" id="pages" data-title="الصفحات واحدة واحدة">
+      <span class="eyebrow">09</span>
+      <h2>الصفحات واحدة واحدة</h2>
+
+      <h3>🏠 الرئيسية <code>/</code></h3>
+      <p><b>الأقسام:</b> <code>HeroSection</code> (نص + صورة + بطاقتين طايرين + <code>SearchShell</code>) ← <code>MetricsStrip</code> ← <code>DestinationsSection</code> ← <code>ProcessSection</code> ← <code>TrackingFeature</code> (خريطة معاينة حلب ← دمشق) ← <code>CtaBanner</code>.</p>
+      <ul>
+        <li>أعداد المحافظات والشركات من الـ API (<code>cities.length</code>, <code>companies.length</code>) — مش «14» و«4» مكتوبين (B12).</li>
+        <li>بطاقات الوجهات بتنعرض بس إذا المدينة موجودة بالـ API. الضغط عليها بيستعمل <code>searchToDestination</code>: إذا مدينة الانطلاق نفس الوجهة، بيختار أول مدينة مختلفة من [حلب، دمشق، حمص] (B1).</li>
+        <li>الصور بـ <code>SmartImage</code>: سلسلة روابط Wikimedia وآخرها SVG محلي (B21).</li>
+      </ul>
+
+      <h3>🔎 النتائج <code>/results</code></h3>
+      <ul>
+        <li><code>useResultsParams</code> بيقرا الـ URL. إذا في قيمة ناقصة بيحط الافتراضي (حلب ← دمشق، بكرا، مسافر واحد). إذا في قيمة غلط (نفس المدينة، تاريخ ماضي، id مش موجود، عدد &gt; 4) بيصلّحها بـ <code>replace</code> وبيعرض toast.</li>
+        <li><code>CompanyPicker</code> (الخطوة 01) و <code>FiltersPanel</code>: أعداد حقيقية لكل شركة محسوبة من القائمة الكاملة قبل الفلترة.</li>
+        <li><code>TripCard</code>: الزر بيتعطّل إذا <code>availableSeats &lt; people</code> («المقاعد المتاحة ما بتكفي» — B4) أو إذا الرحلة انطلقت.</li>
+        <li>نوعين empty state: «ما في رحلات بهالتاريخ» (الـ API رجّع صفر) و«ما في رحلات مطابقة» (الفلاتر خبّت الكل + زر «عرض كل الرحلات»).</li>
+      </ul>
+
+      <h3>🎟 الحجز <code>/booking/:tripId</code></h3>
+      <p>أكبر صفحة — شوف <a href="#booking">الفصل الخاص فيها</a>.</p>
+
+      <h3>✅ تأكيد الحجز <code>/booking/success/:bookingId</code></h3>
+      <p>بتقرا <b>هالحجز بالذات</b> من الـ URL بـ <code>useBooking</code> (مش «آخر حجز» — B24). <code>ConfirmationCard</code> مع أنيميشن <code>pop</code>، و<code>ConfirmationTicket</code> (الرقم، الوجهة، المقاعد). حالات: مش موجود، ملغى، خطأ.</p>
+
+      <h3>🧳 حجوزاتي <code>/trips</code></h3>
+      <ul>
+        <li>من <code>GET /bookings/me</code> — كل مستخدم بيشوف حجوزاته بس (B13). الحجز التوضيحي الوهمي انشال.</li>
+        <li>الترتيب: القادمة (الأقرب أول) ← المنتهية ← الملغاة (<code>sortBookings</code> بـ <code>utils/booking.js</code>).</li>
+        <li><code>MyTripCard</code>: «تتبّع الرحلة» (مخفي للملغى/المنتهي)، «عرض التذكرة»، «إلغاء الحجز» (بس للمؤكّد واللي لسا ما انطلق).</li>
+        <li><code>TicketModal</code> + <code>ConfirmDialog</code> «أكيد بدك تلغي هالحجز؟».</li>
+      </ul>
+
+      <h3>🗺 التتبّع <code>/tracking</code></h3>
+      <p>شوف <a href="#tracking">فصل الخريطة والمحاكاة</a>.</p>
+
+      <h3>👤 حسابي <code>/account</code></h3>
+      <p><code>ProfileCard</code> (الحرف الأول، الاسم، الإيميل، عدد الحجوزات <b>غير الملغاة</b> — B26، تسجيل الخروج) + <code>AccountDetails</code> (نوع الحساب من <code>role</code>: <code>USER</code> ← «حساب مسافر»).</p>
+
+      <h3>🚌 شركات النقل <code>/companies</code></h3>
+      <p>بدل «+12 وجهة» و«يومياً» المكتوبين باليد (B12)، منحسب من الرحلات الحقيقية: عدد خطوط السفر وعدد الرحلات القادمة لكل شركة (<code>useAllTrips</code> + <code>useCompanyStats</code>). الزر بيودّي لـ <code>/results?company=ID</code>.</p>
+
+      <h3>ℹ️ عن سيرنا، ❓ المساعدة، 🚫 404</h3>
+      <p>صفحات نصية. الأسئلة الشائعة بـ <code>&lt;details&gt;</code> الأصلي بالمتصفح (accessible من غير JavaScript). صفحة 404 جديدة: الروابط الغلط ما عادت تفتح الرئيسية بصمت (B20).</p>
+    </section>
+
+    <!-- 10 -->
+    <section class="chapter" id="booking" data-title="فلو الحجز بالتفصيل">
+      <span class="eyebrow">10</span>
+      <h2>فلو الحجز بالتفصيل</h2>
+      <figure class="svg-box">
+        <svg viewBox="0 0 900 250" role="img" aria-label="خطوات الحجز">
+          <g font-family="Cairo, sans-serif" text-anchor="middle">
+            <rect x="660" y="30" width="200" height="80" rx="18" fill="#0aa99b"/><text x="760" y="64" fill="#fff" font-size="17" font-weight="800">1 · seats</text><text x="760" y="88" fill="#eafffb" font-size="12">اختيار المقاعد (من API)</text>
+            <rect x="350" y="30" width="200" height="80" rx="18" fill="#0b756e"/><text x="450" y="64" fill="#fff" font-size="17" font-weight="800">2 · passengers</text><text x="450" y="88" fill="#c7f6e8" font-size="12">اسم + موبايل لكل مقعد</text>
+            <rect x="40" y="30" width="200" height="80" rx="18" fill="#0e4653"/><text x="140" y="64" fill="#fff" font-size="17" font-weight="800">3 · review</text><text x="140" y="88" fill="#c7f6e8" font-size="12">مراجعة + تأكيد</text>
+            <g stroke="#0aa99b" stroke-width="2.5" fill="none" marker-end="url(#ar)"><path d="M656 60H556"/><path d="M346 60H246"/></g>
+            <g stroke="#e69a46" stroke-width="2.5" fill="none" marker-end="url(#ar)"><path d="M246 92H346"/><path d="M556 92H656"/></g>
+            <text x="600" y="50" font-size="12" fill="#0aa99b">عدد المقاعد = عدد المسافرين</text>
+            <text x="300" y="50" font-size="12" fill="#0aa99b">كل الحقول صالحة</text>
+            <text x="450" y="135" font-size="12" fill="#e69a46">«السابق» — البيانات بتبقى (B7)</text>
+            <rect x="20" y="160" width="240" height="70" rx="16" fill="none" stroke="#a64645" stroke-width="2" stroke-dasharray="6 5"/>
+            <text x="140" y="190" font-size="14" font-weight="800" fill="#a64645">ضيف؟ ← /login ← رجوع لـ review</text>
+            <text x="140" y="212" font-size="12" fill="#a64645">409 مقعد محجوز ← رجوع لـ seats</text>
+            <path d="M140 112V156" stroke="#a64645" stroke-width="2" marker-end="url(#ar)"/>
+          </g>
+        </svg>
+      </figure>
+      <h3>الـ Reducer: <code>useBookingFlow</code></h3>
+      <p>كل حالة الحجز بـ object واحد، وكل تغيير بيمرّ من action بأسم واضح:</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Action</th><th>شو بيعمل</th></tr></thead>
+        <tbody>
+          <tr><td><code>setPeople</code></td><td>بيغيّر العدد، بيحتفظ بأول N مقاعد، وبيعدّل طول مصفوفة المسافرين</td></tr>
+          <tr><td><code>toggleSeat</code></td><td>بيضيف أو بيشيل مقعد (وما بيتجاوز العدد)</td></tr>
+          <tr><td><code>dropSeats</code></td><td>بيشيل مقاعد انحجزت من غيرك (بعد تحديث خريطة المقاعد)</td></tr>
+          <tr><td><code>setPassenger</code></td><td>بيعدّل اسم أو موبايل مسافر بدون ما يلمس الباقي</td></tr>
+          <tr><td><code>goTo</code></td><td>بيغيّر الخطوة، ولأول مرة بيعبّي اسم المسافر الأول باسم المستخدم المسجّل</td></tr>
+        </tbody>
+      </table></div>
+<pre><span class="c">// كل تغيير بيتخزّن بمسودة خاصة بالرحلة</span>
+useEffect(() => {
+  writeJSON(<span class="s">`sairna-booking-draft:${tripId}`</span>, state, <span class="s">'session'</span>)
+}, [tripId, state])
+
+<span class="c">// الترتيب دايماً على نسخة — المرجع كان يعمل selectedSeats.sort() على الـ state نفسها (B5)</span>
+<span class="k">export const</span> sortedSeats = (seats) => [...seats].sort((a, b) => a - b)</pre>
+      <h3>شو بيصير لما تكبس «تأكيد الحجز»</h3>
+      <ol class="steps">
+        <li><b>إذا ضيف:</b> toast «سجّل دخولك أولاً لإتمام الحجز.» ← <code>/login</code> مع <code>state.from</code>. المسودة محفوظة بخطوة <code>review</code>، فبعد الدخول بترجع لنفس المكان.</li>
+        <li><b>إذا مسجّل:</b> <code>POST /bookings</code> مع <code>{ tripId, seats: [{ seatNumber, passengerName, passengerPhone }] }</code>.</li>
+        <li><b>نجاح:</b> الحجز بينحط بالـ cache، بتنبطل قوائم الرحلات وحجوزاتي، المسودة بتنمسح، وتحويل لـ <code>/booking/success/:id</code> بـ <code>replace</code> (كي زر الرجوع ما يرجّعك للفورم).</li>
+        <li><b>409 مقعد محجوز:</b> toast «في مقعد انحجز قبل شوي…»، إعادة جلب المقاعد، رجوع لخطوة المقاعد. المقعد المحجوز بيتشال تلقائياً، وأسماء المسافرين بتبقى.</li>
+      </ol>
+      <h3>حالات خاصة</h3>
+      <ul>
+        <li>id مش رقم أو 404 ← «الرحلة غير موجودة أو ما عادت متاحة.» مع زر رجوع (B6).</li>
+        <li>الرحلة انطلقت ← «الرحلة انطلقت وما عاد فيك تحجز عليها.»</li>
+        <li><code>?people=</code> بينحصر بين 1 و4 وما بيتجاوز المقاعد المتاحة.</li>
+        <li><code>BookingFlow</code> بينعرض بـ <code>key={trip.id}</code>: رحلة جديدة = حالة جديدة نظيفة.</li>
+      </ul>
+    </section>
+
+    <!-- 11 -->
+    <section class="chapter" id="tracking" data-title="الخريطة والمحاكاة">
+      <span class="eyebrow">11</span>
+      <h2>الخريطة ومحاكاة التتبّع</h2>
+      <div class="warn"><b>⚠ تذكير:</b> ما في GPS حقيقي. الخط بين المدينتين مستقيم وتقريبي، وحركة الباص محاكاة تعليمية.</div>
+      <h3><code>RouteMap</code> + <code>useMapLibre</code></h3>
+      <ul>
+        <li>MapLibre بينحمّل بـ <code>await import('maplibre-gl')</code> ← chunk منفصل.</li>
+        <li>الخلفية من OpenFreeMap (<code>tiles.openfreemap.org/styles/liberty</code>)، بدون مفتاح API.</li>
+        <li>خط متقطّع أخضر + marker للانطلاق وmarker للوصول + (بالوضع الكامل) دائرة الباص المتحرّكة.</li>
+        <li><b>بديل تلقائي (fallback)</b> لـ iframe Google Maps إذا: ما في إحداثيات، أو ما في WebGL، أو فشل التحميل، أو صار خطأ، أو مرّت 9.5 ثانية بدون تحميل.</li>
+        <li><b>التنظيف:</b> <code>map.remove()</code> لما يختفي الـ component، وحماية من StrictMode (اللي بيركّب الـ effect مرتين بالتطوير).</li>
+      </ul>
+      <div class="tip"><b>💡 درس من التطوير:</b> أول نسخة طلعت فاضية! السبب إن <code>maplibre-gl.css</code> بيفرض <code>position: relative</code> على عنصر الخريطة، فغطّى على <code>absolute inset-0</code> تبع Tailwind وصار الارتفاع صفر. الحل: <code>size-full</code> بدل الـ absolute.</div>
+      <h3>تحريك الباص بدون إعادة بناء الخريطة (B8, B25)</h3>
+<pre><span class="c">// الخريطة بتنبني مرة وحدة لكل مسار. الـ marker محفوظ بـ ref.</span>
+useEffect(() => {
+  <span class="k">if</span> (mode !== <span class="s">'full'</span> || !busMarkerRef.current) <span class="k">return</span>
+  <span class="k">const</span> p = interpolate(origin, destination, progress)
+  busMarkerRef.current.setLngLat([p.lng, p.lat])     <span class="c">// بس هيك — ما في map جديدة</span>
+}, [progress])</pre>
+      <p>بالمرجع، أي ضغطة (حتى تبديل الثيم) كانت تعيد رسم كل الصفحة وتمسح الخريطة وترجّع المحاكاة لأولها. هلّق تبديل الثيم ما بيلمس الخريطة أبداً — اختبرناها: نفس عنصر الـ canvas قبل وبعد.</p>
+      <h3><code>useTrackingSimulation</code></h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>القاعدة</th><th>القيمة</th></tr></thead>
+        <tbody>
+          <tr><td>البداية</td><td>48% (متل المرجع)</td></tr>
+          <tr><td>السرعة</td><td>+0.6% كل 150ms</td></tr>
+          <tr><td>النهاية</td><td>بيوقف على 100% مع «وصلت الحافلة إلى الوجهة» — المرجع كان يرجع لـ 0 للأبد</td></tr>
+          <tr><td>الوقت المتبقي</td><td><code>(1 − p) × مدة الرحلة الحقيقية</code> — المرجع كان «5.4 ساعات» ثابتة</td></tr>
+          <tr><td>إذا المدة مجهولة</td><td>تقدير: <code>المسافة ÷ 63 كم/س × 60 + 15</code> مع علامة <code>~</code></td></tr>
+          <tr><td>الحالة</td><td>&lt; 80%: «الحافلة تتحرك نحو الوجهة» · ≥ 80%: «اقتربنا من محطة الوصول»</td></tr>
+          <tr><td>تقليل الحركة</td><td>إذا المستخدم مفعّل <code>prefers-reduced-motion</code> بتبلّش موقّفة</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 12 -->
+    <section class="chapter" id="design" data-title="نظام التصميم و Tailwind">
+      <span class="eyebrow">12</span>
+      <h2>نظام التصميم و Tailwind v4</h2>
+      <h3>الـ Tokens (من <code>:root</code> بالمرجع)</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Token</th><th>فاتح</th><th>غامق</th><th>Utility</th></tr></thead>
+        <tbody>
+          <tr><td><code>--bg</code></td><td class="ltr">#f8fafb</td><td class="ltr">#0b1c29</td><td><code>bg-bg</code></td></tr>
+          <tr><td><code>--surface</code></td><td class="ltr">#fff</td><td class="ltr">#112b3b</td><td><code>bg-surface</code></td></tr>
+          <tr><td><code>--text</code></td><td class="ltr">#112f41</td><td class="ltr">#eef8fa</td><td><code>text-text</code></td></tr>
+          <tr><td><code>--muted</code></td><td class="ltr">#718493</td><td class="ltr">#9eb3be</td><td><code>text-muted</code></td></tr>
+          <tr><td><code>--primary</code></td><td class="ltr">#0aa99b</td><td class="ltr">(نفسه)</td><td><code>bg-primary</code>, <code>text-primary</code></td></tr>
+          <tr><td><code>--dark</code></td><td class="ltr">#103a4e</td><td class="ltr">#0e2634</td><td><code>bg-dark</code></td></tr>
+          <tr><td><code>--soft-teal</code></td><td class="ltr">#e6f8f3</td><td class="ltr">#174b49</td><td><code>bg-soft-teal</code></td></tr>
+        </tbody>
+      </table></div>
+      <h3>السر: <code>@theme inline</code></h3>
+<pre>:root { --surface: #fff; }
+:root[data-theme=<span class="s">"dark"</span>] { --surface: #112b3b; }
+
+@theme inline {
+  --color-surface: var(--surface);   <span class="c">/* bg-surface بيقرا المتغيّر وقت العرض */</span>
+}</pre>
+      <p>بفضل <code>inline</code>، الـ utility <code>bg-surface</code> بيتغيّر لحالو مع الثيم — ما بنحتاج <code>dark:</code> بكل مكان. الـ <code>dark:</code> مستعمل بس للأماكن اللي المرجع كان عاملها override خاص (متل لون عنوان الـ hero).</p>
+      <h3>الـ Breakpoints</h3>
+      <p>المرجع desktop-first (<code>max-width</code>). عرّفنا breakpoints جديدة، ومنستعمل <code>max-*</code> كي كل بلوك بالمرجع يقابل prefix واحد:</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>المرجع</th><th>Tailwind</th></tr></thead>
+        <tbody>
+          <tr><td><code>@media (max-width:1150px)</code></td><td><code>max-lg:</code> (أقل من 1151px)</td></tr>
+          <tr><td><code>@media (max-width:900px)</code></td><td><code>max-md:</code> (أقل من 901px)</td></tr>
+          <tr><td><code>@media (max-width:650px)</code></td><td><code>max-sm:</code> (أقل من 651px)</td></tr>
+          <tr><td><code>@media (max-width:370px)</code></td><td><code>max-xs:</code> (أقل من 371px)</td></tr>
+        </tbody>
+      </table></div>
+      <h3>كيف نقلنا 4300 سطر CSS</h3>
+      <p>الـ CSS بالمرجع فيه «طبقات تصحيح» متكررة: نفس الـ selector معرّف كذا مرة والأخير بيربح. كتبنا script (postcss) بيدمج كل القواعد ويحسب القيمة النهائية لكل selector بكل media query (من 4300 لـ 970 سطر)، وبعدين ترجمناها لـ utilities.</p>
+      <h3>طبقة <code>@layer components</code> صغيرة</h3>
+      <p>بس للأشياء الصعبة بالـ utilities: النص المتدرّج (<code>.gradient-text</code>)، الـ pseudo-elements الزخرفية، حالات المقاعد (<code>.seat-btn</code>)، أنيميشن البطاقات الطايرة، تفاصيل الـ <code>&lt;details&gt;</code>، و overrides لـ MapLibre.</p>
+      <h3>RTL</h3>
+      <ul>
+        <li><code>&lt;html lang="ar" dir="rtl"&gt;</code>.</li>
+        <li>utilities منطقية بس: <code>ms-/me-/ps-/pe-</code>، <code>start-/end-</code>، <code>border-s</code>… فـ <code>ms-auto</code> بالعربي بتعني «margin يمين».</li>
+        <li>الخرائط <code>dir="ltr"</code>، وأرقام الموبايل والإيميلات وأكواد الحجز <code>dir="ltr"</code>.</li>
+        <li>السهم <code>ArrowLeft</code> = «لقدّام» و <code>ArrowRight</code> = «رجوع».</li>
+      </ul>
+      <div class="warn"><b>⚠ أهم درس بالتنسيق — تضارب الـ classes:</b><br/>
+        بـ Tailwind، إذا حطّيت class‑ين لنفس الخاصية (مثلاً <code>px-[22px]</code> من Button و<code>px-[13px]</code> من الـ className)، <b>ما بيربح الأخير بالنص</b>. بيربح اللي ترتيبه أبعد بملف الـ CSS المولَّد. قِسنا بالمتصفح ولقينا زر الـ TripCard ارتفاعه 49px بدل 38px.<br/>
+        <b>الحل بدون مكتبات إضافية:</b> <code>size="custom"</code> بـ Button (الـ caller بيعطي كل القياسات)، و <code>widthClass</code> بـ Modal، و <code>sizeClass</code> بـ IconButton، و <code>spacing</code> بـ Breadcrumb. القاعدة: لا تعطي component class بيتضارب مع class داخلي، أعطيه prop بيستبدله.</div>
+    </section>
+
+    <!-- 13 -->
+    <section class="chapter" id="components" data-title="فهرس الـ Components">
+      <span class="eyebrow">13</span>
+      <h2>فهرس الـ Components</h2>
+      <h3><code>components/ui/</code> — عامة</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Component</th><th>Props أساسية</th><th>ملاحظات</th></tr></thead>
+        <tbody>
+          <tr><td>Button</td><td><code>variant</code> (primary, dark, outline, subtle, white, danger, dangerOutline) · <code>size</code> (md, sm, custom) · <code>to</code> · <code>href</code> · <code>loading</code> · <code>iconStart/iconEnd</code></td><td>بيصير <code>&lt;Link&gt;</code> مع <code>to</code>، و<code>&lt;a&gt;</code> مع <code>href</code></td></tr>
+          <tr><td>IconButton</td><td><code>label</code> · <code>sizeClass</code></td><td>الـ label بيصير aria-label و title</td></tr>
+          <tr><td>Icon</td><td><code>icon</code> · <code>size</code></td><td>بيلف lucide بـ strokeWidth 1.85 و aria-hidden</td></tr>
+          <tr><td>Eyebrow</td><td><code>tone</code> (default, onDark)</td><td>الشارة الصغيرة فوق العناوين</td></tr>
+          <tr><td>Tag</td><td><code>tone</code> (success, teal, muted, danger, demo) · <code>icon</code></td><td></td></tr>
+          <tr><td>TextField</td><td><code>label</code> · <code>icon</code> · <code>error</code> · <code>size</code> · <code>ref</code></td><td>useId + aria-describedby + aria-invalid</td></tr>
+          <tr><td>PasswordField</td><td>متل TextField</td><td>زر إظهار/إخفاء مع aria-pressed</td></tr>
+          <tr><td>Checkbox, RadioList</td><td><code>label</code> / <code>options[{value,label,count}]</code></td><td>RadioList فيه role="radiogroup"</td></tr>
+          <tr><td>Modal</td><td><code>open</code> · <code>onClose</code> · <code>labelledBy</code> · <code>initialFocusRef</code> · <code>widthClass</code></td><td>portal + focus trap + Esc + قفل الـ scroll (B15)</td></tr>
+          <tr><td>ConfirmDialog</td><td><code>title</code> · <code>confirmLabel</code> · <code>onConfirm/onCancel</code> · <code>loading</code></td><td>الـ focus الأول على الزر الآمن «رجوع»</td></tr>
+          <tr><td>Toast</td><td><code>message</code> · <code>type</code> · <code>visible</code></td><td>بينعرض من ToastProvider</td></tr>
+          <tr><td>EmptyState, InfoNote</td><td><code>icon</code> · <code>title</code> · <code>text</code> · <code>action</code> / <code>variant</code></td><td>InfoNote إلو 5 أشكال من المرجع</td></tr>
+          <tr><td>Breadcrumb, PageBanner, SectionHeading</td><td><code>items</code> / <code>title</code> · <code>highlight</code> · <code>art</code></td><td>رأس الصفحات الداخلية</td></tr>
+          <tr><td>Stepper, ProgressBar</td><td><code>steps</code> · <code>current</code> / <code>value</code></td><td>aria-current="step" و role="progressbar"</td></tr>
+          <tr><td>Skeleton, Spinner</td><td><code>className</code> / <code>label</code></td><td>حالات التحميل</td></tr>
+          <tr><td>SmartImage</td><td><code>photoKey</code> · <code>alt</code> · <code>loading</code> · <code>fetchPriority</code></td><td>سلسلة روابط + SVG محلي (B21)</td></tr>
+          <tr><td>SkipLink</td><td>—</td><td>«تخطّى إلى المحتوى» بيظهر مع Tab</td></tr>
+        </tbody>
+      </table></div>
+      <h3><code>components/layout/</code></h3>
+      <p><code>RootLayout</code> (AuthProvider) · <code>MainLayout</code> (الهيكل + Suspense + إخفاء الـ footer بالتتبّع) · <code>AnnouncementBar</code> · <code>Header</code> (sticky، القائمة بتسكّر مع تغيير الصفحة وEsc والضغط برّا — B16) · <code>Logo</code> · <code>DesktopNav</code> · <code>MobileMenu</code> · <code>ThemeToggle</code> · <code>UserMenu</code> · <code>Footer</code> (أيقونات التواصل زخرفية مع aria-hidden — B18) · <code>PhotoCredits</code> · <code>ScrollManager</code>.</p>
+      <h3><code>components/common/</code> — خاصة بسيرنا ومشتركة</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Component</th><th>وين مستعمل</th></tr></thead>
+        <tbody>
+          <tr><td>SearchForm + SearchField + CitySelect</td><td>الرئيسية (home) والنتائج (compact)</td></tr>
+          <tr><td>CompanyLogo</td><td>كل مكان فيه شركة — ألوانه بمتغيّرات CSS <code>--logo-color</code> و <code>--logo-bg</code></td></tr>
+          <tr><td>ServicePills</td><td>بطاقات الرحلات والشركات (فاضية حالياً لأن الـ API ما فيه خدمات)</td></tr>
+          <tr><td>RouteMap</td><td>معاينة بالرئيسية، والوضع الكامل بالتتبّع</td></tr>
+          <tr><td>TicketModal</td><td>حجوزاتي</td></tr>
+          <tr><td>BookingStatusTag</td><td>البطاقات والتذكرة</td></tr>
+          <tr><td>QueryState</td><td>بيوحّد حالات loading / error + retry / empty / success لأي query</td></tr>
+        </tbody>
+      </table></div>
+      <details class="code"><summary>مثال: كيف بيشتغل <code>QueryState</code></summary>
+<pre>&lt;QueryState
+  query={bookingsQuery}
+  loading={&lt;MyTripCardSkeleton /&gt;}
+  isEmpty={(data) =&gt; data.length === 0}
+  empty={&lt;EmptyState title=<span class="s">"ما عندك حجوزات لسا."</span> /&gt;}
+&gt;
+  {(bookings) =&gt; bookings.map((b) =&gt; &lt;MyTripCard key={b.id} booking={b} /&gt;)}
+&lt;/QueryState&gt;</pre></details>
+    </section>
+
+    <!-- 14 -->
+    <section class="chapter" id="hooks" data-title="فهرس الـ Hooks و Utils">
+      <span class="eyebrow">14</span>
+      <h2>فهرس الـ Hooks و Utils</h2>
+      <h3>Hooks المنطق</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Hook</th><th>شو بيعمل</th></tr></thead>
+        <tbody>
+          <tr><td><code>useTripSearch</code></td><td>القيم الأولية للبحث، <code>search()</code> مع التحقق والتنقل، <code>searchToDestination()</code> لبطاقات الوجهات</td></tr>
+          <tr><td><code>useResultsParams</code></td><td>قراءة وتصحيح params صفحة النتائج + <code>setFilters</code> / <code>resetFilters</code></td></tr>
+          <tr><td><code>useSearchParamsState</code></td><td>قراءة/كتابة الـ URL params بشكل typed</td></tr>
+          <tr><td><code>useTripFilters</code></td><td>فلترة الشركة والوقت + الترتيب + عدد لكل شركة (useMemo)</td></tr>
+          <tr><td><code>useBookingFlow</code></td><td>الـ reducer + مسودة الـ session لخطوات الحجز</td></tr>
+          <tr><td><code>useBookingActions</code></td><td>حالة التذكرة المفتوحة والإلغاء بصفحة حجوزاتي</td></tr>
+          <tr><td><code>useAuthForm</code></td><td>قيم وأخطاء فورم الدخول/التسجيل</td></tr>
+          <tr><td><code>useTrackingSimulation</code></td><td>تقدّم الباص، الإيقاف، الإعادة، الوقت المتبقي</td></tr>
+          <tr><td><code>useMapLibre</code></td><td>إنشاء الخريطة، الـ fallback، التنظيف</td></tr>
+          <tr><td><code>useImageFallback</code></td><td>المرور على سلسلة الصور مع cache للرابط الناجح</td></tr>
+          <tr><td><code>useFocusTrap</code>, <code>useLockBodyScroll</code></td><td>أساس الـ Modal</td></tr>
+          <tr><td><code>useDocumentTitle</code></td><td>«سيرنا | اسم الصفحة»</td></tr>
+        </tbody>
+      </table></div>
+      <h3>Utils (دوال صافية — pure functions)</h3>
+      <div class="grid-2">
+        <div class="card"><h4><code>format.js</code></h4><p><code>formatMoney(145000)</code> ← <code>145,000 ل.س</code><br/><code>formatDate('2026-11-11')</code> ← «الأربعاء، 11 تشرين الثاني 2026» بأرقام لاتينية (B11)<br/><code>formatDuration(390)</code> ← «6 س 30 د»</p></div>
+        <div class="card"><h4><code>date.js</code></h4><p><code>todayLocalISO()</code> من التاريخ المحلي — مش <code>toISOString()</code> اللي بيعطي تاريخ UTC (B10)<br/><code>toDamascusDateTime(iso)</code> بـ <code>Intl.DateTimeFormat</code> مع <code>timeZone</code></p></div>
+        <div class="card"><h4><code>geo.js</code></h4><p>المكان الوحيد لحساب المسافات (B8): <code>estimateRoadKm</code>, <code>haversineKm</code>, <code>interpolate</code>, روابط Google Maps</p></div>
+        <div class="card"><h4><code>validation.js</code></h4><p><code>validateSearch</code> واحدة للفورم والاختصارات والـ URL (B2) · <code>validatePassenger</code> · <code>validateAuth</code> (8 أحرف — B23)</p></div>
+        <div class="card"><h4><code>storage.js</code></h4><p>قراءة/كتابة آمنة (بـ try/catch لأن التخزين ممكن يكون ممنوع) + <code>getToken/setToken/clearToken</code></p></div>
+        <div class="card"><h4><code>text.js</code> · <code>booking.js</code> · <code>cn.js</code></h4><p><code>normalizeArabic</code> (أ/إ/آ ← ا، ة ← ه…) · <code>sortBookings</code>, <code>isCancellable</code> · <code>cn()</code> لدمج الـ classes</p></div>
+      </div>
+    </section>
+
+    <!-- 15 -->
+    <section class="chapter" id="bugs" data-title="الأخطاء B1–B27">
+      <span class="eyebrow">15</span>
+      <h2>الأخطاء اللي انحلّت (B1–B27)</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>ID</th><th>المشكلة بالمرجع</th><th>الحل</th><th>وين</th></tr></thead>
+        <tbody>
+          <tr><td>B1</td><td>بطاقة حمص مع انطلاق من حمص ← حمص ← حمص</td><td>أول مدينة مختلفة من [حلب، دمشق، حمص]</td><td><code>useTripSearch</code></td></tr>
+          <tr><td>B2</td><td>الاختصارات بتتجاوز التحقق</td><td><code>validateSearch</code> وحدة للكل</td><td><code>utils/validation</code></td></tr>
+          <tr><td>B3</td><td>المقاعد المحجوزة نفسها لكل رحلة</td><td><code>GET /trips/{id}/seats</code></td><td><code>useTripSeats</code></td></tr>
+          <tr><td>B4</td><td>ما في تحقق إنو المقاعد بتكفي</td><td>زر معطّل + حصر العدد</td><td><code>TripCard</code>, <code>useBookingFlow</code></td></tr>
+          <tr><td>B5</td><td><code>.sort()</code> على الـ state وقت العرض</td><td>نسخة مرتّبة بس</td><td><code>sortedSeats</code></td></tr>
+          <tr><td>B6</td><td>refresh على الحجز بيختار أول رحلة</td><td>الرحلة والحجز من الـ URL + صفحات «مش موجود»</td><td><code>BookingPage</code></td></tr>
+          <tr><td>B7</td><td>بيانات المسافرين بتضيع بالرجوع</td><td>reducer + مسودة</td><td><code>useBookingFlow</code></td></tr>
+          <tr><td>B8</td><td>وقت وصول ثابت، حلقة لا نهائية، معادلة مكررة</td><td>محاكاة بتوقف + ETA حقيقي + geo.js واحد</td><td><code>useTrackingSimulation</code></td></tr>
+          <tr><td>B9</td><td>رقم الحجز من الوقت ممكن يتكرر</td><td>رقم من السيرفر</td><td>API</td></tr>
+          <tr><td>B10</td><td>تاريخ UTC مقابل محلي</td><td>دوال تاريخ محلية</td><td><code>utils/date</code></td></tr>
+          <tr><td>B11</td><td>أرقام لاتينية وعربية مخلوطة</td><td><code>ar-SY-u-nu-latn</code></td><td><code>utils/format</code></td></tr>
+          <tr><td>B12</td><td>أعداد مكتوبة باليد (6، +12، 14، 4)</td><td>من البيانات أو انشالت</td><td>Metrics, Companies, Filters</td></tr>
+          <tr><td>B13</td><td>الحجوزات مشتركة بين كل مستخدمي المتصفح</td><td><code>/bookings/me</code></td><td><code>useMyBookings</code></td></tr>
+          <tr><td>B14</td><td>«تذكرني» ما بتعمل شي</td><td>local مقابل session storage</td><td><code>storage.setToken</code></td></tr>
+          <tr><td>B15</td><td>النافذة بدون focus trap ولا قفل scroll</td><td>Modal كامل</td><td><code>ui/Modal</code></td></tr>
+          <tr><td>B16</td><td>قائمة الموبايل ما بتسكّر</td><td>Esc + برّا + تغيير الصفحة + aria</td><td><code>Header</code></td></tr>
+          <tr><td>B17</td><td>الـ toast ما بينقرا لقارئ الشاشة</td><td>live regions</td><td><code>ToastContext</code></td></tr>
+          <tr><td>B18</td><td>أيقونات التواصل شكلها روابط وهي مش</td><td>زخرفية + aria-hidden</td><td><code>Footer</code></td></tr>
+          <tr><td>B19</td><td>قيم بتندرج كـ HTML بدون escape</td><td>React + ممنوع <code>dangerouslySetInnerHTML</code></td><td>كل المشروع</td></tr>
+          <tr><td>B20</td><td>الروابط الغلط بتعرض الرئيسية</td><td>صفحة 404</td><td><code>NotFoundPage</code></td></tr>
+          <tr><td>B21</td><td>ما في بديل للصور بدون إنترنت</td><td>SVG محلي آخر السلسلة</td><td><code>SmartImage</code></td></tr>
+          <tr><td>B22</td><td>كل ضغطة بتعيد رسم الصفحة وبتضيّع الـ focus</td><td>React بيحدّث بس اللي تغيّر</td><td>كل المشروع</td></tr>
+          <tr><td>B23</td><td>كلمة السر 6 مقابل 8 بالسيرفر</td><td>8 بكل مكان</td><td><code>PASSWORD_MIN</code></td></tr>
+          <tr><td>B24</td><td>صفحة النجاح بتعرض آخر حجز</td><td><code>/booking/success/:id</code></td><td><code>BookingSuccessPage</code></td></tr>
+          <tr><td>B25</td><td>تبديل الثيم بيعيد بناء الخرائط</td><td>الخريطة مستقلة عن الثيم</td><td><code>useMapLibre</code></td></tr>
+          <tr><td>B26</td><td>عدد الحجوزات بالحساب بيعد كل شي محلي</td><td>غير الملغاة من الـ API</td><td><code>AccountPage</code></td></tr>
+          <tr><td>B27</td><td>كود ميت</td><td>ما انتقل</td><td>—</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note"><b>إصلاح إضافي ما كان بالقائمة:</b> المرجع كان حاطط <code>overflow: hidden</code> على الغلاف الرئيسي، وهاد بيخرّب <code>position: sticky</code> (الـ header وملخص الحجز ولوحة الفلاتر ما كانوا يلزقوا فعلياً). استعملنا <code>overflow-x: clip</code> اللي بيقص بدون ما يعمل scroll container.</div>
+    </section>
+
+    <!-- 16 -->
+    <section class="chapter" id="a11y" data-title="Accessibility">
+      <span class="eyebrow">16</span>
+      <h2>إمكانية الوصول (Accessibility)</h2>
+      <ul class="checklist">
+        <li>كل عنصر تفاعلي بينوصل بالكيبورد مع حلقة focus واضحة (<code>3px solid #4cc8bf</code>).</li>
+        <li>كل حقل إلو <code>&lt;label&gt;</code>، والأخطاء مربوطة بـ <code>aria-describedby</code> و <code>aria-invalid</code>.</li>
+        <li>المقاعد: <code>aria-label="مقعد N"</code>، <code>aria-pressed</code>، و <code>disabled</code> للمحجوز.</li>
+        <li>الأزرار اللي فيها أيقونة بس عندها <code>aria-label</code> عربي.</li>
+        <li>الـ Modal: <code>role="dialog"</code>، <code>aria-modal</code>، focus trap، رجوع الـ focus للزر اللي فتحها.</li>
+        <li>الـ toasts بـ <code>role="status"</code> و <code>role="alert"</code> للأخطاء.</li>
+        <li>رابط «تخطّى إلى المحتوى» أول عنصر بالصفحة.</li>
+        <li>احترام <code>prefers-reduced-motion</code> (الأنيميشن بتوقف والمحاكاة بتبلّش موقّفة).</li>
+        <li>الصور إلها <code>alt</code> عربي، والزخرفية <code>alt=""</code>.</li>
+      </ul>
+    </section>
+
+    <!-- 17 -->
+    <section class="chapter" id="qa" data-title="كيف اختبرنا">
+      <span class="eyebrow">17</span>
+      <h2>كيف اختبرنا</h2>
+      <p>كل مرحلة انتهت بـ: <code>npm run lint</code> (0 أخطاء و0 تحذيرات) ← <code>npm run build</code> ← اختبار حقيقي بالمتصفح.</p>
+      <div class="grid-2">
+        <div class="card"><h4>🤖 اختبارات بالمتصفح (puppeteer)</h4><p>scripts بتفتح Chrome وبتكبس وبتعبّي فورمات وبتصوّر: الحجز الكامل كضيف ← دخول ← رجوع للمراجعة، تعارض المقاعد، فتح التذكرة بالكيبورد، الإلغاء، المحاكاة لآخرها، تبديل الثيم.</p></div>
+        <div class="card"><h4>📐 فحص الشاشات</h4><p>كل الصفحات على 360 / 768 / 1024 / 1440 بالوضع الغامق: البحث عن عناصر طالعة برّا الشاشة وأخطاء الـ console.</p></div>
+        <div class="card"><h4>🧪 حالات بدون كتابة بيانات</h4><p>تعارض المقاعد اختبرناه بـ «interception»: المتصفح بيرجّع 409 مزيّف بدل ما يوصل الطلب للسيرفر. والتتبّع بحجز مزيّف بنفس الطريقة.</p></div>
+        <div class="card"><h4>🧹 تنظيف بيانات الاختبار</h4><p>انعمل حساب تجريبي واحد وحجزين تجريبيين، والحجزين انلغوا. الحساب لسا موجود لأن الـ API ما فيه endpoint لحذف حساب.</p></div>
+      </div>
+      <h3>جرّب بنفسك — checklist</h3>
+      <ol class="steps">
+        <li>افتح الرئيسية، غيّر الثيم، وتأكد إنو الخيار بيبقى بعد الـ refresh.</li>
+        <li>اختار حلب ← حلب وابحث: لازم تطلع رسالة خطأ.</li>
+        <li>ابحث حلب ← دمشق بتاريخ قريب، جرّب الفلاتر، ولاحظ إنو الـ URL بيتغيّر والصفحة ما بتطلع لفوق.</li>
+        <li>افتح رابط فيه تاريخ قديم (<code>date=2020-01-01</code>): لازم يتصلّح مع toast.</li>
+        <li>اختار رحلة، مقعدين، عبّي المسافرين، ارجع خطوة وتأكد إنو الأسماء لسا موجودة.</li>
+        <li>أكّد كضيف ← سجّل دخول ← لازم ترجع لخطوة المراجعة.</li>
+        <li>أكّد الحجز، افتح «حجوزاتي»، افتح التذكرة بالكيبورد (Tab + Enter)، سكّرها بـ Esc.</li>
+        <li>افتح «تتبّع الرحلة»، وقّف الحركة، غيّر الثيم (الخريطة ما لازم تتأثر)، واستنى لـ 100%.</li>
+        <li>ألغِ الحجز، وتأكد إنو زر التتبّع اختفى.</li>
+        <li>افتح <code>/أي-شي</code>: لازم تطلع صفحة 404.</li>
+      </ol>
+    </section>
+
+    <!-- 18 -->
+    <section class="chapter" id="next" data-title="تمارين وخطوات جاية">
+      <span class="eyebrow">18</span>
+      <h2>تمارين للتعلّم وخطوات جاية</h2>
+      <div class="grid-2">
+        <div class="card"><h4>🟢 سهل</h4><ul><li>زيد سؤال جديد بـ <code>data/faq.js</code>.</li><li>غيّر لون <code>--primary</code> وشوف كيف بيتغيّر كل الموقع.</li><li>زيد variant جديد للـ Tag.</li></ul></div>
+        <div class="card"><h4>🟡 متوسط</h4><ul><li>صفحة <code>/companies/:id</code> بتستعمل <code>useCompany</code> (الـ hook جاهز).</li><li>اسمح بتغيير عدد المسافرين من داخل صفحة الحجز.</li><li>اعرض أسماء المسافرين بالتذكرة.</li></ul></div>
+        <div class="card"><h4>🟠 أصعب</h4><ul><li>زيد اختبارات (Vitest + Testing Library) للـ reducer و <code>validateSearch</code> — بتحتاج موافقة على dependency جديدة.</li><li>optimistic update للإلغاء.</li></ul></div>
+        <div class="card"><h4>🔴 بيحتاج backend</h4><ul><li>endpoint لتعديل الملف الشخصي ونسيان كلمة السر.</li><li>تقييمات وخدمات للشركات.</li><li>GPS حقيقي ودفع إلكتروني.</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 19 -->
+    <section class="chapter" id="glossary" data-title="قاموس المصطلحات">
+      <span class="eyebrow">19</span>
+      <h2>قاموس المصطلحات</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>المصطلح</th><th>المعنى ببساطة</th></tr></thead>
+        <tbody>
+          <tr><td>Component</td><td>دالة بترجّع جزء من الواجهة (JSX). متل قطعة Lego.</td></tr>
+          <tr><td>Props</td><td>المدخلات اللي بتعطيها للـ component من برّا.</td></tr>
+          <tr><td>State</td><td>بيانات بتتغيّر مع الوقت، ولما تتغيّر React بيعيد عرض الـ component.</td></tr>
+          <tr><td>Hook</td><td>دالة بتبلّش بـ <code>use</code> وبتستعمل ميزات React (state، effects…). بتجمع منطق قابل لإعادة الاستعمال.</td></tr>
+          <tr><td>Effect</td><td>كود بيشتغل بعد العرض لمزامنة شي برّا React (خريطة، timer، تخزين).</td></tr>
+          <tr><td>Context</td><td>طريقة لمشاركة قيمة مع كل الـ components تحت بدون تمريرها بالـ props.</td></tr>
+          <tr><td>Reducer</td><td>دالة <code>(state, action) =&gt; newState</code>. كل التغييرات بمكان واحد وبأسماء واضحة.</td></tr>
+          <tr><td>Query</td><td>طلب قراءة بيانات من السيرفر (GET) بإدارة React Query.</td></tr>
+          <tr><td>Mutation</td><td>طلب بيغيّر بيانات بالسيرفر (POST) — دخول، حجز، إلغاء.</td></tr>
+          <tr><td>Invalidate</td><td>تعليم بيانات بالـ cache إنها قديمة كي تنجلب من جديد.</td></tr>
+          <tr><td>Interceptor</td><td>كود بيمرّ عليه كل طلب أو رد بـ axios.</td></tr>
+          <tr><td>Mapper</td><td>دالة بتحوّل الرد الخام من السيرفر لشكل داخلي ثابت.</td></tr>
+          <tr><td>JWT / Token</td><td>«بطاقة دخول» من السيرفر بتنبعت مع كل طلب محمي.</td></tr>
+          <tr><td>Lazy loading</td><td>تحميل كود صفحة أو مكتبة بس لما تلزم.</td></tr>
+          <tr><td>Fallback</td><td>بديل بيظهر لما الشي الأساسي يفشل.</td></tr>
+          <tr><td>RTL</td><td>Right-to-left: اتجاه الكتابة العربي.</td></tr>
+          <tr><td>Proxy</td><td>وسيط بـ dev server بيحوّل طلبات <code>/api</code> للسيرفر الحقيقي.</td></tr>
+        </tbody>
+      </table></div>
+      <p style="color:var(--muted);font-size:13px;margin-top:20px">آخر تحديث: 10 تشرين الثاني 2026 · المشروع: <code>sairna-react</code> · 13 commit من <code>phase-0</code> لـ <code>phase-12</code>.</p>
+    </section>
+  </main>
+</div>
+
+<button class="icon-btn back-top" id="backTop" aria-label="رجوع لفوق" title="رجوع لفوق">↑</button>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var chapters = Array.prototype.slice.call(document.querySelectorAll('section.chapter'));
+    var list = document.getElementById('tocList');
+    var toc = document.getElementById('toc');
+    var menuBtn = document.getElementById('menuBtn');
+
+    // Build the table of contents from the chapters.
+    chapters.forEach(function (sec, i) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + sec.id;
+      a.innerHTML = '<span class="num">' + String(i + 1).padStart(2, '0') + '</span>' + sec.getAttribute('data-title');
+      a.addEventListener('click', function () { toc.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); });
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+    var links = list.querySelectorAll('a');
+
+    // Highlight the chapter in view.
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id); });
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    chapters.forEach(function (c) { io.observe(c); });
+
+    // Search: hides chapters that don't contain the text.
+    document.getElementById('search').addEventListener('input', function (e) {
+      var q = e.target.value.trim().toLowerCase();
+      chapters.forEach(function (c, i) {
+        var hit = !q || c.textContent.toLowerCase().indexOf(q) !== -1;
+        c.classList.toggle('hidden', !hit);
+        links[i].parentElement.style.display = hit ? '' : 'none';
+        if (q && hit) c.querySelectorAll('details').forEach(function (d) { if (d.textContent.toLowerCase().indexOf(q) !== -1) d.open = true; });
+      });
+    });
+
+    // Theme toggle (remembered per viewer).
+    var saved = null;
+    try { saved = localStorage.getItem('sairna-guide-theme'); } catch (e) {}
+    if (saved) root.setAttribute('data-theme', saved);
+    document.getElementById('themeBtn').addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') ? root.getAttribute('data-theme') === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      var next = dark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('sairna-guide-theme', next); } catch (e) {}
+    });
+
+    // Mobile table of contents.
+    menuBtn.addEventListener('click', function () {
+      var open = toc.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { toc.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); } });
+
+    document.getElementById('backTop').addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  })();
+</script>
+</body>
+</html>

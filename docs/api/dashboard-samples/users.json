@@ -1,0 +1,30 @@
+{
+  "request": "GET /dashboard/users",
+  "status": 200,
+  "body": {
+    "_note": "array of 60 items; first 3 kept",
+    "items": [
+      {
+        "id": 60,
+        "name": "مستخدم 60",
+        "email": "user60@example.com",
+        "role": "USER",
+        "createdAt": "2026-11-12T19:04:32.347Z"
+      },
+      {
+        "id": 59,
+        "name": "مستخدم 59",
+        "email": "user59@example.com",
+        "role": "USER",
+        "createdAt": "2026-11-12T19:04:14.240Z"
+      },
+      {
+        "id": 58,
+        "name": "مستخدم 58",
+        "email": "user58@example.com",
+        "role": "USER",
+        "createdAt": "2026-11-12T18:55:23.195Z"
+      }
+    ]
+  }
+}

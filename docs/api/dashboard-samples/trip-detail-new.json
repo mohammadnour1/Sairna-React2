@@ -1,0 +1,37 @@
+{
+  "request": "GET /dashboard/trips/118",
+  "status": 200,
+  "body": {
+    "id": 118,
+    "code": "TR-1445F351",
+    "companyId": 17,
+    "originId": 2,
+    "destinationId": 1,
+    "departureAt": "2026-12-02T06:00:00.000Z",
+    "arrivalAt": "2026-12-02T09:00:00.000Z",
+    "price": 50000,
+    "totalSeats": 12,
+    "status": "AVAILABLE",
+    "company": {
+      "id": 17,
+      "name": "[TEST] شركة فحص (معدّلة)",
+      "logoUrl": "https://example.com/logo.png"
+    },
+    "origin": {
+      "id": 2,
+      "name": "حلب",
+      "latitude": 36.2021,
+      "longitude": 37.1343
+    },
+    "destination": {
+      "id": 1,
+      "name": "دمشق",
+      "latitude": 33.5138,
+      "longitude": 36.2765
+    },
+    "_count": {
+      "bookingSeats": 0
+    },
+    "availableSeats": 12
+  }
+}

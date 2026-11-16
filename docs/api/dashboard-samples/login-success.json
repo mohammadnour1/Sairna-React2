@@ -1,0 +1,15 @@
+{
+  "request": "POST /dashboard/auth/login",
+  "status": 201,
+  "body": {
+    "accessToken": "<redacted-jwt>",
+    "tokenType": "Bearer",
+    "portal": "dashboard",
+    "user": {
+      "id": 1,
+      "name": "مستخدم 1",
+      "email": "user1@example.com",
+      "role": "ADMIN"
+    }
+  }
+}

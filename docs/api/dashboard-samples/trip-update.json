@@ -1,0 +1,16 @@
+{
+  "request": "PATCH /dashboard/trips/118 { price, status:\"CANCELLED\" }",
+  "status": 200,
+  "body": {
+    "id": 118,
+    "code": "TR-1445F351",
+    "companyId": 17,
+    "originId": 2,
+    "destinationId": 1,
+    "departureAt": "2026-12-02T06:00:00.000Z",
+    "arrivalAt": "2026-12-02T09:00:00.000Z",
+    "price": 55000,
+    "totalSeats": 12,
+    "status": "CANCELLED"
+  }
+}

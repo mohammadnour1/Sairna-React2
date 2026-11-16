@@ -1,0 +1,8 @@
+{
+  "request": "GET /website/auth/me",
+  "status": 401,
+  "body": {
+    "message": "Unauthorized",
+    "statusCode": 401
+  }
+}

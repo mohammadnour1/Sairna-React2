@@ -1,0 +1,23 @@
+{
+  "request": "POST /dashboard/trips",
+  "status": 400,
+  "body": {
+    "message": [
+      "companyId must not be less than 1",
+      "companyId must be an integer number",
+      "originId must not be less than 1",
+      "originId must be an integer number",
+      "destinationId must not be less than 1",
+      "destinationId must be an integer number",
+      "departureAt must be a valid ISO 8601 date string",
+      "arrivalAt must be a valid ISO 8601 date string",
+      "price must not be less than 0",
+      "price must be an integer number",
+      "totalSeats must not be greater than 60",
+      "totalSeats must not be less than 1",
+      "totalSeats must be an integer number"
+    ],
+    "error": "Bad Request",
+    "statusCode": 400
+  }
+}

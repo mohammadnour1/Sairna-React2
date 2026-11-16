@@ -1,0 +1,9 @@
+{
+  "request": "POST /dashboard/trips { originId = destinationId }",
+  "status": 400,
+  "body": {
+    "message": "SAME_CITY",
+    "error": "Bad Request",
+    "statusCode": 400
+  }
+}

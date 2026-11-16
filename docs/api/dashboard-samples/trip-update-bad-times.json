@@ -1,0 +1,9 @@
+{
+  "request": "PATCH /dashboard/trips/118 { arrivalAt before departureAt }",
+  "status": 400,
+  "body": {
+    "message": "INVALID_TIMES",
+    "error": "Bad Request",
+    "statusCode": 400
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "request": "GET /dashboard/users/42",
+  "status": 200,
+  "body": {
+    "id": 42,
+    "name": "مستخدم 42",
+    "email": "user42@example.com",
+    "role": "USER",
+    "createdAt": "2026-11-10T22:35:44.556Z"
+  }
+}

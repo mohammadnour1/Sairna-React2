@@ -1,0 +1,11 @@
+{
+  "request": "GET /website/auth/me",
+  "status": 200,
+  "body": {
+    "id": 31,
+    "name": "حساب تجريبي",
+    "email": "test.user@example.com",
+    "role": "USER",
+    "createdAt": "2026-11-09T23:25:45.492Z"
+  }
+}

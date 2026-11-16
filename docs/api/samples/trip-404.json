@@ -1,0 +1,9 @@
+{
+  "request": "GET /website/trips/999999",
+  "status": 404,
+  "body": {
+    "message": "TRIP_NOT_FOUND",
+    "error": "Not Found",
+    "statusCode": 404
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "request": "GET /dashboard/trips",
+  "status": 200,
+  "body": {
+    "_note": "array of 117 items; first 3 kept",
+    "items": [
+      {
+        "id": 117,
+        "code": "DEMO-2026-11-17-9",
+        "companyId": 1,
+        "originId": 7,
+        "destinationId": 2,
+        "departureAt": "2026-11-17T16:00:00.000Z",
+        "arrivalAt": "2026-11-17T17:30:00.000Z",
+        "price": 45000,
+        "totalSeats": 40,
+        "status": "AVAILABLE",
+        "company": {
+          "id": 1,
+          "name": "الشام للنقل (تجريبي)",
+          "logoUrl": null,
+          "isActive": true
+        },
+        "origin": {
+          "id": 7,
+          "name": "إدلب",
+          "latitude": 35.9306,
+          "longitude": 36.6339
+        },
+        "destination": {
+          "id": 2,
+          "name": "حلب",
+          "latitude": 36.2021,
+          "longitude": 37.1343
+        }
+      },
+      {
+        "id": 111,
+        "code": "DEMO-2026-11-17-3",
+        "companyId": 3,
+        "originId": 2,
+        "destinationId": 1,
+        "departureAt": "2026-11-17T14:00:00.000Z",
+        "arrivalAt": "2026-11-17T20:00:00.000Z",
+        "price": 125000,
+        "totalSeats": 40,
+        "status": "AVAILABLE",
+        "company": {
+          "id": 3,
+          "name": "النورس إكسبرس (تجريبي)",
+          "logoUrl": null,
+          "isActive": true
+        },
+        "origin": {
+          "id": 2,
+          "name": "حلب",
+          "latitude": 36.2021,
+          "longitude": 37.1343
+        },
+        "destination": {
+          "id": 1,
+          "name": "دمشق",
+          "latitude": 33.5138,
+          "longitude": 36.2765
+        }
+      },
+      {
+        "id": 116,
+        "code": "DEMO-2026-11-17-8",
+        "companyId": 4,
+        "originId": 6,
+        "destinationId": 1,
+        "departureAt": "2026-11-17T13:00:00.000Z",
+        "arrivalAt": "2026-11-17T17:10:00.000Z",
+        "price": 105000,
+        "totalSeats": 40,
+        "status": "AVAILABLE",
+        "company": {
+          "id": 4,
+          "name": "الاتحاد للنقل (تجريبي)",
+          "logoUrl": null,
+          "isActive": true
+        },
+        "origin": {
+          "id": 6,
+          "name": "طرطوس",
+          "latitude": 34.8959,
+          "longitude": 35.8866
+        },
+        "destination": {
+          "id": 1,
+          "name": "دمشق",
+          "latitude": 33.5138,
+          "longitude": 36.2765
+        }
+      }
+    ]
+  }
+}

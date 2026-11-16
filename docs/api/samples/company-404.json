@@ -1,0 +1,9 @@
+{
+  "request": "GET /website/companies/999999",
+  "status": 404,
+  "body": {
+    "message": "COMPANY_NOT_FOUND",
+    "error": "Not Found",
+    "statusCode": 404
+  }
+}

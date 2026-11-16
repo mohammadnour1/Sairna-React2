@@ -1,0 +1,37 @@
+{
+  "request": "GET /website/trips/117",
+  "status": 200,
+  "body": {
+    "id": 117,
+    "code": "DEMO-2026-11-17-9",
+    "companyId": 1,
+    "originId": 7,
+    "destinationId": 2,
+    "departureAt": "2026-11-17T16:00:00.000Z",
+    "arrivalAt": "2026-11-17T17:30:00.000Z",
+    "price": 45000,
+    "totalSeats": 40,
+    "status": "AVAILABLE",
+    "company": {
+      "id": 1,
+      "name": "الشام للنقل (تجريبي)",
+      "logoUrl": null
+    },
+    "origin": {
+      "id": 7,
+      "name": "إدلب",
+      "latitude": 35.9306,
+      "longitude": 36.6339
+    },
+    "destination": {
+      "id": 2,
+      "name": "حلب",
+      "latitude": 36.2021,
+      "longitude": 37.1343
+    },
+    "_count": {
+      "bookingSeats": 2
+    },
+    "availableSeats": 38
+  }
+}

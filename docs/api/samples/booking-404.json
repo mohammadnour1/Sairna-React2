@@ -1,0 +1,9 @@
+{
+  "request": "GET /website/bookings/999999",
+  "status": 404,
+  "body": {
+    "message": "BOOKING_NOT_FOUND",
+    "error": "Not Found",
+    "statusCode": 404
+  }
+}

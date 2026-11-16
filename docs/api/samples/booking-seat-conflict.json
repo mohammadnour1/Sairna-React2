@@ -1,0 +1,9 @@
+{
+  "request": "POST /website/bookings",
+  "status": 409,
+  "body": {
+    "message": "SEAT_ALREADY_RESERVED",
+    "error": "Conflict",
+    "statusCode": 409
+  }
+}

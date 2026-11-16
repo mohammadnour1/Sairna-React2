@@ -1,0 +1,27 @@
+{
+  "request": "GET /dashboard/companies",
+  "status": 200,
+  "body": {
+    "_note": "array of 4 items; first 3 kept",
+    "items": [
+      {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null,
+        "isActive": true
+      },
+      {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null,
+        "isActive": true
+      },
+      {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null,
+        "isActive": true
+      }
+    ]
+  }
+}

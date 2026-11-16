@@ -1,0 +1,7 @@
+{
+  "request": "DELETE /dashboard/companies/17",
+  "status": 200,
+  "body": {
+    "message": "COMPANY_ARCHIVED"
+  }
+}

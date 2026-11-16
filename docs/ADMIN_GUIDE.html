@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>دليل لوحة الإدارة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f8fafb; --surface: #fff; --surface-alt: #f2f7f8; --text: #112f41; --muted: #5f7482;
+    --border: #e4ecef; --primary: #0aa99b; --primary-deep: #078e87; --dark: #103a4e; --soft: #e6f8f3;
+    --warn-bg: #fff6e5; --warn: #9a6514; --danger-bg: #fdeceb; --danger: #a64645;
+    --code-bg: #0f2533; --code-text: #d9eef2; --shadow: 0 15px 55px rgba(19,54,72,.07);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1c29; --surface: #112b3b; --surface-alt: #173748; --text: #eef8fa; --muted: #a3b8c3;
+      --border: #254252; --soft: #174b49; --warn-bg: #3a2e16; --warn: #f2c77a; --danger-bg: #3f2224; --danger: #f4b6b2;
+      --code-bg: #071621; --shadow: 0 15px 55px rgba(0,0,0,.2); color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1c29; --surface: #112b3b; --surface-alt: #173748; --text: #eef8fa; --muted: #a3b8c3;
+    --border: #254252; --soft: #174b49; --warn-bg: #3a2e16; --warn: #f2c77a; --danger-bg: #3f2224; --danger: #f4b6b2;
+    --code-bg: #071621; --shadow: 0 15px 55px rgba(0,0,0,.2); color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: Cairo, "Segoe UI", Tahoma, sans-serif; font-size: 15px; line-height: 1.9; }
+  a { color: var(--primary-deep); }
+  code, pre, kbd { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; }
+  :not(pre) > code { direction: ltr; unicode-bidi: isolate; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; font-size: .86em; }
+  pre { direction: ltr; text-align: left; background: var(--code-bg); color: var(--code-text); border-radius: 14px; padding: 16px 18px; overflow-x: auto; font-size: 13px; line-height: 1.65; margin: 14px 0; }
+  pre .c { color: #7fa3b3; } pre .k { color: #6fe0cf; } pre .s { color: #ffd38a; }
+  h1, h2, h3, h4 { line-height: 1.45; margin: 0; }
+  h2 { font-size: 26px; font-weight: 900; margin-bottom: 6px; }
+  h3 { font-size: 19px; font-weight: 800; margin: 28px 0 8px; }
+  h4 { font-size: 16px; font-weight: 800; margin: 20px 0 6px; }
+  p { margin: 0 0 12px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 18px; font-size: 14px; }
+  th, td { border-bottom: 1px solid var(--border); padding: 9px 10px; text-align: start; vertical-align: top; }
+  th { background: var(--surface-alt); font-weight: 800; position: sticky; top: 0; }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+  .table-wrap table { margin: 0; }
+
+  /* Layout */
+  .topbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 14px; padding: 12px 22px; background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 20px; }
+  .brand-mark { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; color: #fff; background: linear-gradient(140deg, #20c4ae, #008a98); }
+  .topbar .spacer { flex: 1; }
+  .search { width: min(320px, 46vw); border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 12px; padding: 9px 14px; font: inherit; font-size: 14px; }
+  .icon-btn { border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 12px; width: 40px; height: 40px; display: grid; place-items: center; cursor: pointer; font-size: 18px; }
+  .menu-btn { display: none; }
+  .shell { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 34px; width: min(1320px, calc(100% - 40px)); margin: 0 auto; }
+  nav.toc { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow-y: auto; padding: 22px 0; }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; }
+  nav.toc li a { display: block; padding: 6px 12px; border-radius: 10px; color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 700; border-inline-start: 3px solid transparent; }
+  nav.toc li a:hover { background: var(--surface-alt); color: var(--text); }
+  nav.toc li a.active { color: var(--primary-deep); background: var(--soft); border-inline-start-color: var(--primary); }
+  nav.toc .num { display: inline-block; min-width: 26px; color: var(--primary); }
+  main { padding: 22px 0 80px; min-width: 0; }
+  section.chapter { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 30px 34px; margin-bottom: 22px; box-shadow: var(--shadow); scroll-margin-top: 80px; }
+  section.chapter.hidden { display: none; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 7px; background: var(--soft); color: var(--primary-deep); border-radius: 99px; padding: 3px 13px; font-size: 12px; font-weight: 900; margin-bottom: 10px; }
+  .lead { color: var(--muted); font-size: 16px; }
+
+  /* Hero */
+  .hero { background: linear-gradient(140deg, #0e4653, #0b756e); color: #fff; border-radius: 26px; padding: 40px 38px; margin: 22px 0; position: relative; overflow: hidden; }
+  .hero h1 { font-size: clamp(30px, 4vw, 46px); font-weight: 900; letter-spacing: -1px; }
+  .hero p { color: #d4edeb; max-width: 760px; font-size: 16px; }
+  .hero .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+  .hero .stat { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.16); border-radius: 16px; padding: 14px; }
+  .hero .stat b { display: block; font-size: 26px; font-weight: 900; }
+  .hero .stat span { font-size: 13px; color: #c7f6e8; }
+
+  /* Callouts & cards */
+  .note, .tip, .warn { border-radius: 14px; padding: 13px 16px; margin: 14px 0; font-size: 14px; border: 1px solid transparent; }
+  .note { background: var(--soft); color: var(--text); border-color: color-mix(in srgb, var(--primary) 30%, transparent); }
+  .tip { background: var(--surface-alt); border-color: var(--border); }
+  .warn { background: var(--warn-bg); color: var(--warn); }
+  .note b:first-child, .tip b:first-child, .warn b:first-child { margin-inline-end: 4px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .card { border: 1px solid var(--border); background: var(--surface-alt); border-radius: 16px; padding: 16px 18px; }
+  .card h4 { margin-top: 0; }
+  .card p:last-child { margin-bottom: 0; }
+  .pill { display: inline-block; font-size: 12px; font-weight: 800; border-radius: 99px; padding: 1px 10px; background: var(--soft); color: var(--primary-deep); margin-inline-end: 4px; }
+  .pill.get { background: #e3f2ff; color: #1b5fa6; } .pill.post { background: #fff0dc; color: #9a5b0b; }
+  .pill.auth { background: var(--danger-bg); color: var(--danger); }
+  details.code { border: 1px solid var(--border); border-radius: 14px; margin: 12px 0; background: var(--surface-alt); }
+  details.code summary { cursor: pointer; padding: 10px 14px; font-weight: 800; font-size: 14px; }
+  details.code pre { margin: 0 10px 10px; }
+  .tree { white-space: pre; }
+  figure { margin: 18px 0; }
+  figure svg { width: 100%; height: auto; display: block; }
+  figcaption { color: var(--muted); font-size: 13px; text-align: center; margin-top: 6px; }
+  .svg-box { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 16px; padding: 14px; }
+  .checklist { list-style: none; padding: 0; margin: 10px 0; }
+  .checklist li { padding: 6px 0 6px; border-bottom: 1px dashed var(--border); }
+  .checklist li::before { content: "◻"; color: var(--primary); margin-inline-end: 8px; }
+  ol.steps { padding-inline-start: 22px; }
+  ol.steps li { margin-bottom: 6px; }
+  .back-top { position: fixed; bottom: 20px; inset-inline-start: 20px; z-index: 30; }
+  .ltr { direction: ltr; unicode-bidi: isolate; }
+
+  @media (max-width: 980px) {
+    .shell { grid-template-columns: minmax(0, 1fr); }
+    nav.toc { display: none; position: fixed; inset-block: 64px 0; inset-inline-start: 0; width: min(320px, 86vw); max-height: none; background: var(--surface); border-inline-end: 1px solid var(--border); padding: 18px; z-index: 25; box-shadow: var(--shadow); }
+    nav.toc.open { display: block; }
+    .menu-btn { display: grid; }
+    .hero .stats, .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .shell { width: calc(100% - 32px); }
+    section.chapter { padding: 22px 18px; }
+    .hero { padding: 28px 20px; }
+    .grid-2, .grid-3 { grid-template-columns: minmax(0, 1fr); }
+    .topbar { padding: 10px 16px; gap: 8px; }
+    .search { width: auto; flex: 1; min-width: 0; }
+    .topbar .spacer { display: none; }
+    .brand { font-size: 17px; }
+    .brand span.sub { display: none; }
+    h2 { font-size: 22px; }
+  }
+  @media print {
+    .topbar, nav.toc, .back-top { display: none; }
+    .shell { display: block; width: auto; }
+    section.chapter { box-shadow: none; break-inside: avoid-page; }
+    details.code { display: block; } details.code > * { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menuBtn" aria-label="فتح الفهرس" aria-expanded="false" aria-controls="toc">☰</button>
+  <div class="brand"><span class="brand-mark">س</span> سيرنا <span class="sub" style="color:var(--muted);font-size:14px;font-weight:700">· دليل لوحة الإدارة</span></div>
+  <div class="spacer"></div>
+  <input class="search" id="search" type="search" placeholder="ابحث بالدليل… (مثال: أرشفة، route.lazy، دمشق)" aria-label="بحث بالدليل" />
+  <button class="icon-btn" id="themeBtn" aria-label="تبديل المظهر" title="تبديل المظهر">◐</button>
+</header>
+
+<div class="shell">
+  <nav class="toc" id="toc" aria-label="فهرس الدليل">
+    <ol id="tocList"></ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <span class="eyebrow" style="background:rgba(255,255,255,.12);color:#c7f6e8">دليل تعليمي · لوحة الإدارة</span>
+      <h1>لوحة إدارة سيرنا — من Swagger لتطبيق شغّال على بيانات حقيقية</h1>
+      <p>هالدليل بيشرح لوحة الإدارة على <code style="background:none;border:0;color:#fff">/admin</code>: كيف انعزلت عن موقع المسافرين، شو اكتشفنا عن الـ Dashboard API لما جرّبناه فعلياً، كيف بتمشي البيانات من الخادم للشاشة، وليش أخدنا كل قرار. اقراه بعد <a href="SAIRNA_GUIDE.html" style="color:#9ff0e2">دليل الموقع</a>، لأنو كتير أفكار هون مبنية عليه.</p>
+      <div class="stats">
+        <div class="stat"><b>92</b><span>ملف بـ <code style="background:none;border:0;color:#fff">src/admin/</code></span></div>
+        <div class="stat"><b>18</b><span>endpoint من الـ Dashboard API</span></div>
+        <div class="stat"><b>11</b><span>صفحة (مع الدخول والـ 404)</span></div>
+        <div class="stat"><b>0</b><span>سطر إدارة بـ bundle المسافر</span></div>
+      </div>
+    </div>
+
+    <!-- 1 -->
+    <section class="chapter" id="overview" data-title="نظرة عامة">
+      <span class="eyebrow">01</span>
+      <h2>نظرة عامة</h2>
+      <p class="lead">لوحة الإدارة واجهة عربية (RTL) لحسابات المشرفين (<code>ADMIN</code>). منها بيدير المشرف شركات النقل والرحلات والحجوزات، وبيتابع المستخدمين والمدن. كلها بنفس مشروع React، بس معزولة تماماً عن موقع المسافرين.</p>
+      <div class="grid-3">
+        <div class="card"><h4>🎨 نفس الهوية</h4><p>نفس خط Cairo والألوان والـ tokens والأزرار والـ Modal والـ dark mode تبع الموقع. هي امتداد رسمي للموقع، مش قالب admin جاهز.</p></div>
+        <div class="card"><h4>🔌 بيانات حقيقية بس</h4><p>كل رقم وجدول جاي من الـ Dashboard API. الأرقام المحسوبة (متل المقاعد المحجوزة) محسوبة من responses حقيقية ومكتوب إنها محسوبة.</p></div>
+        <div class="card"><h4>🧱 معزولة</h4><p>client وتوكن وأحداث 401 ومفاتيح cache لحالها. انتهاء جلسة الأدمن ما بيطلّع المسافر من حسابه، والعكس كمان.</p></div>
+      </div>
+      <h3>كيف تفتحها</h3>
+<pre><span class="c"># شغّل المشروع</span>
+npm run dev
+
+<span class="c"># افتح بالمتصفح</span>
+http://localhost:5173/admin      <span class="c"># بيحوّلك على /admin/login إذا ما في جلسة</span></pre>
+      <div class="note"><b>ملاحظة:</b> حسابات الإدارة بتنعمل من الخادم بس (seeded). ما في تسجيل حساب ولا استعادة كلمة مرور من الواجهة، لأنو الـ API ما فيه هيك endpoints.</div>
+      <h3>الصفحات</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>المسار</th><th>الصفحة</th><th>شو فيها</th></tr></thead>
+        <tbody>
+          <tr><td class="ltr">/admin/login</td><td>دخول المشرف</td><td>فورم إيميل + كلمة مرور + «تذكرني»</td></tr>
+          <tr><td class="ltr">/admin</td><td>نظرة عامة</td><td>أرقام الخادم + تحليلات الحجوزات + أحدث الحجوزات + الرحلات القادمة</td></tr>
+          <tr><td class="ltr">/admin/companies</td><td>شركات النقل</td><td>إضافة، تعديل، أرشفة، تفعيل</td></tr>
+          <tr><td class="ltr">/admin/trips</td><td>الرحلات</td><td>إضافة، تعديل، إلغاء + فلاتر</td></tr>
+          <tr><td class="ltr">/admin/trips/:tripId</td><td>تفاصيل الرحلة</td><td>معلومات + خريطة إشغال المقاعد + حجوزاتها</td></tr>
+          <tr><td class="ltr">/admin/bookings</td><td>الحجوزات</td><td>بحث بالرقم/الاسم/الهاتف + إلغاء</td></tr>
+          <tr><td class="ltr">/admin/bookings/:bookingId</td><td>تفاصيل الحجز</td><td>المسافرين ومقاعدهم + الرحلة + صاحب الحجز</td></tr>
+          <tr><td class="ltr">/admin/users</td><td>المستخدمون</td><td>للعرض فقط + عدد حجوزات كل مستخدم</td></tr>
+          <tr><td class="ltr">/admin/users/:userId</td><td>تفاصيل المستخدم</td><td>ملخص + كل حجوزاته</td></tr>
+          <tr><td class="ltr">/admin/cities</td><td>المدن</td><td>للعرض فقط + عدد رحلات الانطلاق والوصول</td></tr>
+          <tr><td class="ltr">/admin/*</td><td>404</td><td>صفحة «الصفحة مو موجودة» جوّا الـ layout</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 2 -->
+    <section class="chapter" id="isolation" data-title="العزل عن موقع المسافرين">
+      <span class="eyebrow">02</span>
+      <h2>العزل عن موقع المسافرين</h2>
+      <p class="lead">أهم قرار معماري: الإدارة والموقع بنفس التطبيق، بس ولا واحد فيهن بيلمس جلسة أو cache التاني.</p>
+      <figure>
+        <div class="svg-box">
+          <svg viewBox="0 0 760 300" role="img" aria-labelledby="isoTitle">
+            <title id="isoTitle">فرعين منفصلين بنفس التطبيق: الموقع والإدارة</title>
+            <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+            <g font-family="Cairo, sans-serif" font-size="13" fill="currentColor" style="color:var(--text)">
+              <rect x="280" y="10" width="200" height="44" rx="12" fill="var(--surface)" stroke="var(--border)"/>
+              <text x="380" y="37" text-anchor="middle" font-weight="800">App: QueryClient + Theme + Toast</text>
+              <line x1="330" y1="54" x2="190" y2="96" stroke="var(--muted)" marker-end="url(#ar)"/>
+              <line x1="430" y1="54" x2="570" y2="96" stroke="var(--muted)" marker-end="url(#ar)"/>
+
+              <rect x="40" y="98" width="300" height="190" rx="16" fill="var(--soft)" stroke="var(--primary)"/>
+              <text x="190" y="124" text-anchor="middle" font-weight="900">موقع المسافرين  /*</text>
+              <text x="190" y="152" text-anchor="middle">AuthContext · api/client.js</text>
+              <text x="190" y="176" text-anchor="middle">VITE_API_BASE_URL → /website</text>
+              <text x="190" y="200" text-anchor="middle">token: sairna-token</text>
+              <text x="190" y="224" text-anchor="middle">event: authEvents</text>
+              <text x="190" y="248" text-anchor="middle">keys: ['trips'] ['bookings'] …</text>
+
+              <rect x="420" y="98" width="300" height="190" rx="16" fill="var(--surface-alt)" stroke="var(--dark)"/>
+              <text x="570" y="124" text-anchor="middle" font-weight="900">لوحة الإدارة  /admin/*  (lazy)</text>
+              <text x="570" y="152" text-anchor="middle">AdminAuthContext · adminClient.js</text>
+              <text x="570" y="176" text-anchor="middle">VITE_ADMIN_API_BASE_URL → /dashboard</text>
+              <text x="570" y="200" text-anchor="middle">token: sairna-admin-token</text>
+              <text x="570" y="224" text-anchor="middle">event: adminAuthEvents</text>
+              <text x="570" y="248" text-anchor="middle">keys: ['admin', …]</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>المشترك بس: QueryClient والثيم والـ toast، ومكونات <code>components/ui</code> و<code>utils</code> والـ tokens.</figcaption>
+      </figure>
+      <div class="table-wrap"><table>
+        <thead><tr><th>الشي</th><th>الموقع</th><th>الإدارة</th><th>ليش منفصل؟</th></tr></thead>
+        <tbody>
+          <tr><td>الكود</td><td><code>src/…</code></td><td><code>src/admin/…</code></td><td>تنحذف أو تتطوّر بدون ما تلمس الموقع</td></tr>
+          <tr><td>axios client</td><td><code>api/client.js</code></td><td><code>admin/api/adminClient.js</code></td><td>base URL مختلف وinterceptors مختلفة</td></tr>
+          <tr><td>التوكن</td><td><code>sairna-token</code></td><td><code>sairna-admin-token</code></td><td>المشرف فيه يكون مسجّل كمسافر كمان بنفس المتصفح</td></tr>
+          <tr><td>حدث 401</td><td><code>authEvents</code></td><td><code>adminAuthEvents</code></td><td>انتهاء جلسة وحدة ما بيطلّع من التانية</td></tr>
+          <tr><td>مفاتيح الـ cache</td><td><code>['trips']</code>…</td><td><code>['admin','trips']</code>…</td><td>بيانات الإدارة (فيها رحلات ملغاة وشركات موقوفة) ما بتختلط مع بيانات الموقع</td></tr>
+          <tr><td>التحميل</td><td>بالـ bundle الرئيسي</td><td><code>route.lazy</code></td><td>المسافر ما بينزّل كود الإدارة أبداً</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tip"><b>كيف تأكدنا:</b> بعد <code>npm run build</code> فتّشنا ملف <code>index-*.js</code> عن <code>sairna-admin-token</code> و«لوحة الإدارة» و<code>/overview</code>، وما لقينا شي. كل كود الإدارة بـ chunks منفصلة.</div>
+      <div class="note"><b>تفصيلة ذكية:</b> لما المشرف يعدّل شركة أو رحلة، منعمل invalidate لمفاتيح الموقع كمان (<code>['companies']</code> و<code>['trips']</code>)، لأنو الـ QueryClient واحد. هيك إذا فتح الموقع بنفس التاب بيشوف التعديل فوراً.</div>
+    </section>
+
+    <!-- 3 -->
+    <section class="chapter" id="structure" data-title="هيكل المجلدات">
+      <span class="eyebrow">03</span>
+      <h2>هيكل المجلدات</h2>
+      <p>نفس فلسفة الموقع: <b>Page ← components ← hooks ← services ← client</b>، والـ mappers هني الوحيدين اللي بيعرفوا أسماء حقول الـ API.</p>
+<pre class="tree">src/admin/
+├── AdminRoot.jsx              <span class="c"># أول عنصر بـ /admin: AdminAuthProvider + SkipLink</span>
+├── routes.js                  <span class="c"># تعريف كل المسارات بـ route.lazy</span>
+├── navigation.js              <span class="c"># عناصر القائمة الجانبية</span>
+├── api/
+│   ├── adminClient.js         <span class="c"># axios + Bearer + 401 → adminAuthEvents</span>
+│   ├── adminEndpoints.js      <span class="c"># كل المسارات بمكان واحد</span>
+│   ├── adminToken.js          <span class="c"># قراءة/حفظ/مسح sairna-admin-token</span>
+│   ├── adminAuthEvents.js     <span class="c"># event emitter صغير</span>
+│   ├── adminQueryKeys.js      <span class="c"># ['admin', …]</span>
+│   ├── adminErrors.js         <span class="c"># أكواد الخادم → عربي + أخطاء الحقول</span>
+│   └── mappers/               <span class="c"># admin.mappers.js · overview.mapper.js</span>
+├── services/                  <span class="c"># adminAuth · overview · cities · companies · trips · bookings · users</span>
+├── context/AdminAuthContext.jsx
+├── hooks/
+│   ├── queries/useAdminQueries.js
+│   ├── mutations/             <span class="c"># useAdminMutations.js · useAdminLogin.js</span>
+│   ├── useListParams.js       <span class="c"># حالة القوائم بالـ URL</span>
+│   ├── useFilteredTrips.js · useFilteredBookings.js
+│   ├── useBookedSeatsByTrip.js · useBookingAnalytics.js
+│   └── useCompanyActions.js · useTripActions.js · useBookingCancel.js · useAdminLogout.js
+├── components/
+│   ├── layout/   <span class="c"># AdminLayout · AdminSidebar · AdminHeader · AdminProfileMenu · Protected/Guest routes</span>
+│   ├── ui/       <span class="c"># AdminCard · Drawer · DataTable helpers · FilterBar · StatusBadge · DetailList …</span>
+│   ├── tables/   <span class="c"># DataTable · Pagination</span>
+│   ├── forms/    <span class="c"># CompanyFormDrawer · TripFormDrawer</span>
+│   ├── charts/   <span class="c"># ColumnChart · BarList · SegmentedBar</span>
+│   └── overview/ companies/ trips/ bookings/ auth/
+├── pages/                     <span class="c"># صفحة رفيعة لكل مسار</span>
+└── utils/                     <span class="c"># datetime (توقيت دمشق) · list · trip · validation</span></pre>
+    </section>
+
+    <!-- 4 -->
+    <section class="chapter" id="api" data-title="الـ Dashboard API الحقيقي">
+      <span class="eyebrow">04</span>
+      <h2>الـ Dashboard API — شو قال Swagger وشو طلع فعلياً</h2>
+      <p class="lead">Swagger بيوثّق شكل الطلبات (DTOs) بس. ما بيوثّق شكل الردود ولا أي query params. لهيك جرّبنا الـ API الحقيقي بحساب أدمن وسجّلنا كل شي بـ <code>docs/api/ADMIN_API_NOTES.md</code>.</p>
+      <h3>الـ endpoints الـ 18</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Method</th><th>Path</th><th>Body (DTO)</th><th>مين بيستعمله</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill post">POST</span></td><td class="ltr">/auth/login</td><td class="ltr">{ email, password }</td><td>صفحة الدخول</td></tr>
+          <tr><td><span class="pill get">GET</span></td><td class="ltr">/auth/me</td><td>—</td><td>الجلسة + الهيدر</td></tr>
+          <tr><td><span class="pill get">GET</span></td><td class="ltr">/overview</td><td>—</td><td>نظرة عامة</td></tr>
+          <tr><td><span class="pill get">GET</span></td><td class="ltr">/cities</td><td>—</td><td>المدن + فورم الرحلة</td></tr>
+          <tr><td><span class="pill get">GET</span></td><td class="ltr">/companies</td><td>—</td><td>الشركات + الفلاتر + فورم الرحلة</td></tr>
+          <tr><td><span class="pill post">POST</span></td><td class="ltr">/companies</td><td class="ltr">{ name*, logoUrl? }</td><td>إضافة شركة</td></tr>
+          <tr><td><span class="pill post">PATCH</span></td><td class="ltr">/companies/{id}</td><td class="ltr">{ name?, logoUrl?, isActive? }</td><td>تعديل/تفعيل</td></tr>
+          <tr><td><span class="pill auth">DELETE</span></td><td class="ltr">/companies/{id}</td><td>—</td><td>أرشفة</td></tr>
+          <tr><td><span class="pill get">GET</span></td><td class="ltr">/trips</td><td>—</td><td>الرحلات + التحليلات</td></tr>
+          <tr><td><span class="pill post">POST</span></td><td class="ltr">/trips</td><td class="ltr">CreateTripDto (7 حقول مطلوبة)</td><td>إضافة رحلة</td></tr>
+          <tr><td><span class="pill get">GET</span></td><td class="ltr">/trips/{id}</td><td>—</td><td>تفاصيل الرحلة</td></tr>
+          <tr><td><span class="pill post">PATCH</span></td><td class="ltr">/trips/{id}</td><td class="ltr">UpdateTripDto (+ status)</td><td>تعديل الرحلة</td></tr>
+          <tr><td><span class="pill auth">DELETE</span></td><td class="ltr">/trips/{id}</td><td>—</td><td>إلغاء الرحلة</td></tr>
+          <tr><td><span class="pill get">GET</span></td><td class="ltr">/bookings</td><td>—</td><td>الحجوزات + كل الأرقام المشتقة</td></tr>
+          <tr><td><span class="pill get">GET</span></td><td class="ltr">/bookings/{id}</td><td>—</td><td>تفاصيل الحجز</td></tr>
+          <tr><td><span class="pill post">POST</span></td><td class="ltr">/bookings/{id}/cancel</td><td>—</td><td>إلغاء حجز</td></tr>
+          <tr><td><span class="pill get">GET</span></td><td class="ltr">/users</td><td>—</td><td>المستخدمون</td></tr>
+          <tr><td><span class="pill get">GET</span></td><td class="ltr">/users/{id}</td><td>—</td><td>تفاصيل المستخدم</td></tr>
+        </tbody>
+      </table></div>
+      <h3>شكل الردود الحقيقي</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Endpoint</th><th>الرد</th><th>ملاحظة مهمة</th></tr></thead>
+        <tbody>
+          <tr><td class="ltr">/overview</td><td class="ltr">{ customers, companies, upcomingTrips, totalBookings, confirmedBookings }</td><td>أرقام بس، ما فيه قوائم</td></tr>
+          <tr><td class="ltr">/trips</td><td>array، كل رحلة مع company/origin/destination</td><td><b>ما فيه</b> <code>_count</code> ولا <code>availableSeats</code></td></tr>
+          <tr><td class="ltr">/trips/{id}</td><td>نفس الشي + <code>_count.bookingSeats</code> + <code>availableSeats</code></td><td>المقاعد بالتفاصيل بس</td></tr>
+          <tr><td class="ltr">/bookings</td><td>array، كل حجز مع trip + seats + user{id,name,email}</td><td>منه منحسب كل شي ناقص</td></tr>
+          <tr><td class="ltr">/users</td><td class="ltr">[{ id, name, email, role, createdAt }]</td><td>ما فيه عدد حجوزات</td></tr>
+          <tr><td class="ltr">/auth/login</td><td class="ltr">{ accessToken, tokenType, portal: "dashboard", user }</td><td>نفس شكل الموقع</td></tr>
+        </tbody>
+      </table></div>
+      <h3>⚠️ مفاجآت غيّرت التصميم</h3>
+      <div class="grid-2">
+        <div class="card"><h4>DELETE شركة = أرشفة</h4><p>الرد <code>{ message: "COMPANY_ARCHIVED" }</code>، والشركة بتضل موجودة بـ <code>isActive: false</code>. لهيك الزر اسمه <b>«أرشفة»</b> مش «حذف»، والشركة المؤرشفة بيظهرلها زر <b>«تفعيل»</b>.</p></div>
+        <div class="card"><h4>DELETE رحلة = إلغاء</h4><p>الرد هو الرحلة نفسها بـ <code>status: "CANCELLED"</code>، وبتضل بالقائمة. لهيك الزر اسمه <b>«إلغاء الرحلة»</b>، وبترجع «متاحة» من التعديل.</p></div>
+        <div class="card"><h4>الخادم ما بيتحقق من logoUrl</h4><p>قبل <code>"not-a-url"</code> بدون مشكلة، فالفحص صار بالفورم (<code>validateCompany</code>).</p></div>
+        <div class="card"><h4>أكواد أخطاء جديدة</h4><p><code>INVALID_COMPANY</code> (رحلة لشركة موقوفة)، <code>SAME_CITY</code>، <code>INVALID_TIMES</code>. كلها مترجمة وبتظهر تحت الحقل المعني.</p></div>
+      </div>
+      <div class="warn"><b>درس مهم:</b> الـ endpoint اسمه DELETE، بس سلوكه الحقيقي أرشفة. لو صدّقنا الاسم كان الزر رح يكذب عالمستخدم. <b>جرّب، لا تفترض.</b></div>
+      <h3>قواعد التحقق من الخادم (من رد 400 حقيقي)</h3>
+<pre>companyId / originId / destinationId : integer ≥ 1
+departureAt / arrivalAt              : ISO 8601 date string
+price                                : integer ≥ 0
+totalSeats                           : integer, 1 … 60</pre>
+    </section>
+
+    <!-- 5 -->
+    <section class="chapter" id="session" data-title="الجلسة والحماية">
+      <span class="eyebrow">05</span>
+      <h2>الجلسة والحماية</h2>
+      <h3>1. الـ client</h3>
+      <p>كل طلب بياخد التوكن من <code>sairna-admin-token</code>. إذا رجع 401 من أي مكان غير صفحة الدخول، منمسح التوكن ومنبعت حدث.</p>
+<pre><span class="k">adminClient</span>.interceptors.response.use(
+  (response) =&gt; response,
+  (error) =&gt; {
+    <span class="k">const</span> status = error.response?.status
+    <span class="k">const</span> hadToken = Boolean(error.config?.headers?.Authorization)
+    <span class="k">if</span> (status === 401 &amp;&amp; hadToken &amp;&amp; url !== adminEndpoints.login()) {
+      clearAdminToken()
+      adminAuthEvents.emitUnauthorized()   <span class="c">// مش authEvents تبع الموقع!</span>
+    }
+    <span class="k">return</span> Promise.reject(error)
+  },
+)</pre>
+      <h3>2. AdminAuthContext — آلة حالات صغيرة</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>status</th><th>متى</th><th>شو بيعرض <code>AdminProtectedRoute</code></th></tr></thead>
+        <tbody>
+          <tr><td><code>guest</code></td><td>ما في توكن</td><td>تحويل لـ <code>/admin/login</code> مع <code>state.from</code></td></tr>
+          <tr><td><code>loading</code></td><td>في توكن و <code>/auth/me</code> لسا عم يحمّل</td><td>Spinner «جارٍ التحقق من جلسة الإدارة...»</td></tr>
+          <tr><td><code>authenticated</code></td><td><code>me</code> رجع وrole = ADMIN</td><td>الـ layout والصفحة</td></tr>
+          <tr><td><code>forbidden</code></td><td><code>me</code> رجع بـ role تاني</td><td>«لا يملك هذا الحساب صلاحية الإدارة» + خروج</td></tr>
+          <tr><td><code>error</code></td><td><code>me</code> فشل لسبب غير 401 (نت مثلاً)</td><td>«تعذّر التحقق» + حاول مرة ثانية</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note"><b>ليش الـ user مش محفوظ بالـ storage؟</b> لأنو مصدر الحقيقة دايماً <code>GET /auth/me</code>. التوكن بس هو اللي بينحفظ. هيك إذا تغيّر دور الحساب بالخادم، الواجهة بتعرف.</div>
+      <h3>3. تسجيل الدخول</h3>
+      <ol class="steps">
+        <li>تحقق محلي: إيميل صحيح + كلمة مرور مش فاضية.</li>
+        <li><code>POST /auth/login</code> ← إذا ما في توكن، أو الـ role مش ADMIN ← خطأ واضح بالفورم.</li>
+        <li>«تذكرني» مفعّلة ← <code>localStorage</code>، وإلا ← <code>sessionStorage</code> (بتنمسح لما تسكّر المتصفح).</li>
+        <li>منحط الـ user بالـ cache فوراً (ما في طلب <code>me</code> زيادة)، ومنروح لـ <code>from</code> إذا كان تحت <code>/admin</code>، وإلا لـ <code>/admin</code>.</li>
+      </ol>
+      <div class="tip"><b>حماية صغيرة:</b> <code>from</code> بيتقبل بس إذا بلّش بـ <code>/admin</code>. هيك ما فيك تستعمل صفحة دخول الإدارة لتتحوّل لصفحة تانية من الموقع.</div>
+      <h3>4. الخروج</h3>
+      <p>ما في logout endpoint، فالخروج محلي: منمسح التوكن ومنعمل <code>removeQueries({ queryKey: ['admin'] })</code>، وبضربة وحدة بتنمسح كل بيانات الإدارة من الذاكرة.</p>
+    </section>
+
+    <!-- 6 -->
+    <section class="chapter" id="routing" data-title="الـ Routing و route.lazy">
+      <span class="eyebrow">06</span>
+      <h2>الـ Routing و <code>route.lazy</code></h2>
+      <p>الإدارة فرع مستقل بالـ router، جنب فرع الموقع، فما بيمر بـ <code>MainLayout</code> (ما في announcement ولا footer الموقع).</p>
+<pre><span class="c">// src/admin/routes.js — ما فيه JSX، بس دوال import</span>
+<span class="k">const</span> load = (importer) =&gt; <span class="k">async</span> () =&gt; ({ Component: (<span class="k">await</span> importer()).default })
+
+<span class="k">export const</span> adminRoute = {
+  path: <span class="s">'admin'</span>,
+  lazy: load(() =&gt; <span class="k">import</span>(<span class="s">'./AdminRoot'</span>)),
+  children: [
+    { lazy: load(() =&gt; <span class="k">import</span>(<span class="s">'./components/layout/AdminGuestRoute'</span>)),
+      children: [{ path: <span class="s">'login'</span>, lazy: load(() =&gt; <span class="k">import</span>(<span class="s">'./pages/AdminLoginPage'</span>)) }] },
+    { lazy: load(() =&gt; <span class="k">import</span>(<span class="s">'./components/layout/AdminProtectedRoute'</span>)),
+      children: [
+        { index: <span class="k">true</span>, lazy: …OverviewPage, handle: { title: <span class="s">'نظرة عامة'</span> } },
+        { path: <span class="s">'trips/:tripId'</span>, lazy: …, handle: { title: <span class="s">'تفاصيل الرحلة'</span>, parent: TRIPS } },
+        …
+      ] },
+  ],
+}</pre>
+      <div class="grid-2">
+        <div class="card"><h4>ليش <code>route.lazy</code> مش <code>React.lazy</code>؟</h4><p>الـ data router بيحمّل الـ chunk <b>قبل</b> ما يرسم الصفحة، فما بنحتاج Suspense بكل مكان. والـ <code>hydrateFallbackElement</code> بيعرض Spinner لما تفتح <code>/admin</code> مباشرة.</p></div>
+        <div class="card"><h4>العنوان والـ breadcrumb من <code>handle</code></h4><p><code>AdminHeader</code> بيقرأ <code>useMatches()</code> وبياخد آخر <code>handle.title</code>. منه بيطلع عنوان الصفحة، والـ breadcrumb («لوحة الإدارة › الرحلات › تفاصيل الرحلة»)، وعنوان التاب.</p></div>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="chapter" id="lists" data-title="القوائم: بحث، فلترة، صفحات">
+      <span class="eyebrow">07</span>
+      <h2>القوائم: بحث، فلترة، ترتيب، صفحات</h2>
+      <p class="lead">الـ API ما بيقبل ولا query param، يعني كل القائمة بتوصل بطلب واحد. لهيك البحث والفلترة والترتيب والتقسيم لصفحات كلهن بالمتصفح.</p>
+      <h3><code>useListParams</code> — الحالة بالرابط</h3>
+<pre><span class="k">const</span> DEFAULTS = { q: <span class="s">''</span>, status: <span class="s">'all'</span>, sort: <span class="s">'name'</span>, page: <span class="s">'1'</span> }   <span class="c">// ثابت برا الـ component</span>
+<span class="k">const</span> [params, update] = useListParams(DEFAULTS)
+
+update({ status: <span class="s">'active'</span> })   <span class="c">// ?status=active   — وبيرجع لصفحة 1 تلقائياً</span>
+update({ page: 3 })             <span class="c">// ?page=3</span>
+update({ status: <span class="s">'all'</span> })      <span class="c">// القيمة الافتراضية بتنشال من الرابط</span></pre>
+      <ul>
+        <li><b>ليش بالرابط؟</b> لأنك بتعمل refresh أو بتبعت الرابط لحدا، وبيشوف نفس النتائج بالظبط.</li>
+        <li><code>replace: true</code>: ما منعبّي الـ history بكل حرف بتكتبه.</li>
+        <li>أي تغيير غير الصفحة بيرجّعك لصفحة 1، لأنو ما في معنى تضل بصفحة 5 بعد ما تغيّر الفلتر.</li>
+      </ul>
+      <h3>أدوات <code>utils/list.js</code></h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>الدالة</th><th>شو بتعمل</th></tr></thead>
+        <tbody>
+          <tr><td><code>matchesQuery(q, ...fields)</code></td><td>بحث بيتجاهل التشكيل والهمزات (<code>normalizeArabic</code>): «اللاذقيه» بتلاقي «اللاذقية»</td></tr>
+          <tr><td><code>paginate(list, page)</code></td><td>10 بالصفحة، وإذا الصفحة صارت برا النطاق (بعد فلترة) بترجع لآخر صفحة صالحة</td></tr>
+          <tr><td><code>sortCopy</code> + <code>byTimeAsc/Desc</code>، <code>byText</code>، <code>byNumberDesc</code></td><td>ترتيب على <b>نسخة</b>، ما منغيّر الـ cache أبداً</td></tr>
+          <tr><td><code>countBy(list, getKey)</code></td><td>عدّ سريع، متل عدد الرحلات لكل شركة</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note"><b>البحث ما بيبعت طلب:</b> <code>SearchInput</code> بيستنّى 250ms بعد آخر حرف، وبعدين بيكتب بالرابط. ولأنو الفلترة محلية، النتيجة فورية.</div>
+      <h3>فلاتر جاية من صفحات تانية</h3>
+      <p>من صفحة المستخدم «حجوزاته» ← <code>/admin/bookings?user=42</code>، ومن الشركة «عرض رحلاتها» ← <code>/admin/trips?company=1</code>. الفلتر الجاي من برّا بيظهر كـ <code>FilterChip</code> فيك تشيله.</p>
+      <div class="tip"><b>خيارات فلتر الحالة</b> مبنية من الحالات الموجودة فعلياً بالبيانات (<code>new Set(data.map(x =&gt; x.status))</code>)، مش من لائحة مفترضة.</div>
+    </section>
+
+    <!-- 8 -->
+    <section class="chapter" id="pages" data-title="الصفحات واحدة واحدة">
+      <span class="eyebrow">08</span>
+      <h2>الصفحات واحدة واحدة</h2>
+
+      <h3>📊 نظرة عامة <code>/admin</code></h3>
+      <ul>
+        <li><b>البطاقات:</b> كل رقم موجود برد <code>/overview</code>. الـ mapper ما بيفترض أسماء، بيمشي عالرد وبياخد كل قيمة رقمية (<a href="#derived">الفصل 10</a>).</li>
+        <li><b>تحليلات الحجوزات</b> لآخر 7 / 30 / 90 يوم: الحجوزات يومياً (أو أسبوعياً لـ 90)، حالة الحجوزات، أكثر الخطوط حجزاً، الحجوزات حسب الشركة.</li>
+        <li><b>أحدث الحجوزات</b> و<b>الرحلات القادمة</b> (المتاحة اللي لسا ما انطلقت، الأقرب أول).</li>
+        <li>زر <b>تحديث</b> بيعمل invalidate لكل <code>['admin']</code>.</li>
+      </ul>
+
+      <h3>🏢 شركات النقل</h3>
+      <ul>
+        <li>جدول: الشعار (أو الحرف الأول بلون الشركة)، الاسم، tag «تجريبية»، الحالة، عدد الرحلات.</li>
+        <li>بحث بالاسم أو الرقم، فلتر فعّالة/موقوفة، ترتيب بالاسم أو الأكثر رحلات أو الأحدث.</li>
+        <li>إجراءات كل سطر: عرض رحلاتها، تعديل، <b>أرشفة</b> (للفعّالة) أو <b>تفعيل</b> (للموقوفة).</li>
+        <li>الفورم بـ Drawer جانبي، مع معاينة للشعار متل ما رح يظهر بالجداول.</li>
+      </ul>
+
+      <h3>🚌 الرحلات + تفاصيل الرحلة</h3>
+      <ul>
+        <li>الافتراضي: الرحلات <b>القادمة</b> مرتّبة من الأقرب. فلاتر: الموعد (قادمة/سابقة/الكل)، الشركة، الحالة، الترتيب.</li>
+        <li>الحالة بتعرض «انطلقت» للرحلة المتاحة اللي وقتها مضى (<code>tripDisplayStatus</code>).</li>
+        <li>عمود المقاعد المحجوزة محسوب من الحجوزات المؤكدة، لأنو القائمة ما فيها هالرقم.</li>
+        <li>صفحة التفاصيل: معلومات (بتوقيت دمشق)، إيرادات الحجوزات المؤكدة، <b>خريطة إشغال المقاعد</b> (2 + ممر + 2 متل الموقع)، وجدول حجوزات الرحلة مع إمكانية الإلغاء.</li>
+      </ul>
+
+      <h3>🎫 الحجوزات + تفاصيل الحجز</h3>
+      <ul>
+        <li>البحث بيشمل: رقم الحجز، اسم وإيميل صاحب الحساب، المدن، <b>وأسماء وأرقام المسافرين</b>.</li>
+        <li>فوق الجدول: مجموع الحجوزات المؤكدة بالنتائج الحالية.</li>
+        <li>التفاصيل: المسافرين ومقاعدهم (الرقم بيفتح الاتصال <code>tel:</code>)، المبلغ، صاحب الحجز، الرحلة.</li>
+        <li>الإلغاء دايماً عبر ConfirmDialog. الزر بيكون معطّل للحجز الملغى أصلاً.</li>
+      </ul>
+
+      <h3>👥 المستخدمون + تفاصيل المستخدم</h3>
+      <p>للعرض فقط (الـ API ما فيه تعديل). عدد الحجوزات محسوب من <code>/bookings</code>. التفاصيل: 4 بطاقات (كل الحجوزات، المؤكدة، الملغاة، قيمة المؤكدة) + جدول حجوزاته.</p>
+
+      <h3>📍 المدن</h3>
+      <p>للعرض فقط: الاسم، الإحداثيات، وعدد رحلات الانطلاق والوصول (محسوبين من <code>/trips</code>). زر «الرحلات منها» بيفتح الرحلات مفلترة باسم المدينة.</p>
+
+      <h3>🔐 دخول المشرف</h3>
+      <p>شاشة مقسومة: لوحة داكنة بهوية سيرنا (الشعار + «كل تشغيل سيرنا بمكان واحد») والفورم. على الموبايل اللوحة بتصير فوق.</p>
+    </section>
+
+    <!-- 9 -->
+    <section class="chapter" id="forms" data-title="الفورمات وتوقيت دمشق">
+      <span class="eyebrow">09</span>
+      <h2>الفورمات وتوقيت دمشق</h2>
+      <h3>المشكلة</h3>
+      <p>الخادم بيخزّن الأوقات <b>UTC</b>، و<code>&lt;input type="datetime-local"&gt;</code> ما إله منطقة زمنية، والمشرف بيفكّر <b>بتوقيت دمشق</b>. ولو المتصفح مضبوط على منطقة تانية (لابتوب مسافر مثلاً)، الحل الساذج <code>new Date(value).toISOString()</code> بيعطي ساعة غلط.</p>
+      <h3>الحل: <code>utils/datetime.js</code></h3>
+<pre><span class="c">// '2026-11-05T10:30' (مكتوب بتوقيت دمشق) → '2026-11-05T07:30:00.000Z'</span>
+<span class="k">export function</span> damascusInputToISO(value) {
+  <span class="k">const</span> wallAsUtc = Date.UTC(y, mo - 1, d, h, mi)        <span class="c">// نعامل الأرقام كأنها UTC</span>
+  <span class="k">let</span> ms = wallAsUtc - offsetMinutes(wallAsUtc) * 60000  <span class="c">// نطرح فرق دمشق</span>
+  ms = wallAsUtc - offsetMinutes(ms) * 60000              <span class="c">// تمريرة تانية لو تغيّر الفرق</span>
+  <span class="k">return new</span> Date(ms).toISOString()
+}</pre>
+      <p><code>offsetMinutes</code> بيحسب فرق دمشق عن UTC بلحظة معيّنة باستعمال <code>Intl.DateTimeFormat</code> بـ <code>timeZone: 'Asia/Damascus'</code>. يعني ما في رقم «+3» مكتوب بالكود، وإذا تغيّرت قواعد التوقيت، المتصفح بيعرف.</p>
+      <div class="note"><b>تحققنا:</b> <code>10:30</code> دمشق ← <code>07:30Z</code>، وهو نفس مثال Swagger بالظبط. والتحويل العكسي (<code>isoToDamascusInput</code>) رجّع نفس القيمة بـ 3 تواريخ مختلفة.</div>
+      <h3>فورم الرحلة</h3>
+      <ul>
+        <li>الشركة: الموقوفة بتظهر بس <b>معطّلة</b> (الخادم بيرفضها بـ <code>INVALID_COMPANY</code>)، إلا إذا كانت شركة الرحلة اللي عم تعدّلها.</li>
+        <li>الانطلاق لازم يكون بالمستقبل (للرحلة الجديدة بس)، والوصول بعد الانطلاق. ومدة الرحلة بتنحسب وبتظهر تحت الحقلين وانت عم تكتب.</li>
+        <li>السعر رقم صحيح أكبر من صفر. الخادم بيقبل 0، بس رحلة مجانية غالباً غلطة إدخال.</li>
+        <li>المقاعد من 1 لـ 60 (حد الخادم)، وبالتعديل ما فيك تنزل تحت عدد المقاعد المحجوزة.</li>
+        <li>الحالة (تعديل بس): متاحة / ملغاة.</li>
+      </ul>
+      <h3>PATCH بيبعت اللي تغيّر بس</h3>
+<pre><span class="k">export function</span> diff(next, original) {
+  <span class="k">return</span> Object.fromEntries(Object.entries(next).filter(([key, value]) =&gt; value !== original[key]))
+}
+<span class="c">// غيّرت السعر بس؟ → PATCH { price: 55000 }   — وإذا ما تغيّر شي، الـ drawer بيتسكّر بدون طلب</span></pre>
+      <h3>أخطاء الخادم تحت الحقول</h3>
+      <p><code>getAdminFieldErrors</code> بيحوّل نوعين من الأخطاء لأخطاء حقول:</p>
+      <ul>
+        <li>رسائل class-validator: <code>"price must be an integer number"</code> ← حقل <code>price</code>.</li>
+        <li>أكواد الخادم: <code>SAME_CITY</code> ← حقل الوصول، <code>INVALID_TIMES</code> ← موعد الوصول، <code>INVALID_COMPANY</code> ← الشركة.</li>
+      </ul>
+    </section>
+
+    <!-- 10 -->
+    <section class="chapter" id="derived" data-title="الأرقام المشتقة (بأمانة)">
+      <span class="eyebrow">10</span>
+      <h2>الأرقام المشتقة — بدون اختراع</h2>
+      <p class="lead">القاعدة: ممنوع أي رقم مكتوب بالكود أو مخترع. إذا الـ API ما بيعطي رقم، منحسبه من رد حقيقي تاني، أو منخفيه.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>الرقم</th><th>المصدر</th><th>الأداة</th></tr></thead>
+        <tbody>
+          <tr><td>المقاعد المحجوزة لكل رحلة (بالقوائم)</td><td>مقاعد الحجوزات <b>المؤكدة</b> من <code>/bookings</code></td><td><code>useBookedSeatsByTrip</code> + <code>bookedSeatsOf</code></td></tr>
+          <tr><td>المقاعد المحجوزة (تفاصيل الرحلة)</td><td><code>_count.bookingSeats</code> من الخادم</td><td><code>mapAdminTrip</code></td></tr>
+          <tr><td>عدد حجوزات كل مستخدم</td><td>عدّ <code>/bookings</code> حسب <code>userId</code></td><td><code>countBy</code></td></tr>
+          <tr><td>عدد رحلات كل شركة / مدينة</td><td>عدّ <code>/trips</code></td><td><code>countBy</code></td></tr>
+          <tr><td>الرسوم البيانية + الإيرادات</td><td><code>/bookings</code> بالفترة المختارة</td><td><code>useBookingAnalytics</code></td></tr>
+        </tbody>
+      </table></div>
+      <h3><code>bookedSeatsOf</code> — ترتيب الأولوية</h3>
+<pre><span class="k">export function</span> bookedSeatsOf(trip, seatMap) {
+  <span class="k">if</span> (trip.bookedSeats != <span class="k">null</span>) <span class="k">return</span> trip.bookedSeats   <span class="c">// 1. رقم الخادم إذا موجود</span>
+  <span class="k">return</span> seatMap ? (seatMap.get(trip.id) ?? 0) : <span class="k">null</span>  <span class="c">// 2. محسوب، أو null وقت التحميل (بيظهر —)</span>
+}</pre>
+      <h3>الـ overview mapper: «بيقرا» الرد بدل ما يفترضه</h3>
+      <p>قبل ما نشوف الرد الحقيقي، كتبنا mapper بيمشي على كل مفاتيح الرد (لمستويين) وبيطلّع كل قيمة رقمية:</p>
+<pre><span class="c">// تطبيع اسم المفتاح: totalBookings → bookings · usersCount → users</span>
+<span class="k">const</span> norm = (key) =&gt; key.toLowerCase().replace(<span class="s">/[_\s-]/g</span>, <span class="s">''</span>)
+  .replace(<span class="s">/^(total|count|num|number)(of)?/</span>, <span class="s">''</span>).replace(<span class="s">/(count|total)$/</span>, <span class="s">''</span>)
+
+<span class="c">// مفاتيح معروفة → عنوان عربي + أيقونة. غير المعروفة بتظهر باسمها الخام مع "قيمة من الخادم"</span>
+KNOWN = { customers: [<span class="s">'المسافرون المسجّلون'</span>, <span class="s">'users'</span>], upcomingtrips: [<span class="s">'رحلات قادمة'</span>, <span class="s">'trips'</span>], … }</pre>
+      <div class="note"><b>النتيجة:</b> لما شفنا الرد الحقيقي، كل مفاتيحه الخمسة انعرفت بدون ما نغيّر الكود. ولو الخادم ضاف رقم جديد بكرا، رح يظهر لحاله.</div>
+    </section>
+
+    <!-- 11 -->
+    <section class="chapter" id="charts" data-title="الرسوم البيانية">
+      <span class="eyebrow">11</span>
+      <h2>الرسوم البيانية — بدون مكتبة</h2>
+      <p>ما ضفنا أي مكتبة charts. كل الرسوم HTML/CSS مكتوبة بالإيد، وبتشتغل RTL وdark mode تلقائياً.</p>
+      <div class="grid-3">
+        <div class="card"><h4>ColumnChart</h4><p>أعمدة يومية/أسبوعية. الزمن بيمشي <b>من اليمين لليسار</b> متل القراءة. أعلى المحور رقم «مرتّب» (2/4/6/8/10 × قوة 10) لحتى يكون نصّه رقم صحيح.</p></div>
+        <div class="card"><h4>BarList</h4><p>أشرطة أفقية مرتّبة (أكثر الخطوط، الشركات). القيمة مكتوبة جنب كل شريط لأنو العدد قليل.</p></div>
+        <div class="card"><h4>SegmentedBar</h4><p>شريط واحد مقسوم (مؤكدة/ملغاة) + legend فيه العدد والنسبة. اللون عمره ما بيكون المعلومة الوحيدة.</p></div>
+      </div>
+      <h3>الألوان مفحوصة مش متخيّلة</h3>
+      <p>شغّلنا validator الألوان على خلفية الوضعين:</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Token</th><th>فاتح</th><th>داكن</th><th>النتيجة</th></tr></thead>
+        <tbody>
+          <tr><td><code>--chart-1</code></td><td class="ltr">#078e87</td><td class="ltr">#10a99b</td><td>تباين ≥ 3:1 بالوضعين</td></tr>
+          <tr><td><code>--chart-danger</code></td><td class="ltr">#c25b5a</td><td class="ltr">#d06e6c</td><td>ينفصل عن الأخضر لعمى الألوان. بالداكن الفصل بالحد الأدنى، فعليه labels إجبارية</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tip"><b>ملاحظة:</b> أول لون جرّبناه (<code>#0aa99b</code>، اللون الأساسي) طلع تباينه 2.93 على الأبيض، يعني أقل من 3. لهيك الأعمدة بالوضع الفاتح بتاخد <code>primary-deep</code>.</div>
+      <h3>إمكانية الوصول بالرسوم</h3>
+      <ul>
+        <li>كل عمود هو <code>&lt;button&gt;</code> بيتركّز عليه بالكيبورد، وإله tooltip وaria-label («12 تشرين الثاني: 7 حجز»).</li>
+        <li>تحت كل رسم في <code>&lt;table class="sr-only"&gt;</code> بكل القيم لقارئ الشاشة.</li>
+        <li>وقت التحديث الرسم القديم بيضل وبيبهت شوي، بدل ما يرجع skeleton ويقفز الـ layout.</li>
+      </ul>
+    </section>
+
+    <!-- 12 -->
+    <section class="chapter" id="design" data-title="التصميم والتجاوب">
+      <span class="eyebrow">12</span>
+      <h2>التصميم والتجاوب</h2>
+      <h3>من وين جاي الشكل؟</h3>
+      <ul>
+        <li><b>نفس الـ tokens</b> من <code>styles/index.css</code>: <code>bg-surface</code>، <code>border-border</code>، <code>text-muted</code>، <code>shadow-card</code>… فالـ dark mode بيشتغل بدون <code>dark:</code> بكل مكان.</li>
+        <li><b>3 tokens جداد بس:</b> <code>--chart-1</code>، <code>--chart-danger</code>، <code>--sidebar</code> (أغمق من الـ footer بالوضع الداكن).</li>
+        <li><b>مكونات الموقع نفسها:</b> Button، TextField، PasswordField، Checkbox، Tag، Modal، ConfirmDialog، EmptyState، Skeleton، Spinner، ThemeToggle.</li>
+        <li><b>تعديل واحد على مكوّن مشترك:</b> <code>ConfirmDialog</code> صار يقبل <code>variant</code>، لأنو «تفعيل الشركة» مش عملية خطرة وما لازم يكون زرها أحمر.</li>
+      </ul>
+      <h3>الـ Layout</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>العرض</th><th>القائمة الجانبية</th><th>الجداول</th></tr></thead>
+        <tbody>
+          <tr><td>≥ 901px</td><td>عمود ثابت 260px، بينطوى لـ 78px (أيقونات بس) وبيتذكّر الحالة</td><td><code>&lt;table&gt;</code> حقيقي، وبيعمل scroll أفقي إذا ضاق</td></tr>
+          <tr><td>651 – 900px</td><td>Drawer من اليمين: scrim، Esc، focus trap، قفل scroll</td><td>جدول</td></tr>
+          <tr><td>&lt; 651px</td><td>Drawer</td><td><b>بطاقات</b>: العمود الأساسي عنوان، والباقي label/value</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note"><b>DataTable بيرسم الشكلين</b> (جدول + بطاقات) وبيخفي واحد بالـ CSS حسب العرض. هيك ما في JavaScript بيقيس الشاشة، وما في قفزة بالتحميل.</div>
+      <h3>تفاصيل صغيرة بتفرق</h3>
+      <ul>
+        <li>الـ Drawer ما بيتسكّر (لا Esc ولا scrim) وقت الحفظ (<code>busy</code>)، لحتى ما يضيع الطلب.</li>
+        <li>توسيع الشاشة لفوق 901px بيسكّر الـ drawer وبيفك قفل الـ scroll (<code>matchMedia</code>).</li>
+        <li>الإيميلات والأكواد والأرقام بـ <code>dir="ltr"</code> أو <code>&lt;bdi&gt;</code>، لحتى ما تنقلب جوّا النص العربي.</li>
+        <li>الشعارات الخربانة بترجع للحرف الأول بلون الشركة (<code>CompanyAvatar</code>)، بدل أيقونة صورة مكسورة.</li>
+        <li>ما في زر إشعارات، لأنو الـ API ما بيدعمها، وزر ما بيعمل شي ممنوع.</li>
+      </ul>
+    </section>
+
+    <!-- 13 -->
+    <section class="chapter" id="components" data-title="فهرس الـ Components">
+      <span class="eyebrow">13</span>
+      <h2>فهرس الـ Components</h2>
+      <details class="code" open><summary>layout/ — هيكل اللوحة</summary><div class="table-wrap"><table>
+        <thead><tr><th>Component</th><th>الدور</th></tr></thead><tbody>
+        <tr><td><code>AdminLayout</code></td><td>sidebar + header + الصفحة، وحالة الطي، والرجوع لفوق عند تغيير الصفحة</td></tr>
+        <tr><td><code>AdminSidebar</code></td><td>القائمة الداكنة: <code>NavLink</code> مع مؤشر نشط، «عرض الموقع»، «تسجيل الخروج»</td></tr>
+        <tr><td><code>AdminHeader</code></td><td>العنوان + breadcrumb من <code>handle</code>، زر القائمة/الطي، الثيم، الحساب</td></tr>
+        <tr><td><code>AdminProfileMenu</code></td><td>الاسم والإيميل والدور من <code>/auth/me</code>، بيتسكّر بـ Esc أو بكبسة برّا</td></tr>
+        <tr><td><code>AdminProtectedRoute</code> / <code>AdminGuestRoute</code></td><td>حراسة المسارات حسب <code>status</code></td></tr>
+        <tr><td><code>AdminBrand</code></td><td>الشعار الحقيقي + «لوحة الإدارة»، وإله نسخة مضغوطة</td></tr>
+      </tbody></table></div></details>
+      <details class="code"><summary>ui/ و tables/ — قطع عامة</summary><div class="table-wrap"><table>
+        <thead><tr><th>Component</th><th>الدور</th></tr></thead><tbody>
+        <tr><td><code>DataTable</code></td><td>جدول متجاوب (بطاقات على الموبايل) + skeleton + empty</td></tr>
+        <tr><td><code>Pagination</code></td><td>أرقام مع «…»، و<code>aria-current</code></td></tr>
+        <tr><td><code>Drawer</code></td><td>لوحة جانبية للفورمات</td></tr>
+        <tr><td><code>FilterBar</code>، <code>SearchInput</code>، <code>FilterSelect</code>، <code>FilterChip</code></td><td>سطر الفلاتر وعدد النتائج و«مسح الفلاتر»</td></tr>
+        <tr><td><code>StatusBadge</code></td><td>حالات الحجز/الرحلة/الشركة/الدور: لون + أيقونة + كلمة، والقيمة المجهولة بتظهر متل ما هي</td></tr>
+        <tr><td><code>RowAction</code></td><td>زر أيقونة بالجدول، اسمه بيظهر كنص على الموبايل</td></tr>
+        <tr><td><code>DetailHeader</code>، <code>DetailList</code>، <code>DetailState</code></td><td>صفحات التفاصيل: رأس + قائمة قيم (بتخفي الفاضي) + تحميل/غير موجود/خطأ</td></tr>
+        <tr><td><code>AdminCard</code>، <code>PageIntro</code>، <code>SelectField</code>، <code>AdminQueryError</code></td><td>بطاقة، مقدمة صفحة، select بستايل TextField، خطأ + إعادة محاولة</td></tr>
+      </tbody></table></div></details>
+      <details class="code"><summary>overview/ و charts/</summary><div class="table-wrap"><table>
+        <thead><tr><th>Component</th><th>الدور</th></tr></thead><tbody>
+        <tr><td><code>MetricsGrid</code> + <code>StatCard</code></td><td>بطاقة لكل رقم من <code>/overview</code></td></tr>
+        <tr><td><code>RangeTabs</code></td><td>7 / 30 / 90 يوم (radiogroup)</td></tr>
+        <tr><td><code>BookingAnalytics</code> + <code>Figure</code></td><td>تجميع الرسوم الأربعة + أرقام الفترة</td></tr>
+        <tr><td><code>RecentBookingsCard</code>، <code>UpcomingTripsCard</code></td><td>أحدث 6 حجوزات وأقرب 6 رحلات</td></tr>
+        <tr><td><code>ColumnChart</code>، <code>BarList</code>، <code>SegmentedBar</code></td><td>الرسوم (<a href="#charts">الفصل 11</a>)</td></tr>
+      </tbody></table></div></details>
+      <details class="code"><summary>companies/ trips/ bookings/ forms/ auth/</summary><div class="table-wrap"><table>
+        <thead><tr><th>Component</th><th>الدور</th></tr></thead><tbody>
+        <tr><td><code>CompanyAvatar</code></td><td>شعار أو حرف أول</td></tr>
+        <tr><td><code>CompanyFormDrawer</code>، <code>TripFormDrawer</code></td><td>فورمات الإضافة والتعديل</td></tr>
+        <tr><td><code>TripRouteCell</code>، <code>SeatsMeter</code>، <code>SeatOccupancy</code></td><td>«حلب ← دمشق»، محجوز/الكل، خريطة المقاعد</td></tr>
+        <tr><td><code>TripDetailsView</code>، <code>TripDialogs</code></td><td>تفاصيل الرحلة + الفورم وتأكيد الإلغاء</td></tr>
+        <tr><td><code>BookingsTable</code></td><td>جدول الحجوزات (بيخفي عمود الرحلة أو المستخدم حسب السياق)</td></tr>
+        <tr><td><code>BookingDetailsView</code>، <code>PassengersList</code>، <code>CancelBookingDialog</code></td><td>تفاصيل الحجز وتأكيد إلغائه</td></tr>
+        <tr><td><code>AdminLoginForm</code></td><td>فورم الدخول</td></tr>
+      </tbody></table></div></details>
+    </section>
+
+    <!-- 14 -->
+    <section class="chapter" id="hooks" data-title="فهرس الـ Hooks و Utils">
+      <span class="eyebrow">14</span>
+      <h2>فهرس الـ Hooks و Utils</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Hook / Util</th><th>شو بيعمل</th></tr></thead>
+        <tbody>
+          <tr><td><code>useAdminQueries</code></td><td><code>useOverview</code>، <code>useAdminCompanies</code>، <code>useAdminTrips</code>، <code>useAdminTrip(id)</code>… كلها شغّالة بس إذا الجلسة <code>authenticated</code>. التفاصيل بتعرض سطر القائمة كـ <code>placeholderData</code> لحين ما يوصل الرد الكامل.</td></tr>
+          <tr><td><code>useAdminMutations</code></td><td>حفظ/أرشفة شركة، حفظ/إلغاء رحلة، إلغاء حجز. كل واحد إله toast نجاح وinvalidate للمفاتيح الصح، وما بيكرّر الـ toast عند 401.</td></tr>
+          <tr><td><code>useAdminLogin</code> / <code>useAdminLogout</code></td><td>الدخول (مع فحص الدور) والخروج المحلي</td></tr>
+          <tr><td><code>useListParams</code></td><td>حالة القوائم بالرابط</td></tr>
+          <tr><td><code>useFilteredTrips</code> / <code>useFilteredBookings</code></td><td>فلترة وترتيب بـ <code>useMemo</code></td></tr>
+          <tr><td><code>useBookedSeatsByTrip</code></td><td>Map من tripId لعدد المقاعد المؤكدة</td></tr>
+          <tr><td><code>useBookingAnalytics</code></td><td>كل أرقام ورسوم التحليلات لفترة معيّنة</td></tr>
+          <tr><td><code>useCompanyActions</code> / <code>useTripActions</code> / <code>useBookingCancel</code></td><td>أي drawer أو حوار مفتوح، والتأكيد</td></tr>
+          <tr><td><code>useNow</code> (من الموقع)</td><td>الوقت بيتحدّث كل دقيقة، فالرحلة بتصير «انطلقت» لحالها إذا تركت الصفحة مفتوحة</td></tr>
+          <tr><td><code>utils/datetime</code></td><td>تحويل دمشق ⇄ UTC، تنسيق التاريخ والوقت، أيام دمشق لآخر n يوم</td></tr>
+          <tr><td><code>utils/validation</code></td><td><code>validateCompany</code>، <code>validateTrip</code>، <code>diff</code></td></tr>
+          <tr><td><code>utils/trip</code></td><td><code>tripDeparted</code>، <code>tripDisplayStatus</code></td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 15 -->
+    <section class="chapter" id="security" data-title="الأمان والبيانات الحساسة">
+      <span class="eyebrow">15</span>
+      <h2>الأمان والبيانات الحساسة</h2>
+      <ul class="checklist">
+        <li>بيانات دخول الأدمن <b>ما انكتبت</b> بأي ملف ولا commit ولا sample ولا ذاكرة. بالاختبار انمرّقت كـ environment variables لـ scripts مؤقتة.</li>
+        <li>بعد كل خطوة فتّشنا الـ repo عن الإيميل وكلمة المرور وأي JWT (<code>eyJ…</code>)، وما لقينا شي.</li>
+        <li>الـ samples المحفوظة: التوكن <code>&lt;redacted-jwt&gt;</code>، والإيميلات صارت <code>userN@example.com</code>، والأسماء «مستخدم N»، والأرقام <code>09XXXXXXXX</code>.</li>
+        <li>توكن منفصل، وجلسة الإدارة بـ <code>sessionStorage</code> بشكل افتراضي (بتنتهي بتسكير المتصفح).</li>
+        <li>فحص الدور: حساب مش ADMIN ما بيدخل حتى لو معه توكن.</li>
+        <li>ما في <code>dangerouslySetInnerHTML</code>، وكل نص جاي من الخادم بيترسم كنص.</li>
+        <li>الحماية الحقيقية بالخادم (كل endpoint بيطلب JWT). الواجهة بتحسّن التجربة بس.</li>
+      </ul>
+      <div class="warn"><b>توصية:</b> كلمة مرور الأدمن الحالية ضعيفة وانبعتت بمحادثة. الأفضل تتغيّر من الخادم.</div>
+    </section>
+
+    <!-- 16 -->
+    <section class="chapter" id="qa" data-title="كيف اختبرنا">
+      <span class="eyebrow">16</span>
+      <h2>كيف اختبرنا</h2>
+      <ol class="steps">
+        <li><b>Lint + build</b> بعد كل خطوة: 0 أخطاء، والـ build ناجح، وكود الإدارة برا الـ bundle الرئيسي.</li>
+        <li><b>فحص بصري بـ Chrome headless</b> (script بالـ scratchpad عبر CDP): كل الصفحات بـ 1440 و820 و390 و375px، فاتح وداكن، والـ drawer والفورمات والقائمة المطوية. أول جولة كانت ببيانات تجريبية <b>جوّا متصفح الاختبار بس</b>، مبنية من samples الموقع.</li>
+        <li><b>اكتشاف الـ API</b> بطلبات GET بحساب الأدمن، وحفظ الردود منظّفة.</li>
+        <li><b>اختبار الكتابة</b> على سجلات <code>[TEST]</code> عملناها بنفسنا: إضافة وتعديل وأرشفة شركة، إضافة وتعديل وإلغاء رحلة، وأخطاء متعمّدة (مدينة نفسها، أوقات غلط، شركة موقوفة).</li>
+        <li><b>تجربة حية كاملة</b>: دخول من الفورم الحقيقي، وتصوير كل الصفحات ببيانات الخادم. الأرقام طلعت مطابقة (59، 4، 45، 16، 11)، وما في ولا خطأ بالـ console ولا طلب فاشل.</li>
+      </ol>
+      <div class="warn"><b>بقايا عالخادم:</b> ما في حذف نهائي، فالشركة <b>#17</b> «[TEST]…» (مؤرشفة) والرحلة <b>#118</b> (ملغاة) بقيوا. ما بيظهروا للمسافرين.</div>
+      <div class="tip"><b>شو ما جرّبناه:</b> إلغاء حجز حقيقي، لأنو كل الحجوزات الموجودة إلها أصحاب حقيقيين. جرّبنا بس حالة «الحجز غير موجود». وأزرار الكتابة انفحصت مباشرة عالـ API، مش بالضغط من الواجهة.</div>
+      <h3>مشكلة طريفة لقيناها</h3>
+      <p>بعض الصور طلعت الصفحة فيها مزاحة لليمين، فظنّينا في overflow. قسنا بالمتصفح وطلع <code>scrollWidth = innerWidth</code>، يعني ما في مشكلة. السبب كان خيار <code>captureBeyondViewport</code> بأداة التصوير مع الصفحات القصيرة بالـ RTL. <b>الدرس: قيس قبل ما تصلّح.</b></p>
+    </section>
+
+    <!-- 17 -->
+    <section class="chapter" id="next" data-title="حدود معروفة وتمارين">
+      <span class="eyebrow">17</span>
+      <h2>حدود معروفة وتمارين</h2>
+      <h3>حدود من الـ API</h3>
+      <ul>
+        <li>ما في search/filter/pagination بالخادم، فكل قائمة بتنزل كاملة. هلق الأعداد صغيرة (117 رحلة، 60 مستخدم)، بس بآلاف السجلات لازم الخادم يدعم <code>?page=&amp;q=</code>.</li>
+        <li>ما في حذف نهائي للشركات والرحلات، ولا تعديل للمستخدمين أو المدن، ولا إنشاء حجز من الإدارة، ولا إشعارات.</li>
+        <li>ما في طريقة موثّقة لحذف شعار شركة بعد ما ينضاف.</li>
+        <li>ما في توثيق إذا إلغاء رحلة بيلغي حجوزاتها تلقائياً.</li>
+      </ul>
+      <h3>تمارين للتعلّم</h3>
+      <ol class="steps">
+        <li>ضيف عمود «تاريخ الإضافة» لجدول المستخدمين يقبل الترتيب بالضغط عالعنوان (فكّر وين لازم ينحط الـ sort: بالرابط).</li>
+        <li>ضيف فلتر «من تاريخ / لتاريخ» لصفحة الحجوزات بالاعتماد على <code>damascusDay</code>.</li>
+        <li>ضيف زر «تصدير CSV» للنتائج المفلترة (بدون مكتبة: <code>Blob</code> + <code>URL.createObjectURL</code>).</li>
+        <li>بصفحة الرحلة، اعرض اسم المسافر لما تمرّق الماوس فوق مقعد محجوز. البيانات موجودة أصلاً بـ <code>seatMap</code>.</li>
+        <li>اكتب لنفسك: ليش <code>DEFAULTS</code> لازم يكون برا الـ component؟ (تلميح: identity بالـ <code>useMemo</code>).</li>
+      </ol>
+    </section>
+
+    <!-- 18 -->
+    <section class="chapter" id="glossary" data-title="قاموس المصطلحات">
+      <span class="eyebrow">18</span>
+      <h2>قاموس المصطلحات</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>المصطلح</th><th>المعنى هون</th></tr></thead>
+        <tbody>
+          <tr><td>Soft delete / Archive</td><td>«حذف» بيخفي السجل بدون ما يمسحه. هيك بيشتغل DELETE بهالخادم.</td></tr>
+          <tr><td><code>route.lazy</code></td><td>تحميل كود الصفحة من الـ router قبل رسمها</td></tr>
+          <tr><td>Derived data</td><td>رقم محسوب من بيانات حقيقية تانية، مش جاي جاهز</td></tr>
+          <tr><td><code>placeholderData</code></td><td>بيانات مؤقتة بتنعرض لحين ما يوصل الرد، وما بتنحسب بالـ cache كأنها حقيقية</td></tr>
+          <tr><td>Invalidate</td><td>نقول لـ React Query «هالبيانات قديمة، جيبها من جديد»</td></tr>
+          <tr><td>DTO</td><td>شكل جسم الطلب اللي الخادم بيقبله (من Swagger)</td></tr>
+          <tr><td>class-validator</td><td>مكتبة NestJS اللي بتطلّع رسائل متل <code>"price must be an integer number"</code></td></tr>
+          <tr><td>Wall time</td><td>الوقت متل ما بيشوفه الإنسان على ساعة الحيط بمدينة معيّنة (دمشق)</td></tr>
+          <tr><td>Drawer</td><td>لوحة بتطلع من طرف الشاشة فوق المحتوى</td></tr>
+          <tr><td>CDP</td><td>Chrome DevTools Protocol: نتحكّم بالمتصفح من script للتصوير والاختبار</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+  </main>
+</div>
+
+<button class="icon-btn back-top" id="backTop" aria-label="رجوع لفوق" title="رجوع لفوق">↑</button>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var chapters = Array.prototype.slice.call(document.querySelectorAll('section.chapter'));
+    var list = document.getElementById('tocList');
+    var toc = document.getElementById('toc');
+    var menuBtn = document.getElementById('menuBtn');
+
+    // Build the table of contents from the chapters.
+    chapters.forEach(function (sec, i) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + sec.id;
+      a.innerHTML = '<span class="num">' + String(i + 1).padStart(2, '0') + '</span>' + sec.getAttribute('data-title');
+      a.addEventListener('click', function () { toc.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); });
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+    var links = list.querySelectorAll('a');
+
+    // Highlight the chapter in view.
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id); });
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    chapters.forEach(function (c) { io.observe(c); });
+
+    // Search: hides chapters that don't contain the text.
+    document.getElementById('search').addEventListener('input', function (e) {
+      var q = e.target.value.trim().toLowerCase();
+      chapters.forEach(function (c, i) {
+        var hit = !q || c.textContent.toLowerCase().indexOf(q) !== -1;
+        c.classList.toggle('hidden', !hit);
+        links[i].parentElement.style.display = hit ? '' : 'none';
+        if (q && hit) c.querySelectorAll('details').forEach(function (d) { if (d.textContent.toLowerCase().indexOf(q) !== -1) d.open = true; });
+      });
+    });
+
+    // Theme toggle (remembered per viewer).
+    var saved = null;
+    try { saved = localStorage.getItem('sairna-guide-theme'); } catch (e) {}
+    if (saved) root.setAttribute('data-theme', saved);
+    document.getElementById('themeBtn').addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') ? root.getAttribute('data-theme') === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      var next = dark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('sairna-guide-theme', next); } catch (e) {}
+    });
+
+    // Mobile table of contents.
+    menuBtn.addEventListener('click', function () {
+      var open = toc.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { toc.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); } });
+
+    document.getElementById('backTop').addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "request": "POST /website/auth/login",
+  "status": 400,
+  "body": {
+    "message": [
+      "email must be an email"
+    ],
+    "error": "Bad Request",
+    "statusCode": 400
+  }
+}

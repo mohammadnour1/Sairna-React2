@@ -1,0 +1,37 @@
+{
+  "request": "GET /website/trips/1",
+  "status": 200,
+  "body": {
+    "id": 1,
+    "code": "DEMO-2026-11-05-1",
+    "companyId": 1,
+    "originId": 2,
+    "destinationId": 1,
+    "departureAt": "2026-11-05T07:00:00.000Z",
+    "arrivalAt": "2026-11-05T13:00:00.000Z",
+    "price": 145000,
+    "totalSeats": 40,
+    "status": "AVAILABLE",
+    "company": {
+      "id": 1,
+      "name": "الشام للنقل (تجريبي)",
+      "logoUrl": null
+    },
+    "origin": {
+      "id": 2,
+      "name": "حلب",
+      "latitude": 36.2021,
+      "longitude": 37.1343
+    },
+    "destination": {
+      "id": 1,
+      "name": "دمشق",
+      "latitude": 33.5138,
+      "longitude": 36.2765
+    },
+    "_count": {
+      "bookingSeats": 0
+    },
+    "availableSeats": 40
+  }
+}

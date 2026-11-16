@@ -1,0 +1,5 @@
+{
+  "request": "GET /website/bookings/me",
+  "status": 200,
+  "body": []
+}

@@ -1,0 +1,9 @@
+{
+  "request": "POST /website/auth/login",
+  "status": 401,
+  "body": {
+    "message": "INVALID_CREDENTIALS",
+    "error": "Unauthorized",
+    "statusCode": 401
+  }
+}

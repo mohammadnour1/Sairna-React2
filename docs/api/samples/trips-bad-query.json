@@ -1,0 +1,12 @@
+{
+  "request": "GET /website/trips?originId=abc",
+  "status": 400,
+  "body": {
+    "message": [
+      "originId must not be less than 1",
+      "originId must be an integer number"
+    ],
+    "error": "Bad Request",
+    "statusCode": 400
+  }
+}

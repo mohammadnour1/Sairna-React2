@@ -1,0 +1,64 @@
+{
+  "request": "GET /website/bookings/me",
+  "status": 200,
+  "body": [
+    {
+      "id": 1,
+      "code": "SR-0184FF29",
+      "userId": 31,
+      "tripId": 117,
+      "status": "CONFIRMED",
+      "totalPrice": 90000,
+      "createdAt": "2026-11-09T23:27:29.670Z",
+      "cancelledAt": null,
+      "trip": {
+        "id": 117,
+        "code": "DEMO-2026-11-17-9",
+        "companyId": 1,
+        "originId": 7,
+        "destinationId": 2,
+        "departureAt": "2026-11-17T16:00:00.000Z",
+        "arrivalAt": "2026-11-17T17:30:00.000Z",
+        "price": 45000,
+        "totalSeats": 40,
+        "status": "AVAILABLE",
+        "company": {
+          "id": 1,
+          "name": "الشام للنقل (تجريبي)",
+          "logoUrl": null,
+          "isActive": true
+        },
+        "origin": {
+          "id": 7,
+          "name": "إدلب",
+          "latitude": 35.9306,
+          "longitude": 36.6339
+        },
+        "destination": {
+          "id": 2,
+          "name": "حلب",
+          "latitude": 36.2021,
+          "longitude": 37.1343
+        }
+      },
+      "seats": [
+        {
+          "id": 1,
+          "bookingId": 1,
+          "tripId": 117,
+          "seatNumber": 7,
+          "passengerName": "مسافر تجريبي",
+          "passengerPhone": "0999999999"
+        },
+        {
+          "id": 2,
+          "bookingId": 1,
+          "tripId": 117,
+          "seatNumber": 8,
+          "passengerName": "مسافر ثاني",
+          "passengerPhone": "+963 999 999 998"
+        }
+      ]
+    }
+  ]
+}

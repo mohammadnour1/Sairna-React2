@@ -1,0 +1,402 @@
+@import "tailwindcss";
+
+/* Dark mode is driven by <html data-theme="dark"> (set by ThemeContext and the pre-mount script). */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* ------------------------------------------------------------------
+   1. Raw design tokens — exact values from the reference :root
+   ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+  --bg: #f8fafb;
+  --surface: #fff;
+  --surface-alt: #f2f7f8;
+  --text: #112f41;
+  --muted: #718493;
+  --border: #e4ecef;
+  --primary: #0aa99b;
+  --primary-deep: #078e87;
+  --dark: #103a4e;
+  --dark-deep: #0a2c3e;
+  --soft-teal: #e6f8f3;
+  --shadow: 0 15px 55px rgba(19, 54, 72, 0.065);
+  --shadow-md: 0 22px 60px rgba(19, 54, 72, 0.11);
+  --radius: 22px;
+  --container: 1216px;
+  --font: Cairo, "Segoe UI", Tahoma, sans-serif;
+  /* Admin charts (validated with the dataviz palette checker against each surface). */
+  --chart-1: #078e87;
+  --chart-danger: #c25b5a;
+  --sidebar: #0a2c3e;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b1c29;
+  --surface: #112b3b;
+  --surface-alt: #173748;
+  --text: #eef8fa;
+  --muted: #9eb3be;
+  --border: #254252;
+  --dark: #0e2634;
+  --dark-deep: #091c27;
+  --soft-teal: #174b49;
+  --shadow: 0 15px 55px rgba(0, 0, 0, 0.16);
+  --shadow-md: 0 22px 60px rgba(0, 0, 0, 0.26);
+  --chart-1: #10a99b;
+  --chart-danger: #d06e6c;
+  --sidebar: #08202d;
+}
+
+/* ------------------------------------------------------------------
+   2. Theme — exposes the tokens as Tailwind utilities.
+   `inline` makes utilities reference the variables, so they switch with the theme.
+   ------------------------------------------------------------------ */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-deep: var(--primary-deep);
+  --color-dark: var(--dark);
+  --color-dark-deep: var(--dark-deep);
+  --color-soft-teal: var(--soft-teal);
+  --color-chart: var(--chart-1);
+  --color-chart-danger: var(--chart-danger);
+  --color-sidebar: var(--sidebar);
+
+  --shadow-card: var(--shadow);
+  --shadow-card-md: var(--shadow-md);
+
+  --font-sans: var(--font);
+}
+
+@theme {
+  /* Reference is desktop-first (max-width 1150 / 900 / 650 / 370).
+     We use `max-lg:` `max-md:` `max-sm:` `max-xs:` to mirror each block exactly. */
+  --breakpoint-*: initial;
+  --breakpoint-xs: 371px;
+  --breakpoint-sm: 651px;
+  --breakpoint-md: 901px;
+  --breakpoint-lg: 1151px;
+
+  --animate-fade: fade 0.2s;
+  --animate-pop: pop 0.55s ease both;
+  --animate-pulse: pulse 2s ease-in-out infinite;
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-skeleton: skeleton 1.4s ease-in-out infinite;
+
+  @keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(1.5deg); }
+    50% { transform: translate3d(0, var(--float-distance), 0) rotate(1.5deg); }
+  }
+  @keyframes pop {
+    0% { transform: scale(0.55); opacity: 0; }
+    75% { transform: scale(1.08); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(16, 186, 137, 0.14); }
+    50% { box-shadow: 0 0 0 9px rgba(16, 186, 137, 0); }
+  }
+  @keyframes skeleton {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+  }
+}
+
+/* Page container: same width rules as the reference `.container`. */
+@utility site-container {
+  width: min(var(--container), calc(100% - 68px));
+  margin-inline: auto;
+  @media (width < 1151px) {
+    width: min(var(--container), calc(100% - 48px));
+  }
+  @media (width < 651px) {
+    width: calc(100% - 34px);
+  }
+}
+
+/* ------------------------------------------------------------------
+   3. Base — the reference element defaults
+   ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font);
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    font-family: var(--font);
+  }
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    outline-offset: 3px;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  /* Icons sit inline like the reference <i class="sairna-icon"> wrappers. */
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+    flex: 0 0 auto;
+  }
+  :is(button, a, input, select, summary, [tabindex]):focus-visible {
+    outline: 3px solid #4cc8bf;
+    outline-offset: 3px;
+  }
+  /* Browser default margins the reference relies on (Tailwind preflight removes them). */
+  p {
+    margin: 0 0 1em;
+    color: var(--muted);
+  }
+  h1, h2, h3, h4 {
+    margin-top: 0;
+    line-height: 1.5;
+    font-weight: 800;
+  }
+  h1 { font-size: 2em; margin-bottom: 0.67em; }
+  h2 { font-size: 1.5em; margin-bottom: 0.83em; }
+  h3 { font-size: 1.17em; margin-bottom: 1em; }
+  h4 { font-size: 1em; margin-bottom: 1.33em; }
+  b, strong { font-weight: 700; }
+  option,
+  optgroup {
+    font-family: var(--font);
+  }
+  input::placeholder,
+  textarea::placeholder {
+    font-family: inherit;
+  }
+}
+
+/* ------------------------------------------------------------------
+   4. Components — ONLY what is awkward as utilities:
+   gradient text, decorative pseudo-elements, native control parts, MapLibre.
+   ------------------------------------------------------------------ */
+@layer components {
+  /* Gradient headline text (hero). */
+  .gradient-text {
+    background: linear-gradient(93deg, #078a91, #15ba9d 75%);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  /* Header nav underline that grows on hover/active. */
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    right: 50%;
+    bottom: 17px;
+    width: 0;
+    height: 3px;
+    border-radius: 5px;
+    background: var(--primary);
+    transform: translateX(50%);
+    transition: width 0.27s;
+  }
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after,
+  .nav-link.is-active::after {
+    width: 23px;
+  }
+
+  /* Hero soft glow + photo tint. */
+  .hero-glow::before {
+    content: "";
+    position: absolute;
+    width: 540px;
+    height: 540px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(76, 203, 175, 0.1), transparent 66%);
+    top: -180px;
+    left: -140px;
+    pointer-events: none;
+  }
+  .hero-image-tint::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 30px;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(3, 38, 47, 0.08), transparent 68%);
+    z-index: 0;
+  }
+  @media (width < 651px) {
+    .hero-image-tint::after {
+      border-radius: 20px;
+    }
+  }
+
+  /* Floating stat cards: rotation + float animation use a CSS variable for distance. */
+  .floating-stat {
+    --float-distance: -5px;
+    transform: translate3d(0, 0, 0) rotate(1.5deg);
+    backface-visibility: hidden;
+    will-change: transform;
+    animation: float 9s ease-in-out infinite;
+  }
+  .floating-stat.stat-bottom {
+    --float-distance: -4px;
+    animation-duration: 10s;
+    animation-delay: -4.5s;
+  }
+  @media (width < 651px) {
+    .floating-stat,
+    .floating-stat.stat-bottom {
+      --float-distance: -3px;
+      animation-duration: 11s;
+    }
+  }
+
+  /* Dashed decorative circles on banners / auth visual. */
+  .banner-ring::after {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border: 1px dashed rgba(25, 167, 154, 0.1);
+    border-radius: 50%;
+    left: -120px;
+    top: -180px;
+    pointer-events: none;
+  }
+  .auth-ring::before {
+    content: "";
+    width: 440px;
+    height: 440px;
+    position: absolute;
+    right: -210px;
+    top: -170px;
+    border: 1px dashed rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+  }
+
+  /* Tracking timeline vertical dashed line. */
+  .track-timeline::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    bottom: 26px;
+    right: 15px;
+    border-right: 2px dashed #cce1de;
+  }
+
+  /* Native control parts. */
+  .search-field select option {
+    color: #102f41;
+    background: #fff;
+  }
+  .search-field input::-webkit-calendar-picker-indicator {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+  [data-theme="dark"] .search-field input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item[open] summary {
+    color: var(--primary);
+  }
+  .faq-item[open] summary svg {
+    transform: rotate(45deg);
+  }
+
+  /* Seat buttons: three visual states. */
+  .seat-btn {
+    border: 1px solid #c9dade;
+    background: var(--surface);
+    color: #8fadb4;
+    transition: transform 0.15s, background 0.2s, border 0.2s;
+  }
+  .seat-btn:hover:not(:disabled) {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: scale(1.06);
+  }
+  .seat-btn[aria-pressed="true"] {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+  }
+  .seat-btn:disabled {
+    background: #e2e9eb;
+    border-color: #d9e1e3;
+    color: #aab9be;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  [data-theme="dark"] .seat-btn:disabled {
+    background: #304755;
+  }
+
+  /* Moving bus marker element (created by MapLibre, outside React). */
+  .sairna-moving-bus {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    border: 4px solid #fff;
+    background: #0aa99b;
+    border-radius: 50%;
+    box-shadow: 0 4px 17px rgba(7, 59, 66, 0.3);
+  }
+  .sairna-moving-bus::after {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border-radius: 50%;
+    background: #fff;
+  }
+  .maplibregl-map {
+    font-family: Cairo, sans-serif !important;
+  }
+  .maplibregl-ctrl-attrib {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   5. Reduced motion — same as the reference
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .floating-stat {
+    animation: none !important;
+    transform: rotate(1.5deg);
+  }
+}

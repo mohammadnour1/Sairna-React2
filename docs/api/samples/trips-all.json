@@ -1,0 +1,3867 @@
+{
+  "request": "GET /website/trips",
+  "status": 200,
+  "body": [
+    {
+      "id": 1,
+      "code": "DEMO-2026-11-05-1",
+      "companyId": 1,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-05T07:00:00.000Z",
+      "arrivalAt": "2026-11-05T13:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 4,
+      "code": "DEMO-2026-11-05-4",
+      "companyId": 1,
+      "originId": 1,
+      "destinationId": 2,
+      "departureAt": "2026-11-05T08:00:00.000Z",
+      "arrivalAt": "2026-11-05T14:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 2,
+      "code": "DEMO-2026-11-05-2",
+      "companyId": 2,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-05T09:00:00.000Z",
+      "arrivalAt": "2026-11-05T15:30:00.000Z",
+      "price": 120000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 5,
+      "code": "DEMO-2026-11-05-5",
+      "companyId": 4,
+      "originId": 3,
+      "destinationId": 1,
+      "departureAt": "2026-11-05T10:00:00.000Z",
+      "arrivalAt": "2026-11-05T12:30:00.000Z",
+      "price": 55000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 6,
+      "code": "DEMO-2026-11-05-6",
+      "companyId": 3,
+      "originId": 5,
+      "destinationId": 2,
+      "departureAt": "2026-11-05T11:00:00.000Z",
+      "arrivalAt": "2026-11-05T15:00:00.000Z",
+      "price": 85000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 5,
+        "name": "اللاذقية",
+        "latitude": 35.5317,
+        "longitude": 35.7901
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 7,
+      "code": "DEMO-2026-11-05-7",
+      "companyId": 2,
+      "originId": 4,
+      "destinationId": 3,
+      "departureAt": "2026-11-05T12:00:00.000Z",
+      "arrivalAt": "2026-11-05T13:30:00.000Z",
+      "price": 35000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 4,
+        "name": "حماة",
+        "latitude": 35.1318,
+        "longitude": 36.7578
+      },
+      "destination": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 8,
+      "code": "DEMO-2026-11-05-8",
+      "companyId": 4,
+      "originId": 6,
+      "destinationId": 1,
+      "departureAt": "2026-11-05T13:00:00.000Z",
+      "arrivalAt": "2026-11-05T17:10:00.000Z",
+      "price": 105000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 6,
+        "name": "طرطوس",
+        "latitude": 34.8959,
+        "longitude": 35.8866
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 3,
+      "code": "DEMO-2026-11-05-3",
+      "companyId": 3,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-05T14:00:00.000Z",
+      "arrivalAt": "2026-11-05T20:00:00.000Z",
+      "price": 125000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 9,
+      "code": "DEMO-2026-11-05-9",
+      "companyId": 1,
+      "originId": 7,
+      "destinationId": 2,
+      "departureAt": "2026-11-05T16:00:00.000Z",
+      "arrivalAt": "2026-11-05T17:30:00.000Z",
+      "price": 45000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 7,
+        "name": "إدلب",
+        "latitude": 35.9306,
+        "longitude": 36.6339
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 10,
+      "code": "DEMO-2026-11-06-1",
+      "companyId": 1,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-06T07:00:00.000Z",
+      "arrivalAt": "2026-11-06T13:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 13,
+      "code": "DEMO-2026-11-06-4",
+      "companyId": 1,
+      "originId": 1,
+      "destinationId": 2,
+      "departureAt": "2026-11-06T08:00:00.000Z",
+      "arrivalAt": "2026-11-06T14:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 11,
+      "code": "DEMO-2026-11-06-2",
+      "companyId": 2,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-06T09:00:00.000Z",
+      "arrivalAt": "2026-11-06T15:30:00.000Z",
+      "price": 120000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 14,
+      "code": "DEMO-2026-11-06-5",
+      "companyId": 4,
+      "originId": 3,
+      "destinationId": 1,
+      "departureAt": "2026-11-06T10:00:00.000Z",
+      "arrivalAt": "2026-11-06T12:30:00.000Z",
+      "price": 55000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 15,
+      "code": "DEMO-2026-11-06-6",
+      "companyId": 3,
+      "originId": 5,
+      "destinationId": 2,
+      "departureAt": "2026-11-06T11:00:00.000Z",
+      "arrivalAt": "2026-11-06T15:00:00.000Z",
+      "price": 85000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 5,
+        "name": "اللاذقية",
+        "latitude": 35.5317,
+        "longitude": 35.7901
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 16,
+      "code": "DEMO-2026-11-06-7",
+      "companyId": 2,
+      "originId": 4,
+      "destinationId": 3,
+      "departureAt": "2026-11-06T12:00:00.000Z",
+      "arrivalAt": "2026-11-06T13:30:00.000Z",
+      "price": 35000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 4,
+        "name": "حماة",
+        "latitude": 35.1318,
+        "longitude": 36.7578
+      },
+      "destination": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 17,
+      "code": "DEMO-2026-11-06-8",
+      "companyId": 4,
+      "originId": 6,
+      "destinationId": 1,
+      "departureAt": "2026-11-06T13:00:00.000Z",
+      "arrivalAt": "2026-11-06T17:10:00.000Z",
+      "price": 105000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 6,
+        "name": "طرطوس",
+        "latitude": 34.8959,
+        "longitude": 35.8866
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 12,
+      "code": "DEMO-2026-11-06-3",
+      "companyId": 3,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-06T14:00:00.000Z",
+      "arrivalAt": "2026-11-06T20:00:00.000Z",
+      "price": 125000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 18,
+      "code": "DEMO-2026-11-06-9",
+      "companyId": 1,
+      "originId": 7,
+      "destinationId": 2,
+      "departureAt": "2026-11-06T16:00:00.000Z",
+      "arrivalAt": "2026-11-06T17:30:00.000Z",
+      "price": 45000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 7,
+        "name": "إدلب",
+        "latitude": 35.9306,
+        "longitude": 36.6339
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 19,
+      "code": "DEMO-2026-11-07-1",
+      "companyId": 1,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-07T07:00:00.000Z",
+      "arrivalAt": "2026-11-07T13:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 22,
+      "code": "DEMO-2026-11-07-4",
+      "companyId": 1,
+      "originId": 1,
+      "destinationId": 2,
+      "departureAt": "2026-11-07T08:00:00.000Z",
+      "arrivalAt": "2026-11-07T14:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 20,
+      "code": "DEMO-2026-11-07-2",
+      "companyId": 2,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-07T09:00:00.000Z",
+      "arrivalAt": "2026-11-07T15:30:00.000Z",
+      "price": 120000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 23,
+      "code": "DEMO-2026-11-07-5",
+      "companyId": 4,
+      "originId": 3,
+      "destinationId": 1,
+      "departureAt": "2026-11-07T10:00:00.000Z",
+      "arrivalAt": "2026-11-07T12:30:00.000Z",
+      "price": 55000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 24,
+      "code": "DEMO-2026-11-07-6",
+      "companyId": 3,
+      "originId": 5,
+      "destinationId": 2,
+      "departureAt": "2026-11-07T11:00:00.000Z",
+      "arrivalAt": "2026-11-07T15:00:00.000Z",
+      "price": 85000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 5,
+        "name": "اللاذقية",
+        "latitude": 35.5317,
+        "longitude": 35.7901
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 25,
+      "code": "DEMO-2026-11-07-7",
+      "companyId": 2,
+      "originId": 4,
+      "destinationId": 3,
+      "departureAt": "2026-11-07T12:00:00.000Z",
+      "arrivalAt": "2026-11-07T13:30:00.000Z",
+      "price": 35000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 4,
+        "name": "حماة",
+        "latitude": 35.1318,
+        "longitude": 36.7578
+      },
+      "destination": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 26,
+      "code": "DEMO-2026-11-07-8",
+      "companyId": 4,
+      "originId": 6,
+      "destinationId": 1,
+      "departureAt": "2026-11-07T13:00:00.000Z",
+      "arrivalAt": "2026-11-07T17:10:00.000Z",
+      "price": 105000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 6,
+        "name": "طرطوس",
+        "latitude": 34.8959,
+        "longitude": 35.8866
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 21,
+      "code": "DEMO-2026-11-07-3",
+      "companyId": 3,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-07T14:00:00.000Z",
+      "arrivalAt": "2026-11-07T20:00:00.000Z",
+      "price": 125000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 27,
+      "code": "DEMO-2026-11-07-9",
+      "companyId": 1,
+      "originId": 7,
+      "destinationId": 2,
+      "departureAt": "2026-11-07T16:00:00.000Z",
+      "arrivalAt": "2026-11-07T17:30:00.000Z",
+      "price": 45000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 7,
+        "name": "إدلب",
+        "latitude": 35.9306,
+        "longitude": 36.6339
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 28,
+      "code": "DEMO-2026-11-08-1",
+      "companyId": 1,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-08T07:00:00.000Z",
+      "arrivalAt": "2026-11-08T13:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 31,
+      "code": "DEMO-2026-11-08-4",
+      "companyId": 1,
+      "originId": 1,
+      "destinationId": 2,
+      "departureAt": "2026-11-08T08:00:00.000Z",
+      "arrivalAt": "2026-11-08T14:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 29,
+      "code": "DEMO-2026-11-08-2",
+      "companyId": 2,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-08T09:00:00.000Z",
+      "arrivalAt": "2026-11-08T15:30:00.000Z",
+      "price": 120000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 32,
+      "code": "DEMO-2026-11-08-5",
+      "companyId": 4,
+      "originId": 3,
+      "destinationId": 1,
+      "departureAt": "2026-11-08T10:00:00.000Z",
+      "arrivalAt": "2026-11-08T12:30:00.000Z",
+      "price": 55000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 33,
+      "code": "DEMO-2026-11-08-6",
+      "companyId": 3,
+      "originId": 5,
+      "destinationId": 2,
+      "departureAt": "2026-11-08T11:00:00.000Z",
+      "arrivalAt": "2026-11-08T15:00:00.000Z",
+      "price": 85000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 5,
+        "name": "اللاذقية",
+        "latitude": 35.5317,
+        "longitude": 35.7901
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 34,
+      "code": "DEMO-2026-11-08-7",
+      "companyId": 2,
+      "originId": 4,
+      "destinationId": 3,
+      "departureAt": "2026-11-08T12:00:00.000Z",
+      "arrivalAt": "2026-11-08T13:30:00.000Z",
+      "price": 35000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 4,
+        "name": "حماة",
+        "latitude": 35.1318,
+        "longitude": 36.7578
+      },
+      "destination": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 35,
+      "code": "DEMO-2026-11-08-8",
+      "companyId": 4,
+      "originId": 6,
+      "destinationId": 1,
+      "departureAt": "2026-11-08T13:00:00.000Z",
+      "arrivalAt": "2026-11-08T17:10:00.000Z",
+      "price": 105000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 6,
+        "name": "طرطوس",
+        "latitude": 34.8959,
+        "longitude": 35.8866
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 30,
+      "code": "DEMO-2026-11-08-3",
+      "companyId": 3,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-08T14:00:00.000Z",
+      "arrivalAt": "2026-11-08T20:00:00.000Z",
+      "price": 125000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 36,
+      "code": "DEMO-2026-11-08-9",
+      "companyId": 1,
+      "originId": 7,
+      "destinationId": 2,
+      "departureAt": "2026-11-08T16:00:00.000Z",
+      "arrivalAt": "2026-11-08T17:30:00.000Z",
+      "price": 45000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 7,
+        "name": "إدلب",
+        "latitude": 35.9306,
+        "longitude": 36.6339
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 37,
+      "code": "DEMO-2026-11-09-1",
+      "companyId": 1,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-09T07:00:00.000Z",
+      "arrivalAt": "2026-11-09T13:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 40,
+      "code": "DEMO-2026-11-09-4",
+      "companyId": 1,
+      "originId": 1,
+      "destinationId": 2,
+      "departureAt": "2026-11-09T08:00:00.000Z",
+      "arrivalAt": "2026-11-09T14:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 38,
+      "code": "DEMO-2026-11-09-2",
+      "companyId": 2,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-09T09:00:00.000Z",
+      "arrivalAt": "2026-11-09T15:30:00.000Z",
+      "price": 120000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 41,
+      "code": "DEMO-2026-11-09-5",
+      "companyId": 4,
+      "originId": 3,
+      "destinationId": 1,
+      "departureAt": "2026-11-09T10:00:00.000Z",
+      "arrivalAt": "2026-11-09T12:30:00.000Z",
+      "price": 55000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 42,
+      "code": "DEMO-2026-11-09-6",
+      "companyId": 3,
+      "originId": 5,
+      "destinationId": 2,
+      "departureAt": "2026-11-09T11:00:00.000Z",
+      "arrivalAt": "2026-11-09T15:00:00.000Z",
+      "price": 85000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 5,
+        "name": "اللاذقية",
+        "latitude": 35.5317,
+        "longitude": 35.7901
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 43,
+      "code": "DEMO-2026-11-09-7",
+      "companyId": 2,
+      "originId": 4,
+      "destinationId": 3,
+      "departureAt": "2026-11-09T12:00:00.000Z",
+      "arrivalAt": "2026-11-09T13:30:00.000Z",
+      "price": 35000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 4,
+        "name": "حماة",
+        "latitude": 35.1318,
+        "longitude": 36.7578
+      },
+      "destination": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 44,
+      "code": "DEMO-2026-11-09-8",
+      "companyId": 4,
+      "originId": 6,
+      "destinationId": 1,
+      "departureAt": "2026-11-09T13:00:00.000Z",
+      "arrivalAt": "2026-11-09T17:10:00.000Z",
+      "price": 105000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 6,
+        "name": "طرطوس",
+        "latitude": 34.8959,
+        "longitude": 35.8866
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 39,
+      "code": "DEMO-2026-11-09-3",
+      "companyId": 3,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-09T14:00:00.000Z",
+      "arrivalAt": "2026-11-09T20:00:00.000Z",
+      "price": 125000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 45,
+      "code": "DEMO-2026-11-09-9",
+      "companyId": 1,
+      "originId": 7,
+      "destinationId": 2,
+      "departureAt": "2026-11-09T16:00:00.000Z",
+      "arrivalAt": "2026-11-09T17:30:00.000Z",
+      "price": 45000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 7,
+        "name": "إدلب",
+        "latitude": 35.9306,
+        "longitude": 36.6339
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 46,
+      "code": "DEMO-2026-11-10-1",
+      "companyId": 1,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-10T07:00:00.000Z",
+      "arrivalAt": "2026-11-10T13:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 49,
+      "code": "DEMO-2026-11-10-4",
+      "companyId": 1,
+      "originId": 1,
+      "destinationId": 2,
+      "departureAt": "2026-11-10T08:00:00.000Z",
+      "arrivalAt": "2026-11-10T14:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 47,
+      "code": "DEMO-2026-11-10-2",
+      "companyId": 2,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-10T09:00:00.000Z",
+      "arrivalAt": "2026-11-10T15:30:00.000Z",
+      "price": 120000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 50,
+      "code": "DEMO-2026-11-10-5",
+      "companyId": 4,
+      "originId": 3,
+      "destinationId": 1,
+      "departureAt": "2026-11-10T10:00:00.000Z",
+      "arrivalAt": "2026-11-10T12:30:00.000Z",
+      "price": 55000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 51,
+      "code": "DEMO-2026-11-10-6",
+      "companyId": 3,
+      "originId": 5,
+      "destinationId": 2,
+      "departureAt": "2026-11-10T11:00:00.000Z",
+      "arrivalAt": "2026-11-10T15:00:00.000Z",
+      "price": 85000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 5,
+        "name": "اللاذقية",
+        "latitude": 35.5317,
+        "longitude": 35.7901
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 52,
+      "code": "DEMO-2026-11-10-7",
+      "companyId": 2,
+      "originId": 4,
+      "destinationId": 3,
+      "departureAt": "2026-11-10T12:00:00.000Z",
+      "arrivalAt": "2026-11-10T13:30:00.000Z",
+      "price": 35000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 4,
+        "name": "حماة",
+        "latitude": 35.1318,
+        "longitude": 36.7578
+      },
+      "destination": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 53,
+      "code": "DEMO-2026-11-10-8",
+      "companyId": 4,
+      "originId": 6,
+      "destinationId": 1,
+      "departureAt": "2026-11-10T13:00:00.000Z",
+      "arrivalAt": "2026-11-10T17:10:00.000Z",
+      "price": 105000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 6,
+        "name": "طرطوس",
+        "latitude": 34.8959,
+        "longitude": 35.8866
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 48,
+      "code": "DEMO-2026-11-10-3",
+      "companyId": 3,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-10T14:00:00.000Z",
+      "arrivalAt": "2026-11-10T20:00:00.000Z",
+      "price": 125000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 54,
+      "code": "DEMO-2026-11-10-9",
+      "companyId": 1,
+      "originId": 7,
+      "destinationId": 2,
+      "departureAt": "2026-11-10T16:00:00.000Z",
+      "arrivalAt": "2026-11-10T17:30:00.000Z",
+      "price": 45000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 7,
+        "name": "إدلب",
+        "latitude": 35.9306,
+        "longitude": 36.6339
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 55,
+      "code": "DEMO-2026-11-11-1",
+      "companyId": 1,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-11T07:00:00.000Z",
+      "arrivalAt": "2026-11-11T13:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 58,
+      "code": "DEMO-2026-11-11-4",
+      "companyId": 1,
+      "originId": 1,
+      "destinationId": 2,
+      "departureAt": "2026-11-11T08:00:00.000Z",
+      "arrivalAt": "2026-11-11T14:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 56,
+      "code": "DEMO-2026-11-11-2",
+      "companyId": 2,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-11T09:00:00.000Z",
+      "arrivalAt": "2026-11-11T15:30:00.000Z",
+      "price": 120000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 59,
+      "code": "DEMO-2026-11-11-5",
+      "companyId": 4,
+      "originId": 3,
+      "destinationId": 1,
+      "departureAt": "2026-11-11T10:00:00.000Z",
+      "arrivalAt": "2026-11-11T12:30:00.000Z",
+      "price": 55000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 60,
+      "code": "DEMO-2026-11-11-6",
+      "companyId": 3,
+      "originId": 5,
+      "destinationId": 2,
+      "departureAt": "2026-11-11T11:00:00.000Z",
+      "arrivalAt": "2026-11-11T15:00:00.000Z",
+      "price": 85000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 5,
+        "name": "اللاذقية",
+        "latitude": 35.5317,
+        "longitude": 35.7901
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 61,
+      "code": "DEMO-2026-11-11-7",
+      "companyId": 2,
+      "originId": 4,
+      "destinationId": 3,
+      "departureAt": "2026-11-11T12:00:00.000Z",
+      "arrivalAt": "2026-11-11T13:30:00.000Z",
+      "price": 35000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 4,
+        "name": "حماة",
+        "latitude": 35.1318,
+        "longitude": 36.7578
+      },
+      "destination": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 62,
+      "code": "DEMO-2026-11-11-8",
+      "companyId": 4,
+      "originId": 6,
+      "destinationId": 1,
+      "departureAt": "2026-11-11T13:00:00.000Z",
+      "arrivalAt": "2026-11-11T17:10:00.000Z",
+      "price": 105000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 6,
+        "name": "طرطوس",
+        "latitude": 34.8959,
+        "longitude": 35.8866
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 57,
+      "code": "DEMO-2026-11-11-3",
+      "companyId": 3,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-11T14:00:00.000Z",
+      "arrivalAt": "2026-11-11T20:00:00.000Z",
+      "price": 125000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 63,
+      "code": "DEMO-2026-11-11-9",
+      "companyId": 1,
+      "originId": 7,
+      "destinationId": 2,
+      "departureAt": "2026-11-11T16:00:00.000Z",
+      "arrivalAt": "2026-11-11T17:30:00.000Z",
+      "price": 45000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 7,
+        "name": "إدلب",
+        "latitude": 35.9306,
+        "longitude": 36.6339
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 64,
+      "code": "DEMO-2026-11-12-1",
+      "companyId": 1,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-12T07:00:00.000Z",
+      "arrivalAt": "2026-11-12T13:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 67,
+      "code": "DEMO-2026-11-12-4",
+      "companyId": 1,
+      "originId": 1,
+      "destinationId": 2,
+      "departureAt": "2026-11-12T08:00:00.000Z",
+      "arrivalAt": "2026-11-12T14:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 65,
+      "code": "DEMO-2026-11-12-2",
+      "companyId": 2,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-12T09:00:00.000Z",
+      "arrivalAt": "2026-11-12T15:30:00.000Z",
+      "price": 120000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 68,
+      "code": "DEMO-2026-11-12-5",
+      "companyId": 4,
+      "originId": 3,
+      "destinationId": 1,
+      "departureAt": "2026-11-12T10:00:00.000Z",
+      "arrivalAt": "2026-11-12T12:30:00.000Z",
+      "price": 55000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 69,
+      "code": "DEMO-2026-11-12-6",
+      "companyId": 3,
+      "originId": 5,
+      "destinationId": 2,
+      "departureAt": "2026-11-12T11:00:00.000Z",
+      "arrivalAt": "2026-11-12T15:00:00.000Z",
+      "price": 85000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 5,
+        "name": "اللاذقية",
+        "latitude": 35.5317,
+        "longitude": 35.7901
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 70,
+      "code": "DEMO-2026-11-12-7",
+      "companyId": 2,
+      "originId": 4,
+      "destinationId": 3,
+      "departureAt": "2026-11-12T12:00:00.000Z",
+      "arrivalAt": "2026-11-12T13:30:00.000Z",
+      "price": 35000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 4,
+        "name": "حماة",
+        "latitude": 35.1318,
+        "longitude": 36.7578
+      },
+      "destination": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 71,
+      "code": "DEMO-2026-11-12-8",
+      "companyId": 4,
+      "originId": 6,
+      "destinationId": 1,
+      "departureAt": "2026-11-12T13:00:00.000Z",
+      "arrivalAt": "2026-11-12T17:10:00.000Z",
+      "price": 105000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 6,
+        "name": "طرطوس",
+        "latitude": 34.8959,
+        "longitude": 35.8866
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 66,
+      "code": "DEMO-2026-11-12-3",
+      "companyId": 3,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-12T14:00:00.000Z",
+      "arrivalAt": "2026-11-12T20:00:00.000Z",
+      "price": 125000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 72,
+      "code": "DEMO-2026-11-12-9",
+      "companyId": 1,
+      "originId": 7,
+      "destinationId": 2,
+      "departureAt": "2026-11-12T16:00:00.000Z",
+      "arrivalAt": "2026-11-12T17:30:00.000Z",
+      "price": 45000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 7,
+        "name": "إدلب",
+        "latitude": 35.9306,
+        "longitude": 36.6339
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 73,
+      "code": "DEMO-2026-11-13-1",
+      "companyId": 1,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-13T07:00:00.000Z",
+      "arrivalAt": "2026-11-13T13:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 76,
+      "code": "DEMO-2026-11-13-4",
+      "companyId": 1,
+      "originId": 1,
+      "destinationId": 2,
+      "departureAt": "2026-11-13T08:00:00.000Z",
+      "arrivalAt": "2026-11-13T14:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 74,
+      "code": "DEMO-2026-11-13-2",
+      "companyId": 2,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-13T09:00:00.000Z",
+      "arrivalAt": "2026-11-13T15:30:00.000Z",
+      "price": 120000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 77,
+      "code": "DEMO-2026-11-13-5",
+      "companyId": 4,
+      "originId": 3,
+      "destinationId": 1,
+      "departureAt": "2026-11-13T10:00:00.000Z",
+      "arrivalAt": "2026-11-13T12:30:00.000Z",
+      "price": 55000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 78,
+      "code": "DEMO-2026-11-13-6",
+      "companyId": 3,
+      "originId": 5,
+      "destinationId": 2,
+      "departureAt": "2026-11-13T11:00:00.000Z",
+      "arrivalAt": "2026-11-13T15:00:00.000Z",
+      "price": 85000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 5,
+        "name": "اللاذقية",
+        "latitude": 35.5317,
+        "longitude": 35.7901
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 79,
+      "code": "DEMO-2026-11-13-7",
+      "companyId": 2,
+      "originId": 4,
+      "destinationId": 3,
+      "departureAt": "2026-11-13T12:00:00.000Z",
+      "arrivalAt": "2026-11-13T13:30:00.000Z",
+      "price": 35000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 4,
+        "name": "حماة",
+        "latitude": 35.1318,
+        "longitude": 36.7578
+      },
+      "destination": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 80,
+      "code": "DEMO-2026-11-13-8",
+      "companyId": 4,
+      "originId": 6,
+      "destinationId": 1,
+      "departureAt": "2026-11-13T13:00:00.000Z",
+      "arrivalAt": "2026-11-13T17:10:00.000Z",
+      "price": 105000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 6,
+        "name": "طرطوس",
+        "latitude": 34.8959,
+        "longitude": 35.8866
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 75,
+      "code": "DEMO-2026-11-13-3",
+      "companyId": 3,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-13T14:00:00.000Z",
+      "arrivalAt": "2026-11-13T20:00:00.000Z",
+      "price": 125000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 81,
+      "code": "DEMO-2026-11-13-9",
+      "companyId": 1,
+      "originId": 7,
+      "destinationId": 2,
+      "departureAt": "2026-11-13T16:00:00.000Z",
+      "arrivalAt": "2026-11-13T17:30:00.000Z",
+      "price": 45000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 7,
+        "name": "إدلب",
+        "latitude": 35.9306,
+        "longitude": 36.6339
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 82,
+      "code": "DEMO-2026-11-14-1",
+      "companyId": 1,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-14T07:00:00.000Z",
+      "arrivalAt": "2026-11-14T13:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 85,
+      "code": "DEMO-2026-11-14-4",
+      "companyId": 1,
+      "originId": 1,
+      "destinationId": 2,
+      "departureAt": "2026-11-14T08:00:00.000Z",
+      "arrivalAt": "2026-11-14T14:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 83,
+      "code": "DEMO-2026-11-14-2",
+      "companyId": 2,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-14T09:00:00.000Z",
+      "arrivalAt": "2026-11-14T15:30:00.000Z",
+      "price": 120000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 86,
+      "code": "DEMO-2026-11-14-5",
+      "companyId": 4,
+      "originId": 3,
+      "destinationId": 1,
+      "departureAt": "2026-11-14T10:00:00.000Z",
+      "arrivalAt": "2026-11-14T12:30:00.000Z",
+      "price": 55000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 87,
+      "code": "DEMO-2026-11-14-6",
+      "companyId": 3,
+      "originId": 5,
+      "destinationId": 2,
+      "departureAt": "2026-11-14T11:00:00.000Z",
+      "arrivalAt": "2026-11-14T15:00:00.000Z",
+      "price": 85000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 5,
+        "name": "اللاذقية",
+        "latitude": 35.5317,
+        "longitude": 35.7901
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 88,
+      "code": "DEMO-2026-11-14-7",
+      "companyId": 2,
+      "originId": 4,
+      "destinationId": 3,
+      "departureAt": "2026-11-14T12:00:00.000Z",
+      "arrivalAt": "2026-11-14T13:30:00.000Z",
+      "price": 35000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 4,
+        "name": "حماة",
+        "latitude": 35.1318,
+        "longitude": 36.7578
+      },
+      "destination": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 89,
+      "code": "DEMO-2026-11-14-8",
+      "companyId": 4,
+      "originId": 6,
+      "destinationId": 1,
+      "departureAt": "2026-11-14T13:00:00.000Z",
+      "arrivalAt": "2026-11-14T17:10:00.000Z",
+      "price": 105000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 6,
+        "name": "طرطوس",
+        "latitude": 34.8959,
+        "longitude": 35.8866
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 84,
+      "code": "DEMO-2026-11-14-3",
+      "companyId": 3,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-14T14:00:00.000Z",
+      "arrivalAt": "2026-11-14T20:00:00.000Z",
+      "price": 125000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 90,
+      "code": "DEMO-2026-11-14-9",
+      "companyId": 1,
+      "originId": 7,
+      "destinationId": 2,
+      "departureAt": "2026-11-14T16:00:00.000Z",
+      "arrivalAt": "2026-11-14T17:30:00.000Z",
+      "price": 45000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 7,
+        "name": "إدلب",
+        "latitude": 35.9306,
+        "longitude": 36.6339
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 91,
+      "code": "DEMO-2026-11-15-1",
+      "companyId": 1,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-15T07:00:00.000Z",
+      "arrivalAt": "2026-11-15T13:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 94,
+      "code": "DEMO-2026-11-15-4",
+      "companyId": 1,
+      "originId": 1,
+      "destinationId": 2,
+      "departureAt": "2026-11-15T08:00:00.000Z",
+      "arrivalAt": "2026-11-15T14:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 92,
+      "code": "DEMO-2026-11-15-2",
+      "companyId": 2,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-15T09:00:00.000Z",
+      "arrivalAt": "2026-11-15T15:30:00.000Z",
+      "price": 120000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 95,
+      "code": "DEMO-2026-11-15-5",
+      "companyId": 4,
+      "originId": 3,
+      "destinationId": 1,
+      "departureAt": "2026-11-15T10:00:00.000Z",
+      "arrivalAt": "2026-11-15T12:30:00.000Z",
+      "price": 55000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 96,
+      "code": "DEMO-2026-11-15-6",
+      "companyId": 3,
+      "originId": 5,
+      "destinationId": 2,
+      "departureAt": "2026-11-15T11:00:00.000Z",
+      "arrivalAt": "2026-11-15T15:00:00.000Z",
+      "price": 85000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 5,
+        "name": "اللاذقية",
+        "latitude": 35.5317,
+        "longitude": 35.7901
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 97,
+      "code": "DEMO-2026-11-15-7",
+      "companyId": 2,
+      "originId": 4,
+      "destinationId": 3,
+      "departureAt": "2026-11-15T12:00:00.000Z",
+      "arrivalAt": "2026-11-15T13:30:00.000Z",
+      "price": 35000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 4,
+        "name": "حماة",
+        "latitude": 35.1318,
+        "longitude": 36.7578
+      },
+      "destination": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 98,
+      "code": "DEMO-2026-11-15-8",
+      "companyId": 4,
+      "originId": 6,
+      "destinationId": 1,
+      "departureAt": "2026-11-15T13:00:00.000Z",
+      "arrivalAt": "2026-11-15T17:10:00.000Z",
+      "price": 105000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 6,
+        "name": "طرطوس",
+        "latitude": 34.8959,
+        "longitude": 35.8866
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 93,
+      "code": "DEMO-2026-11-15-3",
+      "companyId": 3,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-15T14:00:00.000Z",
+      "arrivalAt": "2026-11-15T20:00:00.000Z",
+      "price": 125000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 99,
+      "code": "DEMO-2026-11-15-9",
+      "companyId": 1,
+      "originId": 7,
+      "destinationId": 2,
+      "departureAt": "2026-11-15T16:00:00.000Z",
+      "arrivalAt": "2026-11-15T17:30:00.000Z",
+      "price": 45000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 7,
+        "name": "إدلب",
+        "latitude": 35.9306,
+        "longitude": 36.6339
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 100,
+      "code": "DEMO-2026-11-16-1",
+      "companyId": 1,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-16T07:00:00.000Z",
+      "arrivalAt": "2026-11-16T13:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 103,
+      "code": "DEMO-2026-11-16-4",
+      "companyId": 1,
+      "originId": 1,
+      "destinationId": 2,
+      "departureAt": "2026-11-16T08:00:00.000Z",
+      "arrivalAt": "2026-11-16T14:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 101,
+      "code": "DEMO-2026-11-16-2",
+      "companyId": 2,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-16T09:00:00.000Z",
+      "arrivalAt": "2026-11-16T15:30:00.000Z",
+      "price": 120000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 104,
+      "code": "DEMO-2026-11-16-5",
+      "companyId": 4,
+      "originId": 3,
+      "destinationId": 1,
+      "departureAt": "2026-11-16T10:00:00.000Z",
+      "arrivalAt": "2026-11-16T12:30:00.000Z",
+      "price": 55000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 105,
+      "code": "DEMO-2026-11-16-6",
+      "companyId": 3,
+      "originId": 5,
+      "destinationId": 2,
+      "departureAt": "2026-11-16T11:00:00.000Z",
+      "arrivalAt": "2026-11-16T15:00:00.000Z",
+      "price": 85000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 5,
+        "name": "اللاذقية",
+        "latitude": 35.5317,
+        "longitude": 35.7901
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 106,
+      "code": "DEMO-2026-11-16-7",
+      "companyId": 2,
+      "originId": 4,
+      "destinationId": 3,
+      "departureAt": "2026-11-16T12:00:00.000Z",
+      "arrivalAt": "2026-11-16T13:30:00.000Z",
+      "price": 35000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 4,
+        "name": "حماة",
+        "latitude": 35.1318,
+        "longitude": 36.7578
+      },
+      "destination": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 107,
+      "code": "DEMO-2026-11-16-8",
+      "companyId": 4,
+      "originId": 6,
+      "destinationId": 1,
+      "departureAt": "2026-11-16T13:00:00.000Z",
+      "arrivalAt": "2026-11-16T17:10:00.000Z",
+      "price": 105000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 6,
+        "name": "طرطوس",
+        "latitude": 34.8959,
+        "longitude": 35.8866
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 102,
+      "code": "DEMO-2026-11-16-3",
+      "companyId": 3,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-16T14:00:00.000Z",
+      "arrivalAt": "2026-11-16T20:00:00.000Z",
+      "price": 125000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 108,
+      "code": "DEMO-2026-11-16-9",
+      "companyId": 1,
+      "originId": 7,
+      "destinationId": 2,
+      "departureAt": "2026-11-16T16:00:00.000Z",
+      "arrivalAt": "2026-11-16T17:30:00.000Z",
+      "price": 45000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 7,
+        "name": "إدلب",
+        "latitude": 35.9306,
+        "longitude": 36.6339
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 109,
+      "code": "DEMO-2026-11-17-1",
+      "companyId": 1,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-17T07:00:00.000Z",
+      "arrivalAt": "2026-11-17T13:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 112,
+      "code": "DEMO-2026-11-17-4",
+      "companyId": 1,
+      "originId": 1,
+      "destinationId": 2,
+      "departureAt": "2026-11-17T08:00:00.000Z",
+      "arrivalAt": "2026-11-17T14:00:00.000Z",
+      "price": 145000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 110,
+      "code": "DEMO-2026-11-17-2",
+      "companyId": 2,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-17T09:00:00.000Z",
+      "arrivalAt": "2026-11-17T15:30:00.000Z",
+      "price": 120000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 113,
+      "code": "DEMO-2026-11-17-5",
+      "companyId": 4,
+      "originId": 3,
+      "destinationId": 1,
+      "departureAt": "2026-11-17T10:00:00.000Z",
+      "arrivalAt": "2026-11-17T12:30:00.000Z",
+      "price": 55000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 114,
+      "code": "DEMO-2026-11-17-6",
+      "companyId": 3,
+      "originId": 5,
+      "destinationId": 2,
+      "departureAt": "2026-11-17T11:00:00.000Z",
+      "arrivalAt": "2026-11-17T15:00:00.000Z",
+      "price": 85000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 5,
+        "name": "اللاذقية",
+        "latitude": 35.5317,
+        "longitude": 35.7901
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 115,
+      "code": "DEMO-2026-11-17-7",
+      "companyId": 2,
+      "originId": 4,
+      "destinationId": 3,
+      "departureAt": "2026-11-17T12:00:00.000Z",
+      "arrivalAt": "2026-11-17T13:30:00.000Z",
+      "price": 35000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 2,
+        "name": "الفرات للسياحة (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 4,
+        "name": "حماة",
+        "latitude": 35.1318,
+        "longitude": 36.7578
+      },
+      "destination": {
+        "id": 3,
+        "name": "حمص",
+        "latitude": 34.7324,
+        "longitude": 36.7137
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 116,
+      "code": "DEMO-2026-11-17-8",
+      "companyId": 4,
+      "originId": 6,
+      "destinationId": 1,
+      "departureAt": "2026-11-17T13:00:00.000Z",
+      "arrivalAt": "2026-11-17T17:10:00.000Z",
+      "price": 105000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 4,
+        "name": "الاتحاد للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 6,
+        "name": "طرطوس",
+        "latitude": 34.8959,
+        "longitude": 35.8866
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 111,
+      "code": "DEMO-2026-11-17-3",
+      "companyId": 3,
+      "originId": 2,
+      "destinationId": 1,
+      "departureAt": "2026-11-17T14:00:00.000Z",
+      "arrivalAt": "2026-11-17T20:00:00.000Z",
+      "price": 125000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 3,
+        "name": "النورس إكسبرس (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "destination": {
+        "id": 1,
+        "name": "دمشق",
+        "latitude": 33.5138,
+        "longitude": 36.2765
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    },
+    {
+      "id": 117,
+      "code": "DEMO-2026-11-17-9",
+      "companyId": 1,
+      "originId": 7,
+      "destinationId": 2,
+      "departureAt": "2026-11-17T16:00:00.000Z",
+      "arrivalAt": "2026-11-17T17:30:00.000Z",
+      "price": 45000,
+      "totalSeats": 40,
+      "status": "AVAILABLE",
+      "company": {
+        "id": 1,
+        "name": "الشام للنقل (تجريبي)",
+        "logoUrl": null
+      },
+      "origin": {
+        "id": 7,
+        "name": "إدلب",
+        "latitude": 35.9306,
+        "longitude": 36.6339
+      },
+      "destination": {
+        "id": 2,
+        "name": "حلب",
+        "latitude": 36.2021,
+        "longitude": 37.1343
+      },
+      "_count": {
+        "bookingSeats": 0
+      },
+      "availableSeats": 40
+    }
+  ]
+}

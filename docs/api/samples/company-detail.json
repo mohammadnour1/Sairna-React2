@@ -1,0 +1,10 @@
+{
+  "request": "GET /website/companies/1",
+  "status": 200,
+  "body": {
+    "id": 1,
+    "name": "الشام للنقل (تجريبي)",
+    "logoUrl": null,
+    "isActive": true
+  }
+}

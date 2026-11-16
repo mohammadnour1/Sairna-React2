@@ -1,0 +1,9 @@
+{
+  "request": "GET /health",
+  "status": 200,
+  "body": {
+    "status": "ok",
+    "project": "SAIRNA",
+    "version": "2.0"
+  }
+}

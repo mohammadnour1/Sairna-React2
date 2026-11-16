@@ -1,0 +1,10 @@
+{
+  "request": "PATCH /dashboard/companies/17 { logoUrl:\"not-a-url\" }",
+  "status": 200,
+  "body": {
+    "id": 17,
+    "name": "[TEST] شركة فحص (معدّلة)",
+    "logoUrl": "not-a-url",
+    "isActive": false
+  }
+}

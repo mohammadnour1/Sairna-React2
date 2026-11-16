@@ -1,0 +1,14 @@
+{
+  "request": "GET /website/trips/117/seats",
+  "status": 200,
+  "body": {
+    "tripId": 117,
+    "totalSeats": 40,
+    "status": "AVAILABLE",
+    "occupiedSeats": [
+      7,
+      8
+    ],
+    "availableSeats": 38
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "request": "GET /website/cities",
+  "status": 200,
+  "body": [
+    {
+      "id": 1,
+      "name": "دمشق",
+      "latitude": 33.5138,
+      "longitude": 36.2765
+    },
+    {
+      "id": 2,
+      "name": "حلب",
+      "latitude": 36.2021,
+      "longitude": 37.1343
+    },
+    {
+      "id": 3,
+      "name": "حمص",
+      "latitude": 34.7324,
+      "longitude": 36.7137
+    },
+    {
+      "id": 4,
+      "name": "حماة",
+      "latitude": 35.1318,
+      "longitude": 36.7578
+    },
+    {
+      "id": 5,
+      "name": "اللاذقية",
+      "latitude": 35.5317,
+      "longitude": 35.7901
+    },
+    {
+      "id": 6,
+      "name": "طرطوس",
+      "latitude": 34.8959,
+      "longitude": 35.8866
+    },
+    {
+      "id": 7,
+      "name": "إدلب",
+      "latitude": 35.9306,
+      "longitude": 36.6339
+    },
+    {
+      "id": 8,
+      "name": "دير الزور",
+      "latitude": 35.3359,
+      "longitude": 40.1408
+    },
+    {
+      "id": 9,
+      "name": "الرقة",
+      "latitude": 35.95,
+      "longitude": 39.0167
+    },
+    {
+      "id": 10,
+      "name": "الحسكة",
+      "latitude": 36.5024,
+      "longitude": 40.7477
+    },
+    {
+      "id": 11,
+      "name": "درعا",
+      "latitude": 32.6189,
+      "longitude": 36.1021
+    },
+    {
+      "id": 12,
+      "name": "السويداء",
+      "latitude": 32.7081,
+      "longitude": 36.5695
+    },
+    {
+      "id": 13,
+      "name": "القنيطرة",
+      "latitude": 33.1265,
+      "longitude": 35.8246
+    },
+    {
+      "id": 14,
+      "name": "ريف دمشق",
+      "latitude": 33.63,
+      "longitude": 36.46
+    }
+  ]
+}

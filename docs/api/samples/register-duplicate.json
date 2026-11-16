@@ -1,0 +1,9 @@
+{
+  "request": "POST /website/auth/register",
+  "status": 409,
+  "body": {
+    "message": "EMAIL_TAKEN",
+    "error": "Conflict",
+    "statusCode": 409
+  }
+}

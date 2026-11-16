@@ -1,0 +1,10 @@
+{
+  "request": "POST /dashboard/companies { name }",
+  "status": 201,
+  "body": {
+    "id": 17,
+    "name": "[TEST] شركة فحص لوحة الإدارة",
+    "logoUrl": null,
+    "isActive": true
+  }
+}

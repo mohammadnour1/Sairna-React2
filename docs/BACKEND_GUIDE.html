@@ -1,0 +1,1137 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>دليل الربط مع الباك</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f8fafb; --surface: #fff; --surface-alt: #f2f7f8; --text: #112f41; --muted: #5f7482;
+    --border: #e4ecef; --primary: #0aa99b; --primary-deep: #078e87; --dark: #103a4e; --soft: #e6f8f3;
+    --warn-bg: #fff6e5; --warn: #9a6514; --danger-bg: #fdeceb; --danger: #a64645;
+    --code-bg: #0f2533; --code-text: #d9eef2; --shadow: 0 15px 55px rgba(19,54,72,.07);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1c29; --surface: #112b3b; --surface-alt: #173748; --text: #eef8fa; --muted: #a3b8c3;
+      --border: #254252; --soft: #174b49; --warn-bg: #3a2e16; --warn: #f2c77a; --danger-bg: #3f2224; --danger: #f4b6b2;
+      --code-bg: #071621; --shadow: 0 15px 55px rgba(0,0,0,.2); color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1c29; --surface: #112b3b; --surface-alt: #173748; --text: #eef8fa; --muted: #a3b8c3;
+    --border: #254252; --soft: #174b49; --warn-bg: #3a2e16; --warn: #f2c77a; --danger-bg: #3f2224; --danger: #f4b6b2;
+    --code-bg: #071621; --shadow: 0 15px 55px rgba(0,0,0,.2); color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: Cairo, "Segoe UI", Tahoma, sans-serif; font-size: 15px; line-height: 1.9; }
+  a { color: var(--primary-deep); }
+  code, pre, kbd { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; }
+  :not(pre) > code { direction: ltr; unicode-bidi: isolate; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; font-size: .86em; }
+  pre { direction: ltr; text-align: left; background: var(--code-bg); color: var(--code-text); border-radius: 14px; padding: 16px 18px; overflow-x: auto; font-size: 13px; line-height: 1.65; margin: 14px 0; }
+  pre .c { color: #7fa3b3; } pre .k { color: #6fe0cf; } pre .s { color: #ffd38a; }
+  h1, h2, h3, h4 { line-height: 1.45; margin: 0; }
+  h2 { font-size: 26px; font-weight: 900; margin-bottom: 6px; }
+  h3 { font-size: 19px; font-weight: 800; margin: 28px 0 8px; }
+  h4 { font-size: 16px; font-weight: 800; margin: 20px 0 6px; }
+  p { margin: 0 0 12px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 18px; font-size: 14px; }
+  th, td { border-bottom: 1px solid var(--border); padding: 9px 10px; text-align: start; vertical-align: top; }
+  th { background: var(--surface-alt); font-weight: 800; position: sticky; top: 0; }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+  .table-wrap table { margin: 0; }
+
+  /* Layout */
+  .topbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 14px; padding: 12px 22px; background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 20px; }
+  .brand-mark { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; color: #fff; background: linear-gradient(140deg, #20c4ae, #008a98); }
+  .topbar .spacer { flex: 1; }
+  .search { width: min(320px, 46vw); border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 12px; padding: 9px 14px; font: inherit; font-size: 14px; }
+  .icon-btn { border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 12px; width: 40px; height: 40px; display: grid; place-items: center; cursor: pointer; font-size: 18px; }
+  .menu-btn { display: none; }
+  .shell { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 34px; width: min(1320px, calc(100% - 40px)); margin: 0 auto; }
+  nav.toc { position: sticky; top: 76px; align-self: start; max-height: calc(100vh - 92px); overflow-y: auto; padding: 22px 0; }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; }
+  nav.toc li a { display: block; padding: 6px 12px; border-radius: 10px; color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 700; border-inline-start: 3px solid transparent; }
+  nav.toc li a:hover { background: var(--surface-alt); color: var(--text); }
+  nav.toc li a.active { color: var(--primary-deep); background: var(--soft); border-inline-start-color: var(--primary); }
+  nav.toc .num { display: inline-block; min-width: 26px; color: var(--primary); }
+  main { padding: 22px 0 80px; min-width: 0; }
+  section.chapter { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 30px 34px; margin-bottom: 22px; box-shadow: var(--shadow); scroll-margin-top: 80px; }
+  section.chapter.hidden { display: none; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 7px; background: var(--soft); color: var(--primary-deep); border-radius: 99px; padding: 3px 13px; font-size: 12px; font-weight: 900; margin-bottom: 10px; }
+  .lead { color: var(--muted); font-size: 16px; }
+
+  /* Hero */
+  .hero { background: linear-gradient(140deg, #0e4653, #0b756e); color: #fff; border-radius: 26px; padding: 40px 38px; margin: 22px 0; position: relative; overflow: hidden; }
+  .hero h1 { font-size: clamp(30px, 4vw, 46px); font-weight: 900; letter-spacing: -1px; }
+  .hero p { color: #d4edeb; max-width: 760px; font-size: 16px; }
+  .hero .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+  .hero .stat { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.16); border-radius: 16px; padding: 14px; }
+  .hero .stat b { display: block; font-size: 26px; font-weight: 900; }
+  .hero .stat span { font-size: 13px; color: #c7f6e8; }
+
+  /* Callouts & cards */
+  .note, .tip, .warn { border-radius: 14px; padding: 13px 16px; margin: 14px 0; font-size: 14px; border: 1px solid transparent; }
+  .note { background: var(--soft); color: var(--text); border-color: color-mix(in srgb, var(--primary) 30%, transparent); }
+  .tip { background: var(--surface-alt); border-color: var(--border); }
+  .warn { background: var(--warn-bg); color: var(--warn); }
+  .note b:first-child, .tip b:first-child, .warn b:first-child { margin-inline-end: 4px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .card { border: 1px solid var(--border); background: var(--surface-alt); border-radius: 16px; padding: 16px 18px; }
+  .card h4 { margin-top: 0; }
+  .card p:last-child { margin-bottom: 0; }
+  .pill { display: inline-block; font-size: 12px; font-weight: 800; border-radius: 99px; padding: 1px 10px; background: var(--soft); color: var(--primary-deep); margin-inline-end: 4px; }
+  .pill.get { background: #e3f2ff; color: #1b5fa6; } .pill.post { background: #fff0dc; color: #9a5b0b; }
+  .pill.auth { background: var(--danger-bg); color: var(--danger); }
+  details.code { border: 1px solid var(--border); border-radius: 14px; margin: 12px 0; background: var(--surface-alt); }
+  details.code summary { cursor: pointer; padding: 10px 14px; font-weight: 800; font-size: 14px; }
+  details.code pre { margin: 0 10px 10px; }
+  .tree { white-space: pre; }
+  figure { margin: 18px 0; }
+  figure svg { width: 100%; height: auto; display: block; }
+  figcaption { color: var(--muted); font-size: 13px; text-align: center; margin-top: 6px; }
+  .svg-box { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 16px; padding: 14px; }
+  .checklist { list-style: none; padding: 0; margin: 10px 0; }
+  .checklist li { padding: 6px 0 6px; border-bottom: 1px dashed var(--border); }
+  .checklist li::before { content: "◻"; color: var(--primary); margin-inline-end: 8px; }
+  ol.steps { padding-inline-start: 22px; }
+  ol.steps li { margin-bottom: 6px; }
+  .back-top { position: fixed; bottom: 20px; inset-inline-start: 20px; z-index: 30; }
+  .ltr { direction: ltr; unicode-bidi: isolate; }
+
+  @media (max-width: 980px) {
+    .shell { grid-template-columns: minmax(0, 1fr); }
+    nav.toc { display: none; position: fixed; inset-block: 64px 0; inset-inline-start: 0; width: min(320px, 86vw); max-height: none; background: var(--surface); border-inline-end: 1px solid var(--border); padding: 18px; z-index: 25; box-shadow: var(--shadow); }
+    nav.toc.open { display: block; }
+    .menu-btn { display: grid; }
+    .hero .stats, .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .shell { width: calc(100% - 32px); }
+    section.chapter { padding: 22px 18px; }
+    .hero { padding: 28px 20px; }
+    .grid-2, .grid-3 { grid-template-columns: minmax(0, 1fr); }
+    .topbar { padding: 10px 16px; gap: 8px; }
+    .search { width: auto; flex: 1; min-width: 0; }
+    .topbar .spacer { display: none; }
+    .brand { font-size: 17px; }
+    .brand span.sub { display: none; }
+    h2 { font-size: 22px; }
+  }
+  @media print {
+    .topbar, nav.toc, .back-top { display: none; }
+    .shell { display: block; width: auto; }
+    section.chapter { box-shadow: none; break-inside: avoid-page; }
+    details.code { display: block; } details.code > * { display: block; }
+  }
+
+  /* Backend guide additions */
+  .pill.patch { background: #efe7ff; color: #6a3fb5; } .pill.del { background: var(--danger-bg); color: var(--danger); }
+  :root[data-theme="dark"] .pill.get { background: #16334d; color: #9cc9f5; }
+  :root[data-theme="dark"] .pill.post { background: #3a2e16; color: #f2c77a; }
+  :root[data-theme="dark"] .pill.patch { background: #2c2347; color: #c8b3f5; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .pill.get { background: #16334d; color: #9cc9f5; }
+    :root:not([data-theme="light"]) .pill.post { background: #3a2e16; color: #f2c77a; }
+    :root:not([data-theme="light"]) .pill.patch { background: #2c2347; color: #c8b3f5; }
+  }
+  .flow { display: grid; gap: 0; margin: 18px 0; }
+  .flow-step { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 14px; align-items: start; }
+  .flow-step .dot { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; font-weight: 900; color: #fff; background: linear-gradient(140deg, #20c4ae, #008a98); }
+  .flow-step.server .dot { background: linear-gradient(140deg, #2d5d78, #103a4e); }
+  .flow-step .body { border: 1px solid var(--border); background: var(--surface-alt); border-radius: 14px; padding: 10px 14px; }
+  .flow-step .body b { font-size: 15px; }
+  .flow-step .body p { margin: 2px 0 0; font-size: 14px; color: var(--muted); }
+  .flow-arrow { width: 46px; text-align: center; color: var(--primary); font-weight: 900; line-height: 1.2; padding: 3px 0; }
+  .flow-arrow.back { color: #c7841f; }
+  .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .split > div > pre { margin-top: 6px; }
+  .label { font-size: 12px; font-weight: 900; color: var(--muted); }
+  :not(pre) > code { overflow-wrap: anywhere; }
+  .table-wrap td code { white-space: nowrap; overflow-wrap: normal; }
+  .table-wrap td.files code { white-space: normal; overflow-wrap: anywhere; }
+  .big-table td { font-size: 13.5px; }
+  @media (max-width: 640px) {
+    .split { grid-template-columns: minmax(0, 1fr); }
+    .table-wrap table { min-width: 560px; }
+    .table-wrap.big-table table { min-width: 820px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menuBtn" aria-label="فتح الفهرس" aria-expanded="false" aria-controls="toc">☰</button>
+  <div class="brand"><span class="brand-mark">س</span> سيرنا <span class="sub" style="color:var(--muted);font-size:14px;font-weight:700">· دليل الربط مع الباك</span></div>
+  <div class="spacer"></div>
+  <input class="search" id="search" type="search" placeholder="ابحث بالدليل… (مثال: 401، proxy، mapper)" aria-label="بحث بالدليل" />
+  <button class="icon-btn" id="themeBtn" aria-label="تبديل المظهر" title="تبديل المظهر">◐</button>
+</header>
+
+<div class="shell">
+  <nav class="toc" id="toc" aria-label="فهرس الدليل">
+    <ol id="tocList"></ol>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <span class="eyebrow" style="background:rgba(255,255,255,.12);color:#c7f6e8">لمطوّر الفرونت</span>
+      <h1>كيف موقع سيرنا بيحكي مع السيرفر</h1>
+      <p>إذا إنت قوي بالـ React وبالواجهات بس الباك لسا مو واضح عندك، هالدليل إلك. بيشرح من الصفر شو يعني API و HTTP و JWT، وبعدين بياخدك ملف ملف: وين انكتب عنوان السيرفر، وين تعرّف كل endpoint، مين بيستدعيه، كيف الرد بيتحوّل لبيانات بتفهمها الـ components، وشو بصير لما يرجع خطأ.</p>
+      <div class="stats">
+        <div class="stat"><b>13</b><span>endpoint بالـ Website API</span></div>
+        <div class="stat"><b>18</b><span>endpoint بالـ Dashboard API</span></div>
+        <div class="stat"><b>2</b><span>axios client منفصلين</span></div>
+        <div class="stat"><b>64</b><span>عيّنة رد حقيقية محفوظة</span></div>
+      </div>
+    </div>
+
+    <!-- 1 -->
+    <section class="chapter" id="start" data-title="اقرا هاد أول">
+      <span class="eyebrow">01</span>
+      <h2>اقرا هاد أول</h2>
+      <p class="lead">الفكرة الأهم بكل الدليل: <b>الفرونت ما بيعرف شي عن قاعدة البيانات.</b> هو بس بيبعت طلبات HTTP لعنوان، وبياخد JSON. كل شي تاني تفاصيل حول هالجملة.</p>
+      <p>السيرفر (الباك) مكتوب بـ <b>NestJS</b> ومرفوع على <code>sairna.abdulrahman-hares.com</code>. ما إلنا علاقة بكوده ولا بقاعدة بياناته. إلنا بس "الواجهة" اللي بيعرضها، يعني الـ <b>API</b>: قائمة عناوين (endpoints)، كل واحد بيقبل طلب معيّن وبيرجّع رد معيّن.</p>
+      <h3>الملفات الخمسة اللي لازم تعرفها</h3>
+      <p>إذا بدك تفهم الربط بربع ساعة، افتح هدول بالترتيب:</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>#</th><th>الملف</th><th>شو فيه</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><code>.env.development</code> و <code>.env.production</code></td><td>عنوان الـ API (الـ base URL) بكل بيئة</td></tr>
+          <tr><td>2</td><td><code>vite.config.js</code></td><td>الـ proxy: بيوصّل طلبات <code>/api</code> من جهازك للسيرفر الحقيقي وقت التطوير</td></tr>
+          <tr><td>3</td><td><code>src/api/client.js</code></td><td>نسخة axios وحدة بيمرق منها كل طلب. هون بينحط الـ token وبينمسك الـ 401</td></tr>
+          <tr><td>4</td><td><code>src/api/endpoints.js</code></td><td>كل مسارات الـ API بمكان واحد</td></tr>
+          <tr><td>5</td><td><code>src/services/*.service.js</code></td><td>دالة لكل endpoint: بتبعت الطلب وبترجّع البيانات بعد ما تمرّقها على الـ mapper</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note"><b>القاعدة الذهبية:</b> الـ components ما بتستورد axios ولا services أبداً. هي بتستعمل hooks بس (<code>useTrips</code>، <code>useLogin</code>…). هيك إذا تغيّر الباك، بتغيّر بالطبقات التحتانية وما بتلمس ولا component.</div>
+      <h3>مصادر الحقيقة عن الـ API</h3>
+      <ul>
+        <li><b>Swagger</b> (توثيق الباك الرسمي): <a class="ltr" href="https://sairna.abdulrahman-hares.com/api/docs/website">/api/docs/website</a> و <a class="ltr" href="https://sairna.abdulrahman-hares.com/api/docs/dashboard">/api/docs/dashboard</a>. بيقلك شو بتبعت، بس <b>ما بيقلك شو بيرجع</b>.</li>
+        <li><b><code>docs/api/API_NOTES.md</code></b> و <b><code>docs/api/ADMIN_API_NOTES.md</code></b>: كتبناهم نحنا بعد ما جرّبنا كل endpoint وشفنا الرد الحقيقي.</li>
+        <li><b><code>docs/api/samples/</code></b> (38 ملف) و <b><code>docs/api/dashboard-samples/</code></b> (26 ملف): الردود الحقيقية كما هي، بعد ما شلنا منها الـ tokens والبيانات الشخصية. إذا بدك تعرف شو بيرجع endpoint معيّن، افتح العيّنة تبعه.</li>
+      </ul>
+    </section>
+
+    <!-- 2 -->
+    <section class="chapter" id="basics" data-title="أساسيات الباك لمطوّر فرونت">
+      <span class="eyebrow">02</span>
+      <h2>أساسيات الباك لمطوّر فرونت</h2>
+      <p class="lead">هاد الحد الأدنى اللي لازم تعرفه لتقرا باقي الدليل. إذا بتعرفه، فوت عالفصل الجاي.</p>
+
+      <h3>شو هو طلب HTTP؟</h3>
+      <p>كل مرة الموقع بدو بيانات، بيبعت رسالة للسيرفر فيها 4 أجزاء:</p>
+<pre><span class="k">POST</span> /api/v1/website/auth/login          <span class="c">← 1. الـ method + 2. الـ URL (المسار)</span>
+Content-Type: application/json           <span class="c">← 3. الـ headers (معلومات إضافية)</span>
+Authorization: Bearer eyJhbGciOi...      <span class="c">   (هاد header الـ token، بس للطلبات المحمية)</span>
+
+{ <span class="s">"email"</span>: <span class="s">"a@b.com"</span>, <span class="s">"password"</span>: <span class="s">"12345678"</span> }   <span class="c">← 4. الـ body (البيانات المبعوتة، بالـ POST/PATCH بس)</span></pre>
+      <p>والسيرفر بيرد برسالة فيها <b>status code</b> (رقم بيقلك نجح ولا لأ) و <b>body</b> (عادةً JSON).</p>
+
+      <h3>الـ Methods</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Method</th><th>معناه</th><th>بيغيّر بيانات؟</th><th>مثال من سيرنا</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill get">GET</span></td><td>جيب لي شي</td><td>لأ، آمن تجرّبه قد ما بدك</td><td><code>GET /cities</code></td></tr>
+          <tr><td><span class="pill post">POST</span></td><td>اعمل شي جديد / نفّذ عملية</td><td>إي</td><td><code>POST /bookings</code> (حجز جديد)</td></tr>
+          <tr><td><span class="pill patch">PATCH</span></td><td>عدّل جزء من شي موجود</td><td>إي</td><td><code>PATCH /trips/5</code> (لوحة الإدارة بس)</td></tr>
+          <tr><td><span class="pill del">DELETE</span></td><td>احذف</td><td>إي</td><td><code>DELETE /companies/3</code> (بسيرنا هو أرشفة، مش حذف)</td></tr>
+        </tbody>
+      </table></div>
+      <div class="warn"><b>انتبه:</b> السيرفر مشترك وحقيقي. الـ GET ما بيضر، بس أي POST/PATCH/DELETE بيكتب بيانات حقيقية. حجز تجريبي بياخد مقعد فعلي لحتى تلغيه، وما في endpoint بيمحي شي نهائياً.</div>
+
+      <h3>أنواع البارامترات</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>النوع</th><th>شكله</th><th>مثال</th><th>بالكود</th></tr></thead>
+        <tbody>
+          <tr><td><b>Path param</b></td><td>جزء من المسار</td><td class="ltr"><code>/trips/<b>117</b>/seats</code></td><td><code>endpoints.tripSeats(117)</code></td></tr>
+          <tr><td><b>Query param</b></td><td>بعد <code>?</code></td><td class="ltr"><code>/trips?originId=2&amp;destinationId=1&amp;date=2026-11-14</code></td><td><code>client.get(url, { params: {...} })</code> وaxios بيبني الـ <code>?</code> لحاله</td></tr>
+          <tr><td><b>Body</b></td><td>JSON جوّا الطلب</td><td><code>{ tripId, seats: [...] }</code></td><td>تاني argument لـ <code>client.post(url, body)</code></td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>الـ Status codes اللي رح تشوفها بسيرنا</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Code</th><th>معناه</th><th>متى بيصير عنّا</th></tr></thead>
+        <tbody>
+          <tr><td><b>200</b></td><td>تمام</td><td>كل الـ GET الناجحة</td></tr>
+          <tr><td><b>201</b></td><td>تمام وانعمل شي</td><td>كل الـ POST الناجحة، حتى login و cancel</td></tr>
+          <tr><td><b>400</b></td><td>طلبك غلط</td><td>validation: إيميل مو صحيح، كلمة سر أقصر من 8، تاريخ بصيغة غلط</td></tr>
+          <tr><td><b>401</b></td><td>مين إنت؟</td><td>ما في token، أو الـ token منتهي، أو كلمة السر غلط بالـ login</td></tr>
+          <tr><td><b>403</b></td><td>بعرفك، بس ممنوع</td><td>مستخدم عادي عم يحاول يفوت على endpoint الإدارة</td></tr>
+          <tr><td><b>404</b></td><td>مو موجود</td><td>رحلة أو حجز برقم مو موجود</td></tr>
+          <tr><td><b>409</b></td><td>تعارض</td><td>المقعد انحجز قبلك، أو الإيميل مسجّل من قبل</td></tr>
+          <tr><td><b>5xx</b></td><td>مشكلة بالسيرفر</td><td>مو ذنبك. React Query بيعيد المحاولة مرة وحدة</td></tr>
+          <tr><td><b>بدون رد</b></td><td>ما وصلنا للسيرفر أصلاً</td><td>ما في إنترنت، أو timeout بعد 15 ثانية</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>شو هو JWT؟</h3>
+      <p>لما تسجّل دخول، السيرفر بيعطيك نص طويل اسمه <b>token</b> (من نوع JWT). هاد متل بطاقة دخول: بتحطه بكل طلب محمي بالـ header <code>Authorization: Bearer &lt;token&gt;</code>، والسيرفر بيعرف مين إنت من خلاله. السيرفر ما بيحفظ "جلسة"، الـ token نفسه هو الإثبات.</p>
+      <ul>
+        <li>الـ token بسيرنا صالح <b>7 أيام</b>. بعدها السيرفر بيرد بـ 401.</li>
+        <li>ما في endpoint لتجديده (refresh) ولا لتسجيل الخروج. "تسجيل الخروج" عنّا = نمحي الـ token من المتصفح.</li>
+        <li>الـ token مش سر مشفّر ضدك، بس هو مفتاح حسابك: ما بينطبع بالـ console وما بينحط بالكود.</li>
+      </ul>
+
+      <h3>شو هو CORS؟ وليش في proxy؟</h3>
+      <p>المتصفح، لأسباب أمان، بيمنع صفحة على <code>localhost:5173</code> تقرا رد من دومين تاني، إلا إذا السيرفر قال صراحةً "مسموح" بـ header اسمه <code>Access-Control-Allow-Origin</code>. هاد اسمه <b>CORS</b>.</p>
+      <p>سيرفر سيرنا بيرد بـ <code>Access-Control-Allow-Origin: *</code> (يعني مسموح للكل). بس احتياطاً، وقت التطوير منبعت الطلبات لنفس الدومين تبع Vite، و Vite بيوصّلها هو للسيرفر. هيك المتصفح ما بيشوف أي طلب "cross-origin" أصلاً. التفاصيل بـ <a href="#env">فصل العنوان والـ proxy</a>.</p>
+
+      <h3>شكل رد الخطأ بـ NestJS</h3>
+<pre>{ <span class="s">"message"</span>: <span class="s">"TRIP_NOT_FOUND"</span>, <span class="s">"error"</span>: <span class="s">"Not Found"</span>, <span class="s">"statusCode"</span>: 404 }
+{ <span class="s">"message"</span>: [<span class="s">"email must be an email"</span>, <span class="s">"password must be longer than or equal to 8 characters"</span>], <span class="s">"error"</span>: <span class="s">"Bad Request"</span>, <span class="s">"statusCode"</span>: 400 }</pre>
+      <p><code>message</code> مرة بيكون <b>نص</b> (كود متل <code>TRIP_NOT_FOUND</code>) ومرة <b>array</b> (رسائل validation بالإنكليزي). الملف <code>src/api/errors.js</code> بيتعامل مع الحالتين. شوف <a href="#errors">فصل الأخطاء</a>.</p>
+    </section>
+
+    <!-- 3 -->
+    <section class="chapter" id="journey" data-title="رحلة طلب واحد من الزر للسيرفر">
+      <span class="eyebrow">03</span>
+      <h2>رحلة طلب واحد من الزر للسيرفر</h2>
+      <p class="lead">خلينا نلحق طلب حقيقي: المستخدم فتح صفحة النتائج <code class="ltr">/results?originId=2&amp;destinationId=1&amp;date=2026-11-14</code>. شو بصير خطوة خطوة؟</p>
+
+      <div class="flow" role="list">
+        <div class="flow-step" role="listitem"><div class="dot">1</div><div class="body"><b>Page</b> · <code>src/pages/ResultsPage.jsx</code><p>بيقرا الـ search params من الـ URL عن طريق <code>useResultsParams()</code> وبيستدعي <code>useTrips(criteria)</code>. ما بيعرف شي عن HTTP.</p></div></div>
+        <div class="flow-arrow" aria-hidden="true">↓</div>
+        <div class="flow-step" role="listitem"><div class="dot">2</div><div class="body"><b>Hook (React Query)</b> · <code>src/hooks/queries/useTrips.js</code><p>بيسأل الـ cache: عندي بيانات للمفتاح <code class="ltr">['trips', {originId:2, destinationId:1, date}]</code>؟ إذا إي وطازة، بيرجّعها فوراً بدون طلب. إذا لأ، بيستدعي الـ service.</p></div></div>
+        <div class="flow-arrow" aria-hidden="true">↓</div>
+        <div class="flow-step" role="listitem"><div class="dot">3</div><div class="body"><b>Service</b> · <code>src/services/trips.service.js</code> → <code>getTrips()</code><p>بياخد المسار من <code>endpoints.trips()</code> وبيستدعي <code>client.get('/trips', { params })</code>.</p></div></div>
+        <div class="flow-arrow" aria-hidden="true">↓</div>
+        <div class="flow-step" role="listitem"><div class="dot">4</div><div class="body"><b>Axios client</b> · <code>src/api/client.js</code><p>بيلزق الـ baseURL قدّام المسار (<code class="ltr">/api/v1/website/trips?originId=2&amp;…</code>)، والـ request interceptor بيضيف الـ token إذا موجود.</p></div></div>
+        <div class="flow-arrow" aria-hidden="true">↓</div>
+        <div class="flow-step server" role="listitem"><div class="dot">5</div><div class="body"><b>Vite proxy</b> (وقت التطوير بس) · <code>vite.config.js</code><p>الطلب رايح لـ <code class="ltr">localhost:5173/api/…</code>. Vite بيشوف إنو بيبلّش بـ <code>/api</code> فبيحوّله لـ <code class="ltr">https://sairna.abdulrahman-hares.com/api/…</code>.</p></div></div>
+        <div class="flow-arrow" aria-hidden="true">↓</div>
+        <div class="flow-step server" role="listitem"><div class="dot">6</div><div class="body"><b>السيرفر (NestJS)</b><p>بيرجّع array من الرحلات بالشكل "الخام" تبعه: <code>departureAt</code> بتوقيت UTC، <code>company</code> و <code>origin</code> كـ objects جوّا الرحلة…</p></div></div>
+        <div class="flow-arrow back" aria-hidden="true">↑</div>
+        <div class="flow-step" role="listitem"><div class="dot">7</div><div class="body"><b>Mapper</b> · <code>src/api/mappers/trip.mapper.js</code><p>الـ service بيمرّق الرد على <code>mapTrips()</code>: بيحوّل الوقت لتوقيت دمشق، بيحسب المدة، بيضيف اللون واللوغو للشركة… والنتيجة "Trip model" ثابت الشكل.</p></div></div>
+        <div class="flow-arrow back" aria-hidden="true">↑</div>
+        <div class="flow-step" role="listitem"><div class="dot">8</div><div class="body"><b>React Query cache</b><p>بيخزّن النتيجة تحت المفتاح، وبيعطي الـ page كائن فيه <code>data</code>، <code>isPending</code>، <code>isError</code>، <code>refetch</code>…</p></div></div>
+        <div class="flow-arrow back" aria-hidden="true">↑</div>
+        <div class="flow-step" role="listitem"><div class="dot">9</div><div class="body"><b>Components</b> · <code>TripList</code> → <code>TripCard</code><p>بتعرض skeleton وقت التحميل، رسالة خطأ مع زر "حاول مرة ثانية"، أو الكروت. وبتتعامل مع <code>trip.departureTime</code> و <code>trip.company.name</code>، مش مع الحقول الخام.</p></div></div>
+      </div>
+
+      <h3>نفس الرحلة بالكود</h3>
+<pre><span class="c">// 1. src/pages/ResultsPage.jsx</span>
+<span class="k">const</span> tripsQuery = useTrips(criteria, { enabled: ready })
+
+<span class="c">// 2. src/hooks/queries/useTrips.js</span>
+<span class="k">export function</span> useTrips(criteria, { enabled = <span class="k">true</span> } = {}) {
+  <span class="k">const</span> { originId, destinationId, date } = criteria
+  <span class="k">return</span> useQuery({
+    queryKey: queryKeys.trips({ originId, destinationId, date }),
+    queryFn: () =&gt; getTrips({ originId, destinationId, date }),
+    enabled: enabled &amp;&amp; Boolean(originId &amp;&amp; destinationId &amp;&amp; date),
+    placeholderData: keepPreviousData,
+  })
+}
+
+<span class="c">// 3. src/services/trips.service.js</span>
+<span class="k">export async function</span> getTrips({ originId, destinationId, date }) {
+  <span class="k">const</span> { data } = <span class="k">await</span> client.get(endpoints.trips(), { params: { originId, destinationId, date } })
+  <span class="k">return</span> mapTrips(data)
+}</pre>
+      <div class="tip"><b>لاحظ:</b> كل طبقة إلها شغلة وحدة. الـ page ما بتعرف شو هو axios، الـ service ما بيعرف شو هو React، والـ mapper هو الوحيد اللي بيعرف أسماء الحقول الخام (<code>departureAt</code>، <code>occupiedSeats</code>…).</div>
+    </section>
+
+    <!-- 4 -->
+    <section class="chapter" id="env" data-title="عنوان السيرفر: env و proxy">
+      <span class="eyebrow">04</span>
+      <h2>عنوان السيرفر: env و proxy</h2>
+      <p class="lead">وين مكتوب "السيرفر موجود على هالعنوان"؟ بمكانين: ملفات الـ env، والـ proxy بـ Vite.</p>
+
+      <h3>ملفات الـ env</h3>
+      <p>Vite بيقرا ملف <code>.env.development</code> لما تشغّل <code>npm run dev</code>، و <code>.env.production</code> لما تعمل <code>npm run build</code>. أي متغيّر بيبلّش بـ <code>VITE_</code> بيصير متاح بالكود كـ <code>import.meta.env.VITE_...</code>.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>المتغيّر</th><th>Dev</th><th>Prod</th><th>مين بيستعمله</th></tr></thead>
+        <tbody>
+          <tr><td><code>VITE_API_BASE_URL</code></td><td class="ltr"><code>/api/v1/website</code></td><td class="ltr"><code>https://sairna.abdulrahman-hares.com/api/v1/website</code></td><td><code>src/api/client.js</code></td></tr>
+          <tr><td><code>VITE_ADMIN_API_BASE_URL</code></td><td class="ltr"><code>/api/v1/dashboard</code></td><td class="ltr"><code>https://sairna.abdulrahman-hares.com/api/v1/dashboard</code></td><td><code>src/admin/api/adminClient.js</code></td></tr>
+          <tr><td><code>VITE_API_PROXY_TARGET</code></td><td colspan="2">اختياري. وين يوصّل الـ proxy. الافتراضي هو السيرفر الحقيقي</td><td><code>vite.config.js</code></td></tr>
+        </tbody>
+      </table></div>
+      <div class="note"><b>ليش الـ dev نسبي والـ prod كامل؟</b> بالـ dev العنوان <code>/api/v1/website</code> نسبي، يعني الطلب رايح لنفس السيرفر يلي فاتح الصفحة (Vite)، و Vite بيوصّله. بالـ prod ما في Vite، فلازم العنوان الكامل.</div>
+      <div class="warn"><b>تنبيه:</b> كل شي بـ <code>VITE_*</code> بينحط جوّا ملفات الـ JS اللي بتنزل عند المستخدم. يعني ممنوع تحط فيه أي سر (كلمة سر، مفتاح API خاص). بسيرنا ما في أسرار بالفرونت أصلاً. الملفات <code>.env*.local</code> مستثناة من git، و <code>.env.example</code> بيوثّق المتغيّرات.</div>
+
+      <h3>الـ proxy بـ <code>vite.config.js</code></h3>
+<pre><span class="k">const</span> proxyTarget = env.VITE_API_PROXY_TARGET || <span class="s">'https://sairna.abdulrahman-hares.com'</span>
+...
+server: {
+  proxy: {
+    <span class="s">'/api'</span>: { target: proxyTarget, changeOrigin: <span class="k">true</span>, secure: <span class="k">true</span> },
+  },
+},</pre>
+      <ul>
+        <li><code>'/api'</code>: أي طلب مساره بيبلّش بـ <code>/api</code> بيتحوّل.</li>
+        <li><code>changeOrigin: true</code>: بيغيّر الـ header تبع <code>Host</code> لدومين السيرفر، لأن بعض السيرفرات بترفض طلب جاي بـ Host غلط.</li>
+        <li><code>secure: true</code>: بيتأكد من شهادة HTTPS تبع السيرفر.</li>
+      </ul>
+      <h4>تحوّل العنوان خطوة خطوة</h4>
+<pre><span class="c">// بالكود:</span>
+client.get(<span class="s">'/trips'</span>)
+<span class="c">// axios بيلزق الـ baseURL:</span>
+http://localhost:5173<span class="k">/api/v1/website</span>/trips
+<span class="c">// Vite proxy بيبدّل الدومين ويبعت:</span>
+https://sairna.abdulrahman-hares.com<span class="k">/api/v1/website</span>/trips</pre>
+      <div class="tip"><b>جرّبها:</b> شغّل <code>npm run dev</code> وافتح <code class="ltr">http://localhost:5173/api/v1/website/cities</code> بالمتصفح. رح تشوف JSON المدن جاي من السيرفر الحقيقي عن طريق الـ proxy.</div>
+
+      <h3>بالإنتاج (production)</h3>
+      <p>بعد <code>npm run build</code>، المجلد <code>dist/</code> فيه ملفات ثابتة بس، ما في Vite ولا proxy. الطلبات بتروح مباشرة على العنوان الكامل. هاد بيشتغل لأن السيرفر بيرد بـ <code>Access-Control-Allow-Origin: *</code> (تأكدنا منه بالـ Phase 0 وسجّلناه بـ <code>API_NOTES.md</code>). إذا يوماً السيرفر سكّر الـ CORS، الحلول:</p>
+      <ol class="steps">
+        <li>صاحب الباك بيضيف دومين موقعك للقائمة المسموحة، أو</li>
+        <li>تستضيف الموقع والـ API على نفس الدومين (reverse proxy بـ Nginx مثلاً) وترجّع <code>VITE_API_BASE_URL</code> نسبي.</li>
+      </ol>
+    </section>
+
+    <!-- 5 -->
+    <section class="chapter" id="client" data-title="الـ axios client والـ interceptors">
+      <span class="eyebrow">05</span>
+      <h2>الـ axios client والـ interceptors</h2>
+      <p class="lead"><code>src/api/client.js</code> هو الباب الوحيد اللي بيطلع منه أي طلب لموقع المسافرين. 31 سطر، وكل سطر إلو سبب.</p>
+<pre><span class="k">import</span> axios <span class="k">from</span> <span class="s">'axios'</span>
+<span class="k">import</span> { clearToken, getToken } <span class="k">from</span> <span class="s">'@/utils/storage'</span>
+<span class="k">import</span> { authEvents } <span class="k">from</span> <span class="s">'./authEvents'</span>
+<span class="k">import</span> { AUTH_FORM_PATHS } <span class="k">from</span> <span class="s">'./endpoints'</span>
+
+<span class="k">export const</span> client = axios.create({
+  baseURL: <span class="k">import</span>.meta.env.VITE_API_BASE_URL,   <span class="c">// من ملف الـ env</span>
+  timeout: 15000,                                 <span class="c">// إذا السيرفر ما رد بـ 15 ثانية → خطأ</span>
+})
+
+<span class="c">// (A) قبل ما يطلع أي طلب: حط الـ token إذا موجود</span>
+client.interceptors.request.use((config) =&gt; {
+  <span class="k">const</span> token = getToken()
+  <span class="k">if</span> (token) config.headers.Authorization = <span class="s">`Bearer ${token}`</span>
+  <span class="k">return</span> config
+})
+
+<span class="c">// (B) بعد ما يرجع الرد: إذا 401 والطلب كان فيه token → الجلسة انتهت</span>
+client.interceptors.response.use(
+  (response) =&gt; response,
+  (error) =&gt; {
+    <span class="k">const</span> status = error.response?.status
+    <span class="k">const</span> url = error.config?.url ?? <span class="s">''</span>
+    <span class="k">const</span> hadToken = Boolean(error.config?.headers?.Authorization)
+    <span class="k">if</span> (status === 401 &amp;&amp; hadToken &amp;&amp; !AUTH_FORM_PATHS.includes(url)) {
+      clearToken()
+      authEvents.emit(<span class="s">'unauthorized'</span>)
+    }
+    <span class="k">return</span> Promise.reject(error)   <span class="c">// الخطأ بيكمّل لعند React Query</span>
+  },
+)</pre>
+
+      <h3>شو هو الـ interceptor؟</h3>
+      <p>دالة بتمرق عليها كل الطلبات (أو كل الردود) قبل ما توصل لوجهتها. بدل ما تكتب <code>headers: { Authorization }</code> بـ 13 مكان، بتكتبها مرة وحدة هون.</p>
+
+      <h3>ليش الشروط الثلاثة بالـ 401؟</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>الشرط</th><th>ليش</th></tr></thead>
+        <tbody>
+          <tr><td><code>status === 401</code></td><td>السيرفر ما قبل الـ token</td></tr>
+          <tr><td><code>hadToken</code></td><td>إذا الطلب أصلاً ما كان فيه token، ما في جلسة لننهيها</td></tr>
+          <tr><td><code>!AUTH_FORM_PATHS.includes(url)</code></td><td>401 من <code>/auth/login</code> معناه "كلمة السر غلط"، مش "انتهت الجلسة". هاد بيتعرض كخطأ بالفورم بس</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>ليش <code>authEvents</code> وما منستعمل React مباشرة؟</h3>
+      <p><code>client.js</code> ملف JavaScript عادي، مش component، فما فيه يستعمل hooks ولا <code>navigate</code>. فبيبعت "إشارة" عن طريق event emitter صغير (<code>src/api/authEvents.js</code>، 13 سطر)، و <code>AuthContext</code> (اللي هو React) عم يسمع لهالإشارة وبيتصرّف: بيمحي بيانات المستخدم من الـ cache وبيعرض toast <q>انتهت الجلسة، سجّل دخولك من جديد.</q></p>
+<pre><span class="c">// src/api/authEvents.js — الفكرة كلها</span>
+authEvents.on(<span class="s">'unauthorized'</span>, handler)   <span class="c">// AuthContext بيشترك</span>
+authEvents.emit(<span class="s">'unauthorized'</span>)          <span class="c">// client.js بيبعت</span></pre>
+
+      <h3>وين بينحفظ الـ token؟ (<code>src/utils/storage.js</code>)</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>الحالة</th><th>وين</th><th>بيضل لإيمتى</th></tr></thead>
+        <tbody>
+          <tr><td>Login مع "تذكرني"</td><td><code>localStorage</code>، المفتاح <code>sairna-token</code></td><td>لحتى يخلص الـ token (7 أيام) أو تسجيل خروج</td></tr>
+          <tr><td>Login بدون "تذكرني"</td><td><code>sessionStorage</code></td><td>لحتى تسكّر التاب</td></tr>
+          <tr><td>Register</td><td><code>localStorage</code> (كأنو "تذكرني")</td><td>متل الأول</td></tr>
+        </tbody>
+      </table></div>
+      <p><code>getToken()</code> بيدوّر بالـ <code>sessionStorage</code> أول، بعدين بالـ <code>localStorage</code>. و <code>clearToken()</code> بيمحي من الاتنين. كل القراءة والكتابة جوّا <code>try/catch</code> لأن الـ storage ممكن يرمي خطأ بالـ private mode.</p>
+      <div class="note"><b>شو ما منحفظ:</b> كلمة السر أبداً، ولا كائن المستخدم. المستخدم دايماً بيجي من <code>GET /auth/me</code>. الـ token لحاله هو اللي بينحفظ.</div>
+    </section>
+
+    <!-- 6 -->
+    <section class="chapter" id="map" data-title="خريطة الـ endpoints: وين كل واحد مربوط">
+      <span class="eyebrow">06</span>
+      <h2>خريطة الـ endpoints: وين كل واحد مربوط</h2>
+      <p class="lead">هاد الجدول اللي رح ترجعله أكتر شي. لكل endpoint بالـ Website API: المسار بـ <code>endpoints.js</code>، دالة الـ service، الـ hook، ومين بيستعمله.</p>
+      <p>المسارات نسبية لـ <code class="ltr">/api/v1/website</code>. 🔒 = بدو token.</p>
+      <div class="table-wrap big-table"><table>
+        <thead><tr><th>#</th><th>Endpoint</th><th><code>endpoints.*</code></th><th>Service</th><th>Hook</th><th>مين بيستعمله</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><span class="pill post">POST</span><code>/auth/register</code></td><td><code>register()</code></td><td><code>auth.service → register</code></td><td><code>useRegister</code></td><td class="files"><code>components/auth/RegisterForm.jsx</code></td></tr>
+          <tr><td>2</td><td><span class="pill post">POST</span><code>/auth/login</code></td><td><code>login()</code></td><td><code>auth.service → login</code></td><td><code>useLogin</code></td><td class="files"><code>components/auth/LoginForm.jsx</code> (و <code>useRegister</code> كـ fallback)</td></tr>
+          <tr><td>3</td><td><span class="pill get">GET</span><code>/auth/me</code> 🔒</td><td><code>me()</code></td><td><code>auth.service → getMe</code></td><td><code>useMe</code></td><td class="files"><code>context/AuthContext.jsx</code>. ومنه كل شي بيستعمل <code>useAuth()</code> (Header، Account، الحماية)</td></tr>
+          <tr><td>4</td><td><span class="pill get">GET</span><code>/cities</code></td><td><code>cities()</code></td><td><code>cities.service → getCities</code></td><td><code>useCities</code></td><td class="files"><code>HomePage</code>، <code>useTripSearch</code> (SearchShell، DestinationsSection، Results)، <code>useResultsParams</code></td></tr>
+          <tr><td>5</td><td><span class="pill get">GET</span><code>/companies</code></td><td><code>companies()</code></td><td><code>companies.service → getCompanies</code></td><td><code>useCompanies</code></td><td class="files"><code>HomePage</code> (عدد الشركات)، <code>useResultsParams</code> (CompanyPicker والفلاتر)، <code>CompaniesPage</code></td></tr>
+          <tr><td>6</td><td><span class="pill get">GET</span><code>/companies/{id}</code></td><td><code>company(id)</code></td><td><code>companies.service → getCompany</code></td><td><code>useCompany</code></td><td>جاهز بس <b>مش مستعمل حالياً</b>. القائمة فيها كل المعلومات</td></tr>
+          <tr><td>7</td><td><span class="pill get">GET</span><code>/trips</code></td><td><code>trips()</code></td><td><code>trips.service → getTrips</code></td><td><code>useTrips</code> و <code>useAllTrips</code></td><td class="files"><code>ResultsPage</code> (مع فلاتر)، <code>CompaniesPage</code> (بدون فلاتر، لإحصائيات كل شركة)</td></tr>
+          <tr><td>8</td><td><span class="pill get">GET</span><code>/trips/{id}</code></td><td><code>trip(id)</code></td><td><code>trips.service → getTrip</code></td><td><code>useTrip</code></td><td class="files"><code>BookingPage</code> (الملخّص وعدد المقاعد المتاحة)</td></tr>
+          <tr><td>9</td><td><span class="pill get">GET</span><code>/trips/{id}/seats</code></td><td><code>tripSeats(id)</code></td><td><code>trips.service → getTripSeats</code></td><td><code>useTripSeats</code></td><td class="files"><code>components/booking/BookingFlow.jsx</code> → <code>SeatStage</code> → <code>SeatMap</code></td></tr>
+          <tr><td>10</td><td><span class="pill post">POST</span><code>/bookings</code> 🔒</td><td><code>bookings()</code></td><td><code>bookings.service → createBooking</code></td><td><code>useCreateBooking</code></td><td class="files"><code>BookingFlow.jsx</code> (زر تأكيد الحجز)</td></tr>
+          <tr><td>11</td><td><span class="pill get">GET</span><code>/bookings/me</code> 🔒</td><td><code>myBookings()</code></td><td><code>bookings.service → getMyBookings</code></td><td><code>useMyBookings</code></td><td class="files"><code>MyTripsPage</code>، <code>AccountPage</code> (العدد)، <code>TrackingPage</code> (الحجز الأقرب)</td></tr>
+          <tr><td>12</td><td><span class="pill get">GET</span><code>/bookings/{id}</code> 🔒</td><td><code>booking(id)</code></td><td><code>bookings.service → getBooking</code></td><td><code>useBooking</code></td><td class="files"><code>BookingSuccessPage</code>، <code>TrackingPage</code></td></tr>
+          <tr><td>13</td><td><span class="pill post">POST</span><code>/bookings/{id}/cancel</code> 🔒</td><td><code>cancelBooking(id)</code></td><td><code>bookings.service → cancelBooking</code></td><td><code>useCancelBooking</code></td><td class="files"><code>useBookingActions</code> → <code>MyTripsPage</code> و <code>TicketModal</code></td></tr>
+        </tbody>
+      </table></div>
+      <h3>وين ملفات كل طبقة</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>الطبقة</th><th>الملفات</th></tr></thead>
+        <tbody>
+          <tr><td>المسارات</td><td class="files"><code>src/api/endpoints.js</code></td></tr>
+          <tr><td>Services</td><td class="files"><code>src/services/auth.service.js</code>، <code>cities.service.js</code>، <code>companies.service.js</code>، <code>trips.service.js</code>، <code>bookings.service.js</code></td></tr>
+          <tr><td>Mappers</td><td class="files"><code>src/api/mappers/</code>: <code>user</code>، <code>city</code>، <code>company</code>، <code>trip</code>، <code>seat</code>، <code>booking</code></td></tr>
+          <tr><td>Query hooks</td><td class="files"><code>src/hooks/queries/useCatalog.js</code> (مدن وشركات)، <code>useTrips.js</code> (رحلات ومقاعد)، <code>useAuthQueries.js</code> (me وحجوزات)</td></tr>
+          <tr><td>Mutation hooks</td><td class="files"><code>src/hooks/mutations/useAuthMutations.js</code> (login/register)، <code>useBookingMutations.js</code> (حجز/إلغاء)</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tip"><b>كيف تلاقي مين بيستعمل endpoint؟</b> بـ VS Code اعمل بحث (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd>) عن اسم الـ hook، مثلاً <code>useMyBookings(</code>. أو كبسة يمين على اسم الدالة ← <b>Find All References</b>.</div>
+    </section>
+
+    <!-- 7 -->
+    <section class="chapter" id="services" data-title="الـ Services">
+      <span class="eyebrow">07</span>
+      <h2>الـ Services</h2>
+      <p class="lead">Service = دالة <code>async</code> عادية. بتبعت طلب واحد، وبترجّع بيانات "نظيفة". ما فيها React، ولا state، ولا toast.</p>
+<pre><span class="c">// src/services/bookings.service.js</span>
+<span class="k">export async function</span> getMyBookings() {
+  <span class="k">const</span> { data } = <span class="k">await</span> client.get(endpoints.myBookings())  <span class="c">// GET /bookings/me (الـ token بيتحط تلقائياً)</span>
+  <span class="k">return</span> mapBookings(data)                                    <span class="c">// خام ← Booking[]</span>
+}
+
+<span class="k">export async function</span> cancelBooking(id) {
+  <span class="k">const</span> { data } = <span class="k">await</span> client.post(endpoints.cancelBooking(id))  <span class="c">// POST بدون body</span>
+  <span class="k">return</span> { id: Number(data?.id ?? id), status: data?.status ?? <span class="s">'CANCELLED'</span> }
+}</pre>
+      <h3>شو بيعمل الـ service زيادة على الطلب؟</h3>
+      <ul>
+        <li><b>بيحضّر الـ body</b>: مثلاً <code>login</code> بيعمل <code>email.trim().toLowerCase()</code> قبل ما يبعت، و <code>createBooking</code> بيحوّل كل الأرقام لـ <code>Number</code> وبيعمل <code>trim</code> للأسماء والأرقام.</li>
+        <li><b>بيقرّر شو يبعت</b>: <code>getTrips</code> عن قصد <b>ما بيبعت <code>companyId</code></b> حتى لو المستخدم اختار شركة. منجيب كل رحلات الخط ومنفلتر بالمتصفح، لحتى نقدر نعرض عدد الرحلات لكل شركة بالفلاتر.</li>
+        <li><b>بيمرّق الرد على mapper</b>: ما في service بيرجّع <code>data</code> الخام.</li>
+      </ul>
+      <h3>شو ما بيعمل؟</h3>
+      <ul>
+        <li>ما بيمسك الأخطاء (<code>try/catch</code>). الخطأ بيطلع لفوق لعند React Query، واللي بيعرضه هو الـ hook أو الـ component.</li>
+        <li>ما بيعرض رسائل، وما بيعمل navigate.</li>
+      </ul>
+      <div class="note"><b>ليش هالفصل بين الطبقات؟</b> لأنك فيك تستدعي <code>getMyBookings()</code> من أي مكان (hook، test، سكربت) وبتاخد نفس النتيجة. والـ service سهل تقراه: كل دالة 3–5 أسطر.</div>
+    </section>
+
+    <!-- 8 -->
+    <section class="chapter" id="mappers" data-title="الـ Mappers: ترجمة رد السيرفر">
+      <span class="eyebrow">08</span>
+      <h2>الـ Mappers: ترجمة رد السيرفر</h2>
+      <p class="lead">الـ mapper دالة "نقية" (pure function): بتاخد الـ JSON الخام وبترجّع object بالشكل اللي الواجهة بدها ياه. <b>هو المكان الوحيد بالمشروع اللي بيعرف أسماء حقول الباك.</b></p>
+      <h3>ليش ما منستعمل الرد كما هو؟</h3>
+      <ol class="steps">
+        <li><b>الباك بيتغيّر.</b> إذا بكرا صار اسم الحقل <code>departure_time</code> بدل <code>departureAt</code>، بتعدّل سطر واحد بالـ mapper بدل 20 component.</li>
+        <li><b>الرد مو جاهز للعرض.</b> الأوقات بـ UTC، المدة مش موجودة، الشركة ما إلها لون…</li>
+        <li><b>الحقول ممكن تكون ناقصة أو <code>null</code>.</b> الـ mapper بيتحمّل هالشي وبيعطي قيمة واضحة (<code>null</code>) بدل ما الواجهة تنكسر.</li>
+      </ol>
+      <h3>مثال: رحلة قبل وبعد</h3>
+      <div class="split">
+        <div><span class="label">الخام من السيرفر (<code>samples/trip-detail.json</code>)</span>
+<pre>{
+  <span class="s">"id"</span>: 1,
+  <span class="s">"code"</span>: <span class="s">"DEMO-2026-11-05-1"</span>,
+  <span class="s">"companyId"</span>: 1, <span class="s">"originId"</span>: 2, <span class="s">"destinationId"</span>: 1,
+  <span class="s">"departureAt"</span>: <span class="s">"2026-11-05T07:00:00.000Z"</span>,
+  <span class="s">"arrivalAt"</span>:   <span class="s">"2026-11-05T13:00:00.000Z"</span>,
+  <span class="s">"price"</span>: 145000,
+  <span class="s">"totalSeats"</span>: 40,
+  <span class="s">"status"</span>: <span class="s">"AVAILABLE"</span>,
+  <span class="s">"company"</span>: { <span class="s">"id"</span>: 1, <span class="s">"name"</span>: <span class="s">"الشام للنقل (تجريبي)"</span>, <span class="s">"logoUrl"</span>: null },
+  <span class="s">"origin"</span>: { <span class="s">"id"</span>: 2, <span class="s">"name"</span>: <span class="s">"حلب"</span>, <span class="s">"latitude"</span>: 36.2021, ... },
+  <span class="s">"destination"</span>: { ... },
+  <span class="s">"_count"</span>: { <span class="s">"bookingSeats"</span>: 0 },
+  <span class="s">"availableSeats"</span>: 40
+}</pre></div>
+        <div><span class="label">بعد <code>mapTrip()</code> (اللي بتشوفه الـ components)</span>
+<pre>{
+  id: 1,
+  code: <span class="s">'DEMO-2026-11-05-1'</span>,
+  origin:      { id: 2, name: <span class="s">'حلب'</span>, slug: <span class="s">'aleppo'</span>, lat, lng },
+  destination: { id: 1, name: <span class="s">'دمشق'</span>, ... },
+  company: { id: 1, name: <span class="s">'الشام للنقل'</span>, isDemo: <span class="k">true</span>,
+             initial: <span class="s">'ش'</span>, color: <span class="s">'#109d9c'</span>, bg: <span class="s">'#e7f9f6'</span>,
+             tag: <span class="s">'شركة تجريبية'</span>, rating: <span class="k">null</span>, ... },
+  date: <span class="s">'2026-11-05'</span>,          <span class="c">// بتوقيت دمشق</span>
+  departureTime: <span class="s">'10:00'</span>,      <span class="c">// 07:00Z + 3 ساعات</span>
+  arrivalTime: <span class="s">'16:00'</span>,
+  durationMinutes: 360,        <span class="c">// محسوبة</span>
+  price: 145000,
+  availableSeats: 40, totalSeats: 40,
+  distanceKm: <span class="k">null</span>,            <span class="c">// الـ API ما بيعطيها</span>
+  estimatedKm: 366,            <span class="c">// تقدير من الإحداثيات</span>
+  status: <span class="s">'AVAILABLE'</span>,
+  isBookable: <span class="k">true</span>,
+}</pre></div>
+      </div>
+
+      <h3>قرارات كل mapper</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Mapper</th><th>الخام</th><th>شو بيعمل</th></tr></thead>
+        <tbody>
+          <tr><td><code>city.mapper</code></td><td><code>{ id, name, latitude, longitude }</code></td><td><code>latitude</code> ← <code>lat</code>. بيضيف <code>slug</code> إنكليزي من <code>data/cityGeo.js</code> (لصور المدن). إذا الإحداثيات ناقصة، بياخدها من الجدول نفسه.</td></tr>
+          <tr><td><code>company.mapper</code></td><td><code>{ id, name, logoUrl, isActive }</code></td><td>بيشيل اللاحقة <code>" (تجريبي)"</code> من الاسم وبيحوّلها لـ tag. بيعطي لون من <code>companyPalette</code> حسب الـ id. <code>rating</code> و <code>features</code> و <code>about</code> مش موجودين بالـ API → <code>null</code> / <code>[]</code> (والواجهة بتخبّيهم). <code>mapCompanies</code> بيشيل الشركات المؤرشفة.</td></tr>
+          <tr><td><code>trip.mapper</code></td><td>شوف فوق</td><td>بيحوّل الأوقات لـ <b>Asia/Damascus</b> عن طريق <code>toDamascusDateTime()</code> بـ <code>utils/date.js</code>. بيحسب المدة من الفرق. ما في مسافة بالـ API، فـ <code>estimatedKm</code> تقديرية والواجهة بتكتب قبلها <code>~</code>.</td></tr>
+          <tr><td><code>seat.mapper</code></td><td><code>{ totalSeats, occupiedSeats: [7, 8], availableSeats }</code></td><td>السيرفر بيعطي بس أرقام المقاعد المحجوزة. الـ mapper بيبني array كاملة: <code>[{ number: 1, status: 'available' }, …]</code>. ما في layout بالـ API، فالتوزيع الافتراضي 4 بكل صف (2 + ممر + 2).</td></tr>
+          <tr><td><code>booking.mapper</code></td><td><code>{ id, code, status, totalPrice, trip, seats[] }</code></td><td><code>totalPrice</code> ← <code>total</code>. بيرتّب المقاعد. <code>isCancelled</code> = <code>status === 'CANCELLED'</code>. بيمرّق <code>trip</code> على <code>mapTrip</code>.</td></tr>
+          <tr><td><code>user.mapper</code></td><td><code>{ accessToken, tokenType, user }</code></td><td><code>mapAuthResponse</code> بيرجّع <code>{ token, user }</code>. بيقبل <code>accessToken</code> أو <code>token</code>.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="warn"><b>القاعدة:</b> الـ mapper بيكمّل الشكل، بس <b>ما بيخترع بيانات</b>. ما في سعر وهمي ولا تقييم وهمي ولا مقاعد وهمية. إذا حقل مش موجود، بيرجع <code>null</code> والواجهة بتخبّي العنصر. المسموح بس الحساب من بيانات حقيقية (المدة = الوصول − الانطلاق).</div>
+      <div class="note"><b>شي بيفاجئ:</b> بعد إلغاء حجز، السيرفر بيرجّع <code>seats: []</code>. يعني أرقام المقاعد وأسماء الركّاب بتضيع. الواجهة بتعرض <code>—</code> مكانها. هاد قيد بالباك ومسجّل بـ <code>API_NOTES.md</code>.</div>
+    </section>
+
+    <!-- 9 -->
+    <section class="chapter" id="query" data-title="React Query: الـ cache والـ queries">
+      <span class="eyebrow">09</span>
+      <h2>React Query: الـ cache والـ queries</h2>
+      <p class="lead">بدل <code>useEffect</code> + <code>useState</code> + <code>fetch</code> بكل component، React Query بيدير كل "بيانات السيرفر": التحميل، الأخطاء، الـ cache، إعادة المحاولة، والتحديث.</p>
+
+      <h3>ليش مش <code>useEffect</code> عادي؟</h3>
+<pre><span class="c">// الطريقة اليدوية: لازم تكررها بكل مكان، وما فيها cache</span>
+<span class="k">const</span> [data, setData] = useState(<span class="k">null</span>)
+<span class="k">const</span> [loading, setLoading] = useState(<span class="k">true</span>)
+<span class="k">const</span> [error, setError] = useState(<span class="k">null</span>)
+useEffect(() =&gt; { getCities().then(setData).catch(setError).finally(() =&gt; setLoading(<span class="k">false</span>)) }, [])
+
+<span class="c">// مع React Query: سطر واحد، و 3 components بيطلبوا المدن = طلب واحد بس</span>
+<span class="k">const</span> { data, isPending, isError, refetch } = useCities()</pre>
+
+      <h3>الإعدادات العامة (<code>src/api/queryClient.js</code>)</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>الخيار</th><th>القيمة</th><th>شو يعني</th></tr></thead>
+        <tbody>
+          <tr><td><code>staleTime</code></td><td>60 ثانية</td><td>البيانات بتعتبر "طازة" دقيقة. خلال هالدقيقة، أي component بيطلبها بياخدها من الـ cache بدون طلب جديد</td></tr>
+          <tr><td><code>refetchOnWindowFocus</code></td><td><code>false</code></td><td>لما ترجع عالتاب، ما بيعيد يجيب كل شي (إلا المقاعد، شوف تحت)</td></tr>
+          <tr><td><code>retry</code></td><td>مرة وحدة، بس مش للـ 4xx</td><td>إذا السيرفر ما رد أو رجّع 500، بيجرّب كمان مرة. بس 404 أو 401 ما في داعي، رح يفشل مرة تانية</td></tr>
+          <tr><td><code>mutations.retry</code></td><td><code>false</code></td><td>ما منعيد أي كتابة تلقائياً، لأن هيك ممكن ينعمل حجزين</td></tr>
+        </tbody>
+      </table></div>
+      <div class="note"><b>ليش الـ retry مهم عنّا؟</b> بوقت الاختبار لاحظنا إنو السيرفر أحياناً ما بيرد على الاتصال (تقريباً طلب من كل 4). الـ retry الواحد بيخفي هالمشكلة عن المستخدم بأغلب الحالات.</div>
+
+      <h3>الـ Query keys (<code>src/api/queryKeys.js</code>)</h3>
+      <p>كل بيانات بالـ cache إلها "مفتاح" (array). نفس المفتاح = نفس البيانات. المفاتيح كلها بمكان واحد لحتى ما تغلط بكتابتها:</p>
+<pre>cities:     [<span class="s">'cities'</span>]
+companies:  [<span class="s">'companies'</span>]
+trips:      [<span class="s">'trips'</span>, { originId, destinationId, date }]   <span class="c">← بحث مختلف = مفتاح مختلف = cache منفصل</span>
+trip:       [<span class="s">'trips'</span>, <span class="s">'detail'</span>, id]
+tripSeats:  [<span class="s">'trips'</span>, <span class="s">'detail'</span>, id, <span class="s">'seats'</span>]
+me:         [<span class="s">'auth'</span>, <span class="s">'me'</span>]
+myBookings: [<span class="s">'bookings'</span>, <span class="s">'me'</span>]
+booking:    [<span class="s">'bookings'</span>, <span class="s">'detail'</span>, id]</pre>
+      <div class="tip"><b>ليش الترتيب الهرمي؟</b> لأنو <code>invalidateQueries({ queryKey: ['trips'] })</code> بيبطّل <b>كل</b> شي بيبلّش بـ <code>'trips'</code>: نتائج البحث، تفاصيل الرحلات، والمقاعد. بعد الحجز منستعمل هالحركة لنحدّث كلشي متعلّق بالرحلات بسطر واحد.</div>
+
+      <h3>خيارات كل hook وليش</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Hook</th><th>الخيار الخاص</th><th>السبب</th></tr></thead>
+        <tbody>
+          <tr><td><code>useCities</code>، <code>useCompanies</code></td><td><code>staleTime: 1h</code></td><td>المدن والشركات نادراً بتتغيّر</td></tr>
+          <tr><td><code>useTrips</code></td><td><code>enabled</code> بس إذا المعايير كاملة. <code>placeholderData: keepPreviousData</code></td><td>ما منبعت طلب ناقص. ولما تغيّر التاريخ، النتائج القديمة بتضل ظاهرة لحتى توصل الجديدة، بدل ما تومض الصفحة فاضية</td></tr>
+          <tr><td><code>useTripSeats</code></td><td><code>staleTime: 0</code>، <code>refetchOnWindowFocus: true</code>، <code>refetchInterval: 30s</code> وقت خطوة المقاعد</td><td>المقاعد بتتغيّر كل لحظة لأنو في ناس تانيين عم يحجزوا. منحدّثها كل 30 ثانية لنشوف المقاعد اللي انحجزت</td></tr>
+          <tr><td><code>useMe</code></td><td><code>enabled: hasToken</code>، <code>retry: false</code></td><td>بدون token ما في معنى للطلب. وإذا رجع 401، ما منعيد</td></tr>
+          <tr><td><code>useMyBookings</code></td><td><code>enabled: isAuthenticated</code></td><td>الزائر ما عنده حجوزات</td></tr>
+          <tr><td><code>useBooking</code></td><td><code>initialData</code> من cache الـ <code>myBookings</code></td><td>إذا جاي من "حجوزاتي"، الحجز موجود أصلاً بالقائمة، فبيظهر فوراً</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>شو بيرجّع الـ hook وكيف منستعمله</h3>
+<pre><span class="k">const</span> query = useMyBookings()
+query.data        <span class="c">// Booking[] بعد الـ mapper، أو undefined بالأول</span>
+query.isPending   <span class="c">// لسا ما وصلت بيانات → skeleton</span>
+query.isError     <span class="c">// فشل → رسالة + زر</span>
+query.error       <span class="c">// كائن خطأ axios → getErrorMessage(query.error)</span>
+query.refetch()   <span class="c">// زر "حاول مرة ثانية"</span>
+query.isFetching  <span class="c">// عم يجيب بالخلفية (حتى لو في data قديمة)</span></pre>
+      <p>المكوّن <code>components/common/QueryState.jsx</code> بيلفّ هالحالات الثلاثة (تحميل / خطأ / فاضي) لحتى ما تتكرر بكل صفحة.</p>
+    </section>
+
+    <!-- 10 -->
+    <section class="chapter" id="mutations" data-title="الـ Mutations: لما نكتب على السيرفر">
+      <span class="eyebrow">10</span>
+      <h2>الـ Mutations: لما نكتب على السيرفر</h2>
+      <p class="lead">Query = قراءة (GET) وبتشتغل لحالها. Mutation = كتابة (POST/PATCH/DELETE) وما بتشتغل إلا لما تستدعي <code>mutate()</code>.</p>
+
+      <h3>إنشاء حجز: من الزر للسيرفر</h3>
+      <p>الحجز هو أهم عملية كتابة بالموقع. خلينا نلحقها:</p>
+      <h4>1. بناء الـ payload (<code>components/booking/BookingFlow.jsx</code>)</h4>
+      <p>المستخدم اختار مقاعد وعبّى أسماء. بالخطوة الأخيرة، إذا مسجّل دخول:</p>
+<pre>createBooking.mutate({
+  tripId: trip.id,
+  seats: flow.seatsSorted.map((seatNumber, i) =&gt; ({
+    seatNumber,
+    passengerName: flow.passengers[i].name.trim(),
+    passengerPhone: flow.passengers[i].phone.trim(),
+  })),
+})</pre>
+      <p>إذا <b>مش</b> مسجّل دخول، ما منبعت شي: toast <q>سجّل دخولك أولاً لإتمام الحجز.</q> ومنروح على <code>/login</code> مع <code>state.from</code>. المسودّة محفوظة بالـ <code>sessionStorage</code>، فبعد الدخول بيرجع لنفس خطوة المراجعة.</p>
+      <h4>2. الطلب اللي بيطلع فعلياً</h4>
+<pre><span class="k">POST</span> /api/v1/website/bookings
+Authorization: Bearer eyJ...
+Content-Type: application/json
+
+{ <span class="s">"tripId"</span>: 117,
+  <span class="s">"seats"</span>: [ { <span class="s">"seatNumber"</span>: 5, <span class="s">"passengerName"</span>: <span class="s">"سامر"</span>, <span class="s">"passengerPhone"</span>: <span class="s">"0999999999"</span> },
+             { <span class="s">"seatNumber"</span>: 6, <span class="s">"passengerName"</span>: <span class="s">"ريم"</span>,  <span class="s">"passengerPhone"</span>: <span class="s">"0988888888"</span> } ] }</pre>
+      <div class="note"><b>قواعد الباك اللي لازم تحترمها:</b> من 1 لـ 4 مقاعد. الهاتف لازم يطابق <code class="ltr">/^[+0-9\s-]{9,18}$/</code>. نفس القاعدة موجودة بالفرونت (<code>utils/validation.js</code>) لحتى نمسك الخطأ قبل ما نبعت.</div>
+      <h4>3. شو بصير بعد الرد (<code>hooks/mutations/useBookingMutations.js</code>)</h4>
+<pre>onSuccess: (booking) =&gt; {
+  queryClient.setQueryData(queryKeys.booking(booking.id), booking)   <span class="c">// صفحة النجاح بتظهر فوراً</span>
+  queryClient.invalidateQueries({ queryKey: queryKeys.myBookings() }) <span class="c">// "حجوزاتي" لازم تتحدّث</span>
+  queryClient.invalidateQueries({ queryKey: queryKeys.allTrips() })   <span class="c">// المقاعد المتاحة تغيّرت</span>
+  onSuccessCleanup?.()                                                <span class="c">// محي المسودّة</span>
+  navigate(<span class="s">`/booking/success/${booking.id}`</span>, { replace: <span class="k">true</span> })
+},
+onError: (error) =&gt; {
+  <span class="k">if</span> (getStatus(error) === 401) { navigate(<span class="s">'/login'</span>, { state: { from: location } }); <span class="k">return</span> }
+  <span class="k">if</span> (isSeatConflict(error)) {                                       <span class="c">// 409 SEAT_ALREADY_RESERVED</span>
+    showToast(<span class="s">'في مقعد انحجز قبل شوي، اختار مقعد بديل.'</span>, <span class="s">'error'</span>)
+    queryClient.invalidateQueries({ queryKey: queryKeys.tripSeats(Number(tripId)) })
+    onSeatConflict?.()                                                <span class="c">// رجوع لخطوة المقاعد، والأسماء بتضل</span>
+    <span class="k">return</span>
+  }
+  showToast(getErrorMessage(error, <span class="s">'ما قدرنا نأكد الحجز. حاول مرة ثانية.'</span>), <span class="s">'error'</span>)
+},</pre>
+
+      <h3>شو يعني <code>invalidateQueries</code>؟</h3>
+      <p>يعني "البيانات تحت هالمفتاح صارت قديمة". إذا في component عم يعرضها هلّق، React Query بيجيبها من جديد فوراً. إذا لأ، بيجيبها أول ما حدا يطلبها. هيك ما في داعي تعدّل الـ cache يدوياً بعد كل كتابة، بس بتقلّه شو تغيّر.</p>
+
+      <h3>إلغاء حجز</h3>
+      <ol class="steps">
+        <li>المستخدم بيكبس "إلغاء الحجز" بـ <code>MyTripCard</code> أو <code>TicketModal</code>.</li>
+        <li><code>useBookingActions</code> بيفتح <code>ConfirmDialog</code> <q>أكيد بدك تلغي هالحجز؟</q></li>
+        <li>عند التأكيد: <code>cancelMutation.mutate({ id, tripId })</code> ← <code>POST /bookings/{id}/cancel</code> بدون body.</li>
+        <li>نجاح: invalidate لـ <code>myBookings</code> و <code>booking(id)</code> و <code>trip(tripId)</code> (المفتاح الأخير بيشمل المقاعد) + toast <q>تم إلغاء الحجز.</q></li>
+      </ol>
+      <div class="tip"><b>معلومة:</b> الإلغاء "idempotent"، يعني إذا لغيت نفس الحجز مرتين، التانية كمان بترجع 201 بدون خطأ.</div>
+
+      <h3>الحالة اللي بيعطيك ياها <code>useMutation</code></h3>
+<pre>mutation.mutate(variables, { onSuccess, onError })   <span class="c">// نفّذ</span>
+mutation.isPending   <span class="c">// عم يبعت → الزر بيصير loading و disabled (ما في ضغطتين = حجزين)</span>
+mutation.isSuccess
+mutation.error</pre>
+    </section>
+
+    <!-- 11 -->
+    <section class="chapter" id="auth" data-title="تسجيل الدخول والجلسة">
+      <span class="eyebrow">11</span>
+      <h2>تسجيل الدخول والجلسة</h2>
+      <p class="lead">هون بتجتمع كل القطع: الـ token، الـ interceptor، <code>/auth/me</code>، الـ context، وحماية الصفحات.</p>
+
+      <h3>تسجيل الدخول خطوة خطوة</h3>
+      <ol class="steps">
+        <li><b><code>LoginForm.jsx</code></b>: المستخدم بيكبس دخول. <code>useAuthForm</code> بيعمل validation محلي أول (إيميل صحيح، كلمة سر 8 أحرف). إذا في غلط، ما في طلب.</li>
+        <li><b><code>useLogin()</code></b> بيستدعي <code>login({ email, password })</code> من <code>auth.service</code>.</li>
+        <li>الطلب: <code>POST /auth/login</code> ← الرد:
+<pre>{ <span class="s">"accessToken"</span>: <span class="s">"eyJ..."</span>, <span class="s">"tokenType"</span>: <span class="s">"Bearer"</span>, <span class="s">"portal"</span>: <span class="s">"website"</span>,
+  <span class="s">"user"</span>: { <span class="s">"id"</span>: 31, <span class="s">"name"</span>: <span class="s">"…"</span>, <span class="s">"email"</span>: <span class="s">"…"</span>, <span class="s">"role"</span>: <span class="s">"USER"</span> } }</pre></li>
+        <li><code>mapAuthResponse</code> بيحوّله لـ <code>{ token, user }</code>.</li>
+        <li><code>onSuccess</code> ← <code>signIn(session, { remember })</code> بـ <code>AuthContext</code>:
+          <ul>
+            <li><code>setToken(token, remember)</code> ← localStorage أو sessionStorage.</li>
+            <li><code>queryClient.setQueryData(['auth','me'], user)</code> ← منحط المستخدم بالـ cache فوراً، فما في داعي لطلب <code>/auth/me</code> هلّق.</li>
+            <li><code>setTokenState(token)</code> ← الـ context بيتحدّث، والـ header بيعرض اسم المستخدم.</li>
+          </ul></li>
+        <li>toast <q>أهلاً وسهلاً! تم تسجيل الدخول.</q> وانتقال لـ <code>state.from</code> (الصفحة اللي بعتتك للدخول) أو <code>/account</code>.</li>
+      </ol>
+
+      <h3>لما ترجع تفتح الموقع (استرجاع الجلسة)</h3>
+      <ol class="steps">
+        <li><code>AuthProvider</code> بيقرا الـ token من الـ storage: <code>useState(getToken)</code>.</li>
+        <li>إذا موجود ← <code>useMe(true)</code> بيبعت <code>GET /auth/me</code>، والـ interceptor بيحط الـ token.</li>
+        <li>وقت الانتظار: <code>status = 'loading'</code> ← <code>ProtectedRoute</code> بيعرض spinner <q>عم نتحقق من حسابك...</q></li>
+        <li>نجح ← <code>status = 'authenticated'</code>. رجع 401 ← الـ interceptor بيمحي الـ token ← <code>status = 'guest'</code> ← تحويل لـ <code>/login</code>. ما في نت ← <code>status = 'error'</code> مع زر "حاول مرة ثانية".</li>
+      </ol>
+<pre><span class="c">// src/context/AuthContext.jsx — قلب المنطق</span>
+<span class="k">const</span> status = !token ? <span class="s">'guest'</span> : user ? <span class="s">'authenticated'</span> : me.isError ? <span class="s">'error'</span> : <span class="s">'loading'</span></pre>
+
+      <h3>حماية الصفحات</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Guard</th><th>الصفحات</th><th>السلوك</th></tr></thead>
+        <tbody>
+          <tr><td><code>router/ProtectedRoute.jsx</code></td><td><code>/trips</code>، <code>/account</code>، <code>/tracking</code>، <code>/booking/success/:id</code></td><td>زائر ← <code>&lt;Navigate to="/login" state={{ from: location }} /&gt;</code></td></tr>
+          <tr><td><code>router/GuestOnlyRoute.jsx</code></td><td><code>/login</code>، <code>/register</code></td><td>مسجّل دخول ← تحويل لـ <code>from</code> أو <code>/account</code></td></tr>
+          <tr><td>بدون guard</td><td><code>/booking/:tripId</code></td><td>عامة، بس زر التأكيد بيطلب دخول</td></tr>
+        </tbody>
+      </table></div>
+      <div class="warn"><b>مهم تفهمه:</b> الحماية بالفرونت <b>للتجربة بس</b>، مش للأمان. حتى لو حدا تجاوزها، السيرفر رح يرفض أي طلب بدون token صالح بـ 401. الأمان الحقيقي دايماً بالباك.</div>
+
+      <h3>انتهاء الجلسة (401 بنص الاستعمال)</h3>
+      <ol class="steps">
+        <li>أي طلب محمي بيرجع 401 (الـ token خلص بعد 7 أيام مثلاً).</li>
+        <li><code>client.js</code>: <code>clearToken()</code> + <code>authEvents.emit('unauthorized')</code>.</li>
+        <li><code>AuthContext</code>: <code>setTokenState(null)</code>، بيمحي <code>['auth','me']</code> و <code>['bookings']</code> من الـ cache، toast <q>انتهت الجلسة، سجّل دخولك من جديد.</q></li>
+        <li>إذا كنت بصفحة محمية، <code>ProtectedRoute</code> بيشوف <code>status = 'guest'</code> وبيحوّلك للدخول. إذا بصفحة عامة، بتكمّل كزائر.</li>
+      </ol>
+      <div class="tip"><b>ليش <code>tokenRef</code>؟</b> إذا 3 طلبات فشلوا سوا بـ 401، الـ event بيوصل 3 مرات. الـ ref بيضمن إنو الـ toast يطلع مرة وحدة بس.</div>
+
+      <h3>تسجيل الخروج</h3>
+      <p>ما في endpoint. <code>signOut()</code> بيمحي الـ token من الـ storage، بيصفّر الـ state، وبيمحي بيانات المستخدم من الـ cache (<code>me</code> و <code>bookings</code>) لحتى ما يشوفها حدا تاني يفوت على نفس المتصفح.</p>
+
+      <h3>Register</h3>
+      <p>نفس الـ login تقريباً. السيرفر بيرجّع token مباشرة مع التسجيل، فالمستخدم بيفوت فوراً. بالكود في احتياط: إذا يوماً السيرفر بطّل يرجّع token، <code>useRegister</code> بيستدعي login بنفس البيانات.</p>
+    </section>
+
+    <!-- 12 -->
+    <section class="chapter" id="errors" data-title="الأخطاء: من رد السيرفر لرسالة عربية">
+      <span class="eyebrow">12</span>
+      <h2>الأخطاء: من رد السيرفر لرسالة عربية</h2>
+      <p class="lead">السيرفر بيرجّع أكواد بالإنكليزي. المستخدم لازم يشوف جملة عربية مفهومة. <code>src/api/errors.js</code> هو المترجم.</p>
+      <h3>الدوال</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>الدالة</th><th>بترجّع</th><th>وين مستعملة</th></tr></thead>
+        <tbody>
+          <tr><td><code>getErrorMessage(error, fallback)</code></td><td>جملة وحدة عربية للـ toast</td><td>كل الـ mutations والـ QueryState</td></tr>
+          <tr><td><code>getFieldErrors(error)</code></td><td><code>{ email: '…', password: '…' }</code></td><td><code>useAuthForm</code>: الخطأ بيظهر تحت الحقل الصح</td></tr>
+          <tr><td><code>isSeatConflict(error)</code></td><td><code>true</code> إذا 409 + <code>SEAT_ALREADY_RESERVED</code></td><td><code>useCreateBooking</code></td></tr>
+          <tr><td><code>isNotFound(error)</code></td><td><code>true</code> إذا 404</td><td>صفحة الحجز والنجاح والتتبّع (empty state بدل خطأ)</td></tr>
+          <tr><td><code>isNetworkError(error)</code></td><td><code>true</code> إذا ما في رد أصلاً</td><td>داخلياً</td></tr>
+          <tr><td><code>getStatus(error)</code></td><td>رقم الـ status أو <code>null</code></td><td>كل مكان بدو يفرّق بين 401 و 409…</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>كيف <code>getErrorMessage</code> بيقرّر</h3>
+      <ol class="steps">
+        <li>ما في رد (ما في نت أو timeout)؟ ← <q>تعذّر الاتصال بالخادم. تأكد من الإنترنت وحاول مرة ثانية.</q></li>
+        <li><code>message</code> كود معروف (<code>EMAIL_TAKEN</code>…)؟ ← ترجمته من <code>CODE_MESSAGES</code>.</li>
+        <li><code>message</code> array تبع validation؟ ← أول كلمة بكل رسالة هي اسم الحقل (<code>"seats.0.passengerPhone must match…"</code>)، فمنترجمها من <code>FIELD_MESSAGES</code>.</li>
+        <li>ولا شي؟ ← الـ <code>fallback</code> اللي بعتّه.</li>
+      </ol>
+
+      <h3>جدول الأكواد</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>الكود من السيرفر</th><th>Status</th><th>اللي بيشوفه المستخدم</th><th>عيّنة</th></tr></thead>
+        <tbody>
+          <tr><td><code>INVALID_CREDENTIALS</code></td><td>401</td><td>الإيميل أو كلمة المرور غلط.</td><td><code>login-wrong-password.json</code></td></tr>
+          <tr><td><code>EMAIL_TAKEN</code></td><td>409</td><td>هالإيميل مسجّل من قبل. جرّب تسجّل دخول.</td><td><code>register-duplicate.json</code></td></tr>
+          <tr><td><code>SEAT_ALREADY_RESERVED</code></td><td>409</td><td>في مقعد انحجز قبل شوي، اختار مقعد بديل.</td><td><code>booking-seat-conflict.json</code></td></tr>
+          <tr><td><code>TRIP_NOT_FOUND</code></td><td>404</td><td>الرحلة غير موجودة أو ما عادت متاحة.</td><td><code>trip-404.json</code></td></tr>
+          <tr><td><code>BOOKING_NOT_FOUND</code></td><td>404</td><td>الحجز غير موجود.</td><td><code>booking-404.json</code></td></tr>
+          <tr><td><code>COMPANY_NOT_FOUND</code></td><td>404</td><td>الشركة غير موجودة.</td><td><code>company-404.json</code></td></tr>
+          <tr><td><code>Unauthorized</code></td><td>401</td><td>بيشغّل مسار انتهاء الجلسة</td><td><code>me-unauth.json</code></td></tr>
+          <tr><td>array validation</td><td>400</td><td>رسالة لكل حقل</td><td><code>register-validation-error.json</code></td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>من الخطأ للحقل (مثال التسجيل)</h3>
+<pre><span class="c">// السيرفر:</span>
+{ <span class="s">"message"</span>: [<span class="s">"email must be an email"</span>, <span class="s">"password must be longer than or equal to 8 characters"</span>], <span class="s">"statusCode"</span>: 400 }
+
+<span class="c">// getFieldErrors(error):</span>
+{ email: <span class="s">'أدخل بريد إلكتروني صحيح.'</span>, password: <span class="s">'كلمة المرور لازم تكون 8 أحرف على الأقل.'</span> }
+
+<span class="c">// useAuthForm: setErrors(...) ← TextField بيعرض الخطأ تحت الحقل مع aria-invalid، وبيعمل focus على أول حقل غلط</span></pre>
+      <div class="tip"><b>إذا ظهر كود جديد من السيرفر</b> وطلعت رسالة عامة، زيد سطر بـ <code>CODE_MESSAGES</code> بـ <code>errors.js</code>. وإذا حقل جديد، زيده بـ <code>FIELD_MESSAGES</code>. هيك بس.</div>
+    </section>
+
+    <!-- 13 -->
+    <section class="chapter" id="admin" data-title="لوحة الإدارة: نفس الفكرة، API تاني">
+      <span class="eyebrow">13</span>
+      <h2>لوحة الإدارة: نفس الفكرة، API تاني</h2>
+      <p class="lead">لوحة <code>/admin</code> بتحكي مع <b>Dashboard API</b> (<code class="ltr">/api/v1/dashboard</code>)، وهو API منفصل. الطبقات نفسها بالضبط، بس كلها نسخة مستقلة جوّا <code>src/admin/</code>.</p>
+      <h3>ليش منفصلين؟</h3>
+      <p>لو المشرف والمسافر فاتحين بنفس المتصفح، ما لازم انتهاء جلسة واحد يطلّع التاني. ولا لازم كود الإدارة ينزل عند المسافر العادي.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>الشي</th><th>موقع المسافرين</th><th>الإدارة</th></tr></thead>
+        <tbody>
+          <tr><td>Base URL</td><td><code>VITE_API_BASE_URL</code></td><td><code>VITE_ADMIN_API_BASE_URL</code></td></tr>
+          <tr><td>Axios client</td><td><code>src/api/client.js</code></td><td><code>src/admin/api/adminClient.js</code></td></tr>
+          <tr><td>المسارات</td><td><code>src/api/endpoints.js</code></td><td><code>src/admin/api/adminEndpoints.js</code></td></tr>
+          <tr><td>مفتاح الـ token</td><td><code>sairna-token</code></td><td><code>sairna-admin-token</code> (sessionStorage افتراضياً)</td></tr>
+          <tr><td>إشارة الـ 401</td><td><code>authEvents</code></td><td><code>adminAuthEvents</code></td></tr>
+          <tr><td>Context</td><td><code>AuthContext</code></td><td><code>admin/context/AdminAuthContext.jsx</code></td></tr>
+          <tr><td>Query keys</td><td><code>['trips']</code>…</td><td>دايماً بتبلّش بـ <code>'admin'</code>: <code>['admin','trips']</code></td></tr>
+          <tr><td>تحميل الكود</td><td>عادي</td><td>lazy، بـ chunk منفصل ما بينزل إلا لما تفوت <code>/admin</code></td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>خريطة endpoints الإدارة</h3>
+      <div class="table-wrap big-table"><table>
+        <thead><tr><th>Endpoint</th><th>Service (<code>src/admin/services/</code>)</th><th>Hook</th><th>مين بيستعمله</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill post">POST</span><code>/auth/login</code></td><td><code>adminAuth → adminLogin</code></td><td><code>useAdminLogin</code></td><td class="files"><code>AdminLoginForm</code></td></tr>
+          <tr><td><span class="pill get">GET</span><code>/auth/me</code></td><td><code>adminAuth → getAdminMe</code></td><td><code>useQuery</code> جوّا <code>AdminAuthContext</code></td><td>الحماية والـ header</td></tr>
+          <tr><td><span class="pill get">GET</span><code>/overview</code></td><td><code>overview → getOverview</code></td><td><code>useOverview</code></td><td class="files"><code>OverviewPage</code></td></tr>
+          <tr><td><span class="pill get">GET</span><code>/cities</code></td><td><code>cities → getAdminCities</code></td><td><code>useAdminCities</code></td><td class="files"><code>CitiesPage</code>، <code>TripFormDrawer</code></td></tr>
+          <tr><td><span class="pill get">GET</span><code>/companies</code></td><td><code>companies → getAdminCompanies</code></td><td><code>useAdminCompanies</code></td><td class="files"><code>CompaniesPage</code>، <code>TripsPage</code>، <code>BookingsPage</code>، <code>TripFormDrawer</code></td></tr>
+          <tr><td><span class="pill post">POST</span><code>/companies</code></td><td><code>createCompany</code></td><td><code>useSaveCompany</code> (بدون id)</td><td class="files"><code>CompanyFormDrawer</code></td></tr>
+          <tr><td><span class="pill patch">PATCH</span><code>/companies/{id}</code></td><td><code>updateCompany</code></td><td><code>useSaveCompany</code> (مع id)</td><td class="files"><code>CompanyFormDrawer</code>، تفعيل بـ <code>useCompanyActions</code></td></tr>
+          <tr><td><span class="pill del">DELETE</span><code>/companies/{id}</code></td><td><code>deleteCompany</code></td><td><code>useArchiveCompany</code></td><td class="files"><code>useCompanyActions</code> ← <code>CompaniesPage</code></td></tr>
+          <tr><td><span class="pill get">GET</span><code>/trips</code></td><td><code>trips → getAdminTrips</code></td><td><code>useAdminTrips</code></td><td class="files"><code>TripsPage</code>، <code>OverviewPage</code>، <code>CompaniesPage</code>، <code>CitiesPage</code></td></tr>
+          <tr><td><span class="pill post">POST</span><code>/trips</code></td><td><code>createTrip</code></td><td><code>useSaveTrip</code></td><td class="files"><code>TripFormDrawer</code></td></tr>
+          <tr><td><span class="pill get">GET</span><code>/trips/{id}</code></td><td><code>getAdminTrip</code></td><td><code>useAdminTrip</code></td><td class="files"><code>TripDetailsPage</code></td></tr>
+          <tr><td><span class="pill patch">PATCH</span><code>/trips/{id}</code></td><td><code>updateTrip</code></td><td><code>useSaveTrip</code></td><td class="files"><code>TripFormDrawer</code></td></tr>
+          <tr><td><span class="pill del">DELETE</span><code>/trips/{id}</code></td><td><code>deleteTrip</code></td><td><code>useCancelTrip</code></td><td class="files"><code>useTripActions</code></td></tr>
+          <tr><td><span class="pill get">GET</span><code>/bookings</code></td><td><code>bookings → getAdminBookings</code></td><td><code>useAdminBookings</code></td><td class="files"><code>BookingsPage</code>، <code>OverviewPage</code>، <code>TripDetailsPage</code>، <code>UsersPage</code>، <code>UserDetailsPage</code>، <code>useBookedSeatsByTrip</code></td></tr>
+          <tr><td><span class="pill get">GET</span><code>/bookings/{id}</code></td><td><code>getAdminBooking</code></td><td><code>useAdminBooking</code></td><td class="files"><code>BookingDetailsPage</code></td></tr>
+          <tr><td><span class="pill post">POST</span><code>/bookings/{id}/cancel</code></td><td><code>cancelAdminBooking</code></td><td><code>useCancelAdminBooking</code></td><td class="files"><code>useBookingCancel</code></td></tr>
+          <tr><td><span class="pill get">GET</span><code>/users</code></td><td><code>users → getAdminUsers</code></td><td><code>useAdminUsers</code></td><td class="files"><code>UsersPage</code></td></tr>
+          <tr><td><span class="pill get">GET</span><code>/users/{id}</code></td><td><code>getAdminUser</code></td><td><code>useAdminUser</code></td><td class="files"><code>UserDetailsPage</code></td></tr>
+        </tbody>
+      </table></div>
+      <p>كل الـ query hooks بـ <code>src/admin/hooks/queries/useAdminQueries.js</code>، وكل الـ mutations بـ <code>src/admin/hooks/mutations/useAdminMutations.js</code> (ما عدا login).</p>
+
+      <h3>أشياء خاصة بالإدارة</h3>
+      <div class="grid-2">
+        <div class="card"><h4>DELETE مش حذف</h4><p><code>DELETE /companies/{id}</code> بيأرشف الشركة (<code>isActive: false</code>)، و <code>DELETE /trips/{id}</code> بيلغي الرحلة (<code>status: CANCELLED</code>). السجل بيضل. لهيك الأزرار مكتوب عليها «أرشفة» و «إلغاء الرحلة».</p></div>
+        <div class="card"><h4>PATCH بيبعت اللي تغيّر بس</h4><p>الدالة <code>diff()</code> بـ <code>admin/utils/validation.js</code> بتقارن الفورم بالقيم الأصلية، والـ body فيه بس الحقول اللي تغيّرت.</p></div>
+        <div class="card"><h4>توقيت دمشق ↔ UTC</h4><p>المشرف بيكتب الوقت بتوقيت دمشق. <code>damascusInputToISO()</code> بـ <code>admin/utils/datetime.js</code> بيحوّله لـ UTC قبل الإرسال، و <code>isoToDamascusInput()</code> بيرجّعه للعرض.</p></div>
+        <div class="card"><h4>فحص الدور</h4><p>بعد الدخول، إذا <code>user.role</code> مش <code>ADMIN</code>، <code>useAdminLogin</code> بيرمي خطأ <q>هالحساب مو حساب مشرف.</q> وما بيحفظ الـ token.</p></div>
+        <div class="card"><h4><code>unwrap()</code></h4><p>الـ mappers بالإدارة (<code>admin/api/mappers/admin.mappers.js</code>) بتقبل الرد كـ array مباشرة أو جوّا <code>{ data: … }</code>. احتياط إذا الباك غيّر الشكل.</p></div>
+        <div class="card"><h4>أرقام مشتقة</h4><p><code>GET /trips</code> ما فيه عدد مقاعد محجوزة و <code>GET /users</code> ما فيه عدد حجوزات، فمنحسبهم من <code>GET /bookings</code> (مثلاً <code>useBookedSeatsByTrip</code>).</p></div>
+      </div>
+      <div class="note"><b>Cache مشترك:</b> الإدارة والموقع بيستعملوا نفس الـ <code>QueryClient</code>. فلما المشرف يعدّل شركة أو رحلة، الـ mutation بيعمل invalidate لـ <code>['companies']</code> و <code>['trips']</code> تبع الموقع كمان، لحتى لو فاتح الموقع بنفس التاب يشوف التعديل.</div>
+      <p>التفاصيل الكاملة: <code>docs/ADMIN_GUIDE.html</code> و <code>docs/api/ADMIN_API_NOTES.md</code>.</p>
+    </section>
+
+    <!-- 14 -->
+    <section class="chapter" id="recipe" data-title="وصفة: إضافة endpoint جديد">
+      <span class="eyebrow">14</span>
+      <h2>وصفة: إضافة endpoint جديد</h2>
+      <p class="lead">بفرض صاحب الباك ضاف endpoint جديد. هاي الخطوات بالترتيب، وكل خطوة بملف واحد.</p>
+      <div class="warn"><b>تنبيه:</b> المثال تحت <b>افتراضي</b>. ما في endpoint اسمه <code>PATCH /auth/me</code> بالباك حالياً (ما في تعديل للبروفايل). استعملناه بس لنشرح الطريقة.</div>
+
+      <h4>0. اعرف شو بيرجع قبل ما تكتب أي سطر</h4>
+      <p>افتح Swagger، جرّب الطلب (بـ curl أو من Swagger نفسه)، واحفظ الرد بـ <code>docs/api/samples/</code>. <b>لا تخمّن شكل الرد.</b> إذا الطلب بيكتب بيانات، استأذن قبل ما تجرّبه.</p>
+
+      <h4>1. المسار ← <code>src/api/endpoints.js</code></h4>
+<pre><span class="k">export const</span> endpoints = {
+  ...
+  updateMe: () =&gt; <span class="s">'/auth/me'</span>,
+}</pre>
+
+      <h4>2. الـ mapper (إذا الرد شكل جديد) ← <code>src/api/mappers/</code></h4>
+      <p>هون الرد هو نفس المستخدم، فمنستعمل <code>mapUser</code> الموجود. إذا كان شكل جديد، اعمل ملف <code>x.mapper.js</code> بدالة pure بتتحمّل الحقول الناقصة.</p>
+
+      <h4>3. الـ service ← <code>src/services/auth.service.js</code></h4>
+<pre><span class="k">export async function</span> updateMe({ name }) {
+  <span class="k">const</span> { data } = <span class="k">await</span> client.patch(endpoints.updateMe(), { name: name.trim() })
+  <span class="k">return</span> mapUser(data)
+}</pre>
+
+      <h4>4. الـ query key (إذا قراءة جديدة) ← <code>src/api/queryKeys.js</code></h4>
+      <p>هون ما في داعي، منستعمل <code>queryKeys.me()</code>.</p>
+
+      <h4>5. الـ hook ← <code>src/hooks/mutations/</code> (أو <code>queries/</code> للـ GET)</h4>
+<pre><span class="k">export function</span> useUpdateMe() {
+  <span class="k">const</span> queryClient = useQueryClient()
+  <span class="k">const</span> { showToast } = useToast()
+  <span class="k">return</span> useMutation({
+    mutationFn: updateMe,
+    onSuccess: (user) =&gt; {
+      queryClient.setQueryData(queryKeys.me(), user)   <span class="c">// الـ header بيتحدّث فوراً</span>
+      showToast(<span class="s">'تم حفظ التعديلات.'</span>)
+    },
+    onError: (error) =&gt; {
+      <span class="k">if</span> (getStatus(error) === 401) <span class="k">return</span>             <span class="c">// AuthContext بيتكفّل</span>
+      showToast(getErrorMessage(error, <span class="s">'ما قدرنا نحفظ.'</span>), <span class="s">'error'</span>)
+    },
+  })
+}</pre>
+
+      <h4>6. الـ component</h4>
+<pre><span class="k">const</span> update = useUpdateMe()
+...
+&lt;Button loading={update.isPending} onClick={() =&gt; update.mutate({ name })}&gt;حفظ&lt;/Button&gt;</pre>
+
+      <h4>7. الأخطاء والتوثيق</h4>
+      <ul class="checklist">
+        <li>إذا في كود خطأ جديد، زيده بـ <code>CODE_MESSAGES</code> بـ <code>errors.js</code>.</li>
+        <li>وثّق الـ endpoint والرد بـ <code>docs/api/API_NOTES.md</code>.</li>
+        <li><code>npm run lint</code> و <code>npm run build</code>.</li>
+        <li>جرّب بالمتصفح وراقب تبويب Network.</li>
+      </ul>
+      <div class="tip"><b>للإدارة:</b> نفس الخطوات بالضبط، بس بالملفات الموازية جوّا <code>src/admin/</code> (<code>adminEndpoints</code>، <code>adminClient</code>، <code>adminKeys</code>…). لا تخلط الـ clients أبداً.</div>
+    </section>
+
+    <!-- 15 -->
+    <section class="chapter" id="debug" data-title="كيف تفحص الربط (Debugging)">
+      <span class="eyebrow">15</span>
+      <h2>كيف تفحص الربط (Debugging)</h2>
+      <p class="lead">لما شي ما بيظهر أو بيطلع خطأ، أول سؤال: <b>المشكلة بالطلب ولا بالعرض؟</b> تبويب Network بيجاوبك.</p>
+
+      <h3>تبويب Network بالـ DevTools</h3>
+      <ol class="steps">
+        <li><kbd>F12</kbd> ← تبويب <b>Network</b> ← فلتر <b>Fetch/XHR</b>.</li>
+        <li>اعمل الشي اللي ما زبط (افتح الصفحة، اكبس الزر).</li>
+        <li>كبّس على الطلب وشوف:
+          <ul>
+            <li><b>Headers</b>: الـ URL الصح؟ الـ method؟ في <code>Authorization</code>؟</li>
+            <li><b>Payload</b>: الـ body اللي انبعت (بالـ POST).</li>
+            <li><b>Response</b>: شو رجّع السيرفر بالضبط.</li>
+          </ul></li>
+      </ol>
+      <div class="note"><b>القاعدة:</b> إذا الـ Response فيه البيانات الصح بس الواجهة غلط ← المشكلة بالـ mapper أو الـ component. إذا الـ Response نفسه غلط أو خطأ ← المشكلة بالطلب (المسار، الـ params، الـ token) أو بالباك.</div>
+
+      <h3>جرّب الـ API بدون الموقع</h3>
+<pre><span class="c"># هل السيرفر شغّال؟</span>
+curl https://sairna.abdulrahman-hares.com/api/v1/health
+
+<span class="c"># GET عادي</span>
+curl <span class="s">"https://sairna.abdulrahman-hares.com/api/v1/website/trips?originId=2&amp;destinationId=1&amp;date=2026-11-14"</span>
+
+<span class="c"># طلب محمي (حط الـ token تبعك من localStorage، ولا تشاركه مع حدا)</span>
+curl -H <span class="s">"Authorization: Bearer &lt;TOKEN&gt;"</span> https://sairna.abdulrahman-hares.com/api/v1/website/bookings/me
+
+<span class="c"># فحص الـ CORS</span>
+curl -I -H <span class="s">"Origin: http://localhost:5173"</span> https://sairna.abdulrahman-hares.com/api/v1/website/cities</pre>
+      <p>أو أسهل: افتح Swagger، كبّس <b>Authorize</b> وحط الـ token، وجرّب أي endpoint من الواجهة.</p>
+      <div class="tip"><b>وين ألاقي الـ token تبعي؟</b> DevTools ← <b>Application</b> ← Local Storage أو Session Storage ← <code>http://localhost:5173</code> ← المفتاح <code>sairna-token</code>.</div>
+
+      <h3>شوف الـ cache</h3>
+      <p>ما منستعمل React Query Devtools بالمشروع (مش من المكتبات المسموحة). بس فيك تشوف كل شي من تبويب Network، أو مؤقتاً تكتب <code>console.log(query.data)</code> بالـ component وتشيله بعدين.</p>
+
+      <h3>مشاكل شائعة</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>العَرَض</th><th>السبب المحتمل</th><th>الحل</th></tr></thead>
+        <tbody>
+          <tr><td>404 على كل الطلبات بالـ dev</td><td>الـ dev server مو شغّال من جذر المشروع، أو عدّلت <code>vite.config.js</code> وما عملت restart</td><td>وقّف <code>npm run dev</code> وشغّله من جديد</td></tr>
+          <tr><td>الطلب رايح لـ <code class="ltr">undefined/trips</code></td><td>ملف الـ env ناقص أو اسم المتغيّر غلط</td><td>تأكد من <code>.env.development</code> وإنو المتغيّر بيبلّش بـ <code>VITE_</code>، وأعد التشغيل</td></tr>
+          <tr><td>خطأ CORS بالـ console</td><td>عم تبعت العنوان الكامل بالـ dev بدل النسبي، أو السيرفر غيّر سياسته</td><td>بالـ dev استعمل <code>/api/v1/website</code> عن طريق الـ proxy</td></tr>
+          <tr><td>401 مع إنك مسجّل دخول</td><td>الـ token خلص (7 أيام) أو انمسح</td><td>سجّل دخول من جديد. شوف <code>sairna-token</code> بالـ Application</td></tr>
+          <tr><td>"تعذّر الاتصال بالخادم" أحياناً</td><td>السيرفر أحياناً ما بيرد على الاتصال (لاحظناها تقريباً بطلب من 4)</td><td>الـ retry التلقائي بيحلّها غالباً. إذا تكررت، جرّب <code>curl</code> على الـ health</td></tr>
+          <tr><td>رحلة الساعة 1 بالليل ما ظهرت بيومها</td><td>فلتر <code>date</code> بالباك بيشتغل على يوم UTC مش يوم دمشق</td><td>قيد بالباك، مسجّل. كل الرحلات الحالية بالنهار فما بتتأثر</td></tr>
+          <tr><td>عدّلت بيانات من الإدارة وما ظهرت بالموقع</td><td>الـ cache (<code>staleTime</code> ساعة للشركات)</td><td>refresh للصفحة، أو تأكد إنو الـ mutation عم يعمل invalidate للمفتاح</td></tr>
+          <tr><td>حقل بيظهر <code>undefined</code></td><td>عم تقرا حقل خام بدل حقل الـ model، أو الـ mapper ما بيعرفه</td><td>قارن بالعيّنة بـ <code>docs/api/samples/</code> وصلّح الـ mapper</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 16 -->
+    <section class="chapter" id="gaps" data-title="حدود الباك المعروفة">
+      <span class="eyebrow">16</span>
+      <h2>حدود الباك المعروفة</h2>
+      <p class="lead">أشياء الواجهة بتتعامل معها لأن الـ API ما بيقدّمها. إذا يوماً انضافت، هي الأماكن اللي لازم تتعدّل.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>الناقص</th><th>شو عملنا</th><th>وين تعدّل إذا انضاف</th></tr></thead>
+        <tbody>
+          <tr><td>تقييم الشركة، خدماتها، وصفها</td><td>مخفيين بالواجهة</td><td><code>company.mapper.js</code> (الحقول جاهزة: <code>rating</code>، <code>features</code>، <code>about</code>)</td></tr>
+          <tr><td>مسافة الرحلة</td><td>تقدير من الإحداثيات مع <code>~</code></td><td><code>trip.mapper.js</code> بيقرا <code>distanceKm</code> إذا موجود</td></tr>
+          <tr><td>توزيع المقاعد بالباص</td><td>4 بكل صف</td><td><code>seat.mapper.js</code> بيقرا <code>columns</code> إذا موجود</td></tr>
+          <tr><td>refresh token / logout</td><td>تسجيل خروج محلي، وإعادة دخول بعد 7 أيام</td><td><code>client.js</code> و <code>AuthContext.jsx</code></td></tr>
+          <tr><td>نسيت كلمة المرور</td><td>الرابط بيروح لصفحة الدعم</td><td><code>LoginForm.jsx</code></td></tr>
+          <tr><td>تعديل البروفايل</td><td>ما في</td><td>شوف <a href="#recipe">الوصفة</a></td></tr>
+          <tr><td>دفع إلكتروني</td><td>بطاقة معلومات «الدفع في مكتب الشركة»</td><td><code>PaymentInfo.jsx</code></td></tr>
+          <tr><td>تتبّع GPS حقيقي</td><td>محاكاة على الخريطة، مكتوب إنها تجريبية</td><td><code>useTrackingSimulation.js</code></td></tr>
+          <tr><td>مقاعد الحجز الملغى</td><td>السيرفر بيمحيها، الواجهة بتعرض <code>—</code></td><td><code>booking.mapper.js</code></td></tr>
+          <tr><td>pagination وبحث بالسيرفر</td><td>كل القوائم بتنجاب كاملة وبتتفلتر بالمتصفح</td><td>الـ services + <code>useTripFilters</code> / hooks الإدارة</td></tr>
+          <tr><td>حذف نهائي (إدارة)</td><td>أرشفة / إلغاء بس</td><td>—</td></tr>
+        </tbody>
+      </table></div>
+      <div class="warn"><b>بيانات تجريبية باقية على السيرفر:</b> حساب مسافر تجريبي، وبالإدارة شركة <code>#17</code> (مؤرشفة) ورحلة <code>#118</code> (ملغاة). ما في طريقة لمحيهم، فلا تتفاجأ إذا شفتهم.</div>
+    </section>
+
+    <!-- 17 -->
+    <section class="chapter" id="glossary" data-title="قاموس المصطلحات">
+      <span class="eyebrow">17</span>
+      <h2>قاموس المصطلحات</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>المصطلح</th><th>معناه ببساطة</th></tr></thead>
+        <tbody>
+          <tr><td><b>API</b></td><td>مجموعة العناوين اللي السيرفر بيقبل طلبات عليها، مع شكل الطلب والرد</td></tr>
+          <tr><td><b>Endpoint</b></td><td>عنوان واحد + method، مثلاً <code>GET /cities</code></td></tr>
+          <tr><td><b>Base URL</b></td><td>الجزء الثابت قبل كل المسارات: <code class="ltr">/api/v1/website</code></td></tr>
+          <tr><td><b>REST</b></td><td>أسلوب بتصميم الـ API: كل "شي" (رحلة، حجز) إلو مسار، والـ method بيحدد العملية</td></tr>
+          <tr><td><b>JSON</b></td><td>صيغة نص لنقل البيانات، شكلها متل objects الـ JavaScript</td></tr>
+          <tr><td><b>Status code</b></td><td>رقم بالرد بيقلك النتيجة: 2xx نجاح، 4xx غلطتك، 5xx غلطة السيرفر</td></tr>
+          <tr><td><b>Header</b></td><td>معلومة إضافية مع الطلب أو الرد، متل <code>Authorization</code></td></tr>
+          <tr><td><b>JWT / Token</b></td><td>نص بيثبت هويتك، بتاخده من الـ login وبتبعته مع كل طلب محمي</td></tr>
+          <tr><td><b>Bearer</b></td><td>نوع الـ token بالـ header: <code>Authorization: Bearer &lt;token&gt;</code></td></tr>
+          <tr><td><b>CORS</b></td><td>قاعدة بالمتصفح بتمنع صفحة تقرا رد من دومين تاني إلا إذا السيرفر سمح</td></tr>
+          <tr><td><b>Proxy</b></td><td>وسيط: Vite بياخد طلبك وبيبعته للسيرفر الحقيقي، فالمتصفح بيشوف دومين واحد</td></tr>
+          <tr><td><b>Axios</b></td><td>مكتبة لإرسال طلبات HTTP، أحسن من <code>fetch</code> بالـ interceptors والـ timeout وتحويل JSON تلقائياً</td></tr>
+          <tr><td><b>Interceptor</b></td><td>دالة بتمرق عليها كل الطلبات أو الردود</td></tr>
+          <tr><td><b>Service</b></td><td>دالة عنّا بتبعت طلب واحد وبترجّع بيانات mapped</td></tr>
+          <tr><td><b>Mapper</b></td><td>دالة بتحوّل شكل الباك لشكل الواجهة</td></tr>
+          <tr><td><b>Query</b></td><td>قراءة بيانات بـ React Query (<code>useQuery</code>)</td></tr>
+          <tr><td><b>Mutation</b></td><td>كتابة بيانات بـ React Query (<code>useMutation</code>)</td></tr>
+          <tr><td><b>Query key</b></td><td>اسم البيانات بالـ cache، array متل <code>['trips', 'detail', 5]</code></td></tr>
+          <tr><td><b>staleTime</b></td><td>قديش البيانات بتضل "طازة" قبل ما تنجاب من جديد</td></tr>
+          <tr><td><b>Invalidate</b></td><td>إعلان إنو بيانات بالـ cache صارت قديمة، فبتنجاب من جديد</td></tr>
+          <tr><td><b>Validation</b></td><td>فحص البيانات قبل قبولها، بالفرونت (للتجربة) وبالباك (للأمان)</td></tr>
+          <tr><td><b>Idempotent</b></td><td>عملية إذا كررتها بتعطي نفس النتيجة (متل إلغاء الحجز)</td></tr>
+          <tr><td><b>UTC</b></td><td>التوقيت العالمي اللي السيرفر بيخزّن فيه. دمشق = UTC+3</td></tr>
+          <tr><td><b>Swagger</b></td><td>صفحة توثيق تفاعلية للـ API، بتقدر تجرّب منها الطلبات</td></tr>
+          <tr><td><b>NestJS</b></td><td>إطار Node.js اللي الباك مكتوب فيه</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+  </main>
+</div>
+
+<button class="icon-btn back-top" id="backTop" aria-label="رجوع لفوق" title="رجوع لفوق">↑</button>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var chapters = Array.prototype.slice.call(document.querySelectorAll('section.chapter'));
+    var list = document.getElementById('tocList');
+    var toc = document.getElementById('toc');
+    var menuBtn = document.getElementById('menuBtn');
+
+    // Build the table of contents from the chapters.
+    chapters.forEach(function (sec, i) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + sec.id;
+      a.innerHTML = '<span class="num">' + String(i + 1).padStart(2, '0') + '</span>' + sec.getAttribute('data-title');
+      a.addEventListener('click', function () { toc.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); });
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+    var links = list.querySelectorAll('a');
+
+    // Highlight the chapter in view.
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id); });
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    chapters.forEach(function (c) { io.observe(c); });
+
+    // Search: hides chapters that don't contain the text.
+    document.getElementById('search').addEventListener('input', function (e) {
+      var q = e.target.value.trim().toLowerCase();
+      chapters.forEach(function (c, i) {
+        var hit = !q || c.textContent.toLowerCase().indexOf(q) !== -1;
+        c.classList.toggle('hidden', !hit);
+        links[i].parentElement.style.display = hit ? '' : 'none';
+        if (q && hit) c.querySelectorAll('details').forEach(function (d) { if (d.textContent.toLowerCase().indexOf(q) !== -1) d.open = true; });
+      });
+    });
+
+    // Theme toggle (remembered per viewer).
+    var saved = null;
+    try { saved = localStorage.getItem('sairna-guide-theme'); } catch (e) {}
+    if (saved) root.setAttribute('data-theme', saved);
+    document.getElementById('themeBtn').addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') ? root.getAttribute('data-theme') === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      var next = dark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('sairna-guide-theme', next); } catch (e) {}
+    });
+
+    // Mobile table of contents.
+    menuBtn.addEventListener('click', function () {
+      var open = toc.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { toc.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); } });
+
+    document.getElementById('backTop').addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  })();
+</script>
+</body>
+</html>

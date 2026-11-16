@@ -1,0 +1,11 @@
+{
+  "request": "GET /dashboard/overview",
+  "status": 200,
+  "body": {
+    "customers": 59,
+    "companies": 4,
+    "upcomingTrips": 45,
+    "totalBookings": 16,
+    "confirmedBookings": 11
+  }
+}

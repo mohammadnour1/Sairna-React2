@@ -1,0 +1,15 @@
+{
+  "request": "POST /website/auth/register",
+  "status": 201,
+  "body": {
+    "accessToken": "<redacted-jwt>",
+    "tokenType": "Bearer",
+    "portal": "website",
+    "user": {
+      "id": 31,
+      "name": "حساب تجريبي",
+      "email": "test.user@example.com",
+      "role": "USER"
+    }
+  }
+}
